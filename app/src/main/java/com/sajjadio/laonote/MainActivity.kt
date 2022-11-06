@@ -1,7 +1,8 @@
-package com.example.laonote
+package com.sajjadio.laonote
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.sajjadio.laonote.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
