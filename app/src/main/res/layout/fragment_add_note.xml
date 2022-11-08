@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.sajjadio.laonote.presentation.ui.viewmodel.NoteViewModel" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary">
+
+                <com.google.android.material.appbar.AppBarLayout
+                    android:id="@+id/appBarLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    app:elevation="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.appbar.MaterialToolbar
+                        android:id="@+id/materialToolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="start"
+                        app:navigationIcon="@drawable/ic_back"
+                        app:title="@string/add_note">
+
+                        <ImageButton
+                            android:id="@+id/save"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end|center"
+                            android:layout_marginEnd="@dimen/_12sdp"
+                            android:background="@drawable/shape_of_effect_btn_round"
+                            android:padding="@dimen/_6sdp"
+                            android:src="@drawable/ic_check_circle"
+                            app:layout_constraintBottom_toBottomOf="@+id/imgBack"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/imgBack"
+                            tools:ignore="ContentDescription" />
+
+
+                    </com.google.android.material.appbar.MaterialToolbar>
+
+                </com.google.android.material.appbar.AppBarLayout>
+
+
+                <EditText
+                    android:id="@+id/etNoteTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_6sdp"
+                    android:layout_marginVertical="@dimen/_16sdp"
+                    android:autofillHints=""
+                    android:background="@null"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/oxygen_bold"
+                    android:hint="@string/title"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:padding="@dimen/_10sdp"
+                    android:textColor="@color/colorText"
+                    android:textColorHint="@color/colorHint"
+                    android:textSize="@dimen/_15ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
+
+
+                <TextView
+                    android:id="@+id/tvDateTime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/oxygen_bold"
+                    android:maxLines="1"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:textColor="@color/colorHint"
+                    android:textSize="@dimen/_10ssp"
+                    android:text="@{viewModel.date}"
+                    app:layout_constraintEnd_toEndOf="@+id/etNoteTitle"
+                    app:layout_constraintStart_toStartOf="@id/etNoteTitle"
+                    app:layout_constraintTop_toBottomOf="@id/etNoteTitle"
+                    tools:ignore="RtlSymmetry"
+                    tools:text="2022/11/1, 10:00 PM" />
+
+                <LinearLayout
+                    android:id="@+id/l1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/_10sdp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="@+id/tvDateTime"
+                    app:layout_constraintStart_toStartOf="@+id/tvDateTime"
+                    app:layout_constraintTop_toBottomOf="@id/tvDateTime">
+
+                    <View
+                        android:id="@+id/pickerColor"
+                        android:layout_width="@dimen/_5sdp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        tools:background="@color/colorBlue" />
+
+                    <EditText
+                        android:id="@+id/etNoteSubTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/cabin_medium"
+                        android:hint="@string/notes_sub_title"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:padding="@dimen/_10sdp"
+                        android:textColor="@color/colorHint"
+                        android:textColorHint="@color/colorHint"
+                        android:textSize="@dimen/_12ssp" />
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/etNoteDesc"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/_10sdp"
+                    android:background="@null"
+                    android:fontFamily="@font/cabin_medium"
+                    android:hint="@string/desc"
+                    android:importantForAutofill="no"
+                    android:inputType="textMultiLine"
+                    android:padding="@dimen/_10sdp"
+                    android:textColor="@color/colorHint"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toEndOf="@+id/l1"
+                    app:layout_constraintStart_toStartOf="@+id/l1"
+                    app:layout_constraintTop_toBottomOf="@id/l1" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_6sdp"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/etNoteDesc">
+
+                    <TextView
+                        android:id="@+id/tvWebLink"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/_10sdp"
+                        android:autoLink="web"
+                        android:ellipsize="end"
+                        android:fontFamily="@font/oxygen_bold"
+                        android:padding="@dimen/_10sdp"
+                        android:textColor="@color/colorHint"
+                        android:textColorHint="@color/colorGray"
+                        android:textColorLink="@color/colorBlackNote"
+                        android:textSize="@dimen/_12ssp"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/etNoteDesc" />
+
+                    <RelativeLayout
+                        android:id="@+id/addWebUrl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/_10sdp"
+                        android:background="@color/colorPrimary"
+                        android:orientation="vertical"
+                        android:padding="@dimen/_10sdp"
+                        android:visibility="gone">
+
+                        <EditText
+                            android:id="@+id/etWebLink"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentEnd="true"
+                            android:background="@null"
+                            android:fontFamily="@font/cabin_medium"
+                            android:hint="@string/web_url"
+                            android:importantForAutofill="no"
+                            android:inputType="textMultiLine"
+                            android:padding="@dimen/_10sdp"
+                            android:textColor="@color/colorHint"
+                            android:textColorHint="@color/colorHint"
+                            android:textSize="@dimen/_12ssp" />
+
+                        <Button
+                            android:id="@+id/btnCancel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_alignTop="@+id/btnOk"
+                            android:layout_alignBottom="@+id/btnOk"
+                            android:layout_toStartOf="@+id/btnOk"
+                            android:background="@drawable/shape_of_effect_btn"
+                            android:fontFamily="@font/oxygen_bold"
+                            android:text="@string/cancel"
+                            android:textAllCaps="false"
+                            android:textColor="@color/colorText"
+                            android:textSize="@dimen/_12ssp" />
+
+                        <Button
+                            android:id="@+id/btnOk"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_below="@+id/etWebLink"
+                            android:layout_alignEnd="@+id/etWebLink"
+                            android:layout_marginStart="@dimen/_6sdp"
+                            android:layout_marginTop="@dimen/_6sdp"
+                            android:layout_marginEnd="@dimen/_6sdp"
+                            android:layout_marginBottom="@dimen/_6sdp"
+                            android:background="@drawable/shape_of_effect_btn"
+                            android:fontFamily="@font/oxygen_bold"
+                            android:text="@string/ok"
+                            android:textAllCaps="false"
+                            android:textColor="@color/colorText"
+                            android:textSize="@dimen/_12ssp" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/layoutImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_300sdp"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="@+id/l1"
+                        app:layout_constraintStart_toStartOf="@+id/l1"
+                        app:layout_constraintTop_toBottomOf="@id/l1">
+
+                        <ImageView
+                            android:id="@+id/imgNote"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_alignParentStart="true"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_marginStart="@dimen/_20sdp"
+                            android:layout_marginTop="@dimen/_20sdp"
+                            android:layout_marginEnd="@dimen/_20sdp"
+                            android:layout_marginBottom="@dimen/_20sdp"
+                            android:src="@drawable/ic_launcher_background"
+                            tools:ignore="ContentDescription" />
+
+                        <ImageButton
+                            android:id="@+id/imgDelete"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:layout_alignParentTop="true"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:background="@drawable/shape_of_effect_btn"
+                            android:padding="@dimen/_6sdp"
+                            android:src="@drawable/ic_close"
+                            tools:ignore="ContentDescription" />
+
+
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_gravity="bottom|center"
+            android:background="@color/colorSecond"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageButton
+                android:id="@+id/miscrollaneous"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="center"
+                android:background="@drawable/shape_of_effect_btn"
+                android:src="@drawable/ic_bar"
+                tools:ignore="ContentDescription" />
+        </FrameLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

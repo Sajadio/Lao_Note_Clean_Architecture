@@ -112,6 +112,8 @@ dependencies {
     implementation 'com.makeramen:roundedimageview:2.3.0'
     // Picker color
     implementation "com.github.skydoves:colorpickerview:2.2.4"
-    // Calendar
-    implementation 'com.github.shrikanth7698:Collapsible-Calendar-View-Android:v1.0.0'
+
+    //Times Formatter
+    implementation 'org.ocpsoft.prettytime:prettytime:4.0.1.Final'
+
 }

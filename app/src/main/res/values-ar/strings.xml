@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">Lao Note</string>
+    <string name="notes">الملاحظات</string>
+    <string name="title">العنوان</string>
+    <string name="desc">الوصف</string>
+    <string name="notes_sub_title">العنوان الفرعي</string>
+    <string name="web_url">أدخل رابط</string>
+    <string name="ok">موافق</string>
+    <string name="cancel">ألغاء</string>
+    <string name="search">أبحث عن ملاحظاتك</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="pick_color">أختر اللون</string>
+    <string name="add_image">أضافة صورة</string>
+    <string name="add_seb_link">أضف رابط الويب</string>
+    <string name="delete_note">حذف الملاحظة</string>
+    <string name="save">حفظ</string>
+    <string name="add_note">اضف ملاحظة</string>
+    <string name="permission_storage_rationale_message">يجب السماح لهذا التطبيق بالوصول إلى الصور والوسائط</string>
+    <string name="main_welcome">مرحبا مجددا!</string>
+    <string name="sub_welcome">مرحبا بعودتك</string>
+    <string name="username">ادخل اسم المستخدم</string>
+    <string name="password">كلمة المرور</string>
+    <string name="recovery_password">استعادة كلمة المرور</string>
+    <string name="sign_in">تسجيل الدخول</string>
+    <string name="or_continue">أو سجل الدخول بواسطة</string>
+    <string name="skip">تخطي</string>
+    <string name="settings">الإعدادات</string>
+    <string name="about">حول التطبيق</string>
+    <string name="profile">الملف الشخصي</string>
+    <string name="note_count">عدد الملاحظات</string>
+    <string name="task_count">عدد المهام</string>
+    <string name="event_count">عدد الأحداث</string>
+    <string name="logout">تسجيل خروج</string>
+    <string name="Theme">سمة</string>
+    <string name="light_dark">نهاري/داكن</string>
+    <string name="data_sync">مزامنة البيانات</string>
+    <string name="desc_data_sync">سيؤدي تمكين هذا الخيار إلى ضمان الاحتفاظ ببياناتك حتى بعد حذف التطبيق وإعادة تثبيته من هاتفك</string>
+    <string name="tasks">المهام</string>
+    <string name="events">ألاحداث</string>
+    <string name="add_task">اضف مهمة</string>
+    <string name="add_event">اضف حدث</string>
+    <string name="add">Add</string>
+    <string name="select_date">Select date</string>
+
+</resources>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?><!--suppress ALL -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/layoutMiscrollaneous"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="vertical"
+        app:behavior_peekHeight="40dp"
+        app:layout_behavior="@string/bottom_sheet_behavior">
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageButton
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="center"
+                android:background="@drawable/shape_of_effect_btn"
+                android:src="@drawable/ic_bar"
+                tools:ignore="ContentDescription" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_6sdp"
+            android:fontFamily="@font/oxygen_bold"
+            android:maxLines="1"
+            android:padding="@dimen/_6sdp"
+            android:text="@string/pick_color"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorHint"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etNoteTitle"
+            tools:ignore="RtlSymmetry" />
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollIndicators="start"
+            android:scrollbars="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:orientation="horizontal"
+                android:padding="@dimen/_5sdp">
+
+                <ImageButton
+                    android:id="@+id/imgNote1"
+                    style="@style/StylePickColor"
+                    android:background="@drawable/note_color_1"
+                    tools:ignore="ContentDescription" />
+
+                <ImageButton
+                    android:id="@+id/imgNote2"
+                    style="@style/StylePickColor"
+                    android:background="@drawable/note_color_2"
+                    tools:ignore="ContentDescription" />
+
+                <ImageButton
+                    android:id="@+id/imgNote8"
+                    style="@style/StylePickColor"
+                    android:background="@drawable/note_color_8"
+                    tools:ignore="ContentDescription" />
+
+                <ImageButton
+                    android:id="@+id/imgNote3"
+                    style="@style/StylePickColor"
+                    android:background="@drawable/note_color_3"
+                    tools:ignore="ContentDescription" />
+
+                <ImageButton
+                    android:id="@+id/imgNote4"
+                    style="@style/StylePickColor"
+                    android:background="@drawable/note_color_4"
+                    tools:ignore="ContentDescription" />
+
+
+                <ImageButton
+                    android:id="@+id/imgNote5"
+                    style="@style/StylePickColor"
+                    android:background="@drawable/note_color_5"
+                    tools:ignore="ContentDescription" />
+
+
+                <ImageButton
+                    android:id="@+id/imgNote6"
+                    style="@style/StylePickColor"
+                    android:background="@drawable/note_color_6"
+                    tools:ignore="ContentDescription" />
+
+
+                <ImageButton
+                    android:id="@+id/imgNote7"
+                    style="@style/StylePickColor"
+                    android:background="@drawable/note_color_7"
+                    android:tint="@color/colorBlackNote"
+                    tools:ignore="ContentDescription" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+        <TextView
+            android:id="@+id/addImage"
+            style="@style/FieldBottomSheet"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:drawableStart="@drawable/ic_image"
+            android:text="@string/add_image" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:background="@color/color_border" />
+
+        <TextView
+            android:id="@+id/addWebUrl"
+            style="@style/FieldBottomSheet"
+            android:drawableStart="@drawable/ic_link"
+            android:text="@string/add_seb_link" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:background="@color/color_border" />
+
+        <FrameLayout
+            android:id="@+id/deleteNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <TextView
+                style="@style/FieldBottomSheet"
+                android:drawableStart="@drawable/ic_delete"
+                android:text="@string/delete_note"
+                android:textColor="@color/colorRedNote" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:layout_gravity="bottom"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:background="@color/btn_effect" />
+        </FrameLayout>
+
+    </LinearLayout>
+</layout>

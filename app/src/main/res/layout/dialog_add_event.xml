@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            app:elevation="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/materialToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="start">
+
+                <ImageButton
+                    android:id="@+id/cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start|center"
+                    android:background="@drawable/shape_of_effect_btn_round"
+                    android:padding="@dimen/_6sdp"
+                    android:src="@drawable/ic_close"
+                    app:layout_constraintBottom_toBottomOf="@+id/imgBack"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/imgBack"
+                    app:tint="@color/colorIcon"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/shape_of_effect_btn_round"
+                    android:fontFamily="@font/cabin_medium"
+                    android:text="@string/add_event"
+                    android:textColor="@color/colorText"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imgBack"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/imgBack"
+                    tools:ignore="ContentDescription" />
+
+                <ImageButton
+                    android:id="@+id/save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end|center"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:background="@drawable/shape_of_effect_btn_round"
+                    android:padding="@dimen/_6sdp"
+                    android:src="@drawable/ic_check_circle"
+                    app:layout_constraintBottom_toBottomOf="@+id/imgBack"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/imgBack"
+                    tools:ignore="ContentDescription" />
+
+
+            </com.google.android.material.appbar.MaterialToolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <EditText
+            android:id="@+id/etEventTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginVertical="@dimen/_16sdp"
+            android:autofillHints=""
+            android:background="@null"
+            android:ellipsize="end"
+            android:fontFamily="@font/oxygen_bold"
+            android:hint="@string/title"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/colorText"
+            android:textColorHint="@color/colorHint"
+            android:textSize="@dimen/_15ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+
+
+        <TextView
+            android:id="@+id/tvDateTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:background="@drawable/shape_of_effect_btn"
+            android:clickable="true"
+            android:drawablePadding="@dimen/_6sdp"
+            android:ellipsize="end"
+            android:focusable="true"
+            android:fontFamily="@font/oxygen_bold"
+            android:gravity="center|start"
+            android:maxLines="1"
+            android:paddingStart="@dimen/_10sdp"
+            android:textColor="@color/colorHint"
+            android:textSize="@dimen/_10ssp"
+            app:drawableEndCompat="@drawable/ic_add_small"
+            app:layout_constraintStart_toStartOf="@id/etEventTitle"
+            app:layout_constraintTop_toBottomOf="@id/etEventTitle"
+            tools:ignore="RtlSymmetry"
+            tools:text="2022/11/1, 10:00 PM" />
+
+        <EditText
+            android:id="@+id/etEventDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:background="@null"
+            android:fontFamily="@font/cabin_medium"
+            android:hint="@string/desc"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/colorHint"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintEnd_toEndOf="@+id/etEventTitle"
+            app:layout_constraintStart_toStartOf="@+id/tvDateTime"
+            app:layout_constraintTop_toBottomOf="@id/tvDateTime" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
