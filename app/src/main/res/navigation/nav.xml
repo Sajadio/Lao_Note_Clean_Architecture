@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/noteFragment"
-        android:name="com.sajjadio.laonote.presentation.ui.fragment.NoteFragment"
+        android:name="com.sajjadio.laonote.presentation.ui.note.NoteFragment"
         android:label="@string/notes"
         tools:layout="@layout/fragment_note">
         <action
@@ -25,12 +25,12 @@
     </fragment>
     <fragment
         android:id="@+id/addNoteFragment"
-        android:name="com.sajjadio.laonote.presentation.ui.fragment.AddNoteFragment"
+        android:name="com.sajjadio.laonote.presentation.ui.note.AddNoteFragment"
         android:label="@string/add_note"
         tools:layout="@layout/fragment_add_note" />
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.sajjadio.laonote.presentation.ui.fragment.RegisterFragment"
+        android:name="com.sajjadio.laonote.presentation.ui.auth.RegisterFragment"
         android:label="RegisterFragment"
         tools:layout="@layout/fragment_register">
         <action
@@ -43,7 +43,7 @@
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.sajjadio.laonote.presentation.ui.fragment.ProfileFragment"
+        android:name="com.sajjadio.laonote.presentation.ui.profile.ProfileFragment"
         android:label="ProfileFragment"
         tools:layout="@layout/fragment_profile">
         <action
@@ -52,17 +52,17 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.sajjadio.laonote.presentation.ui.fragment.SettingsFragment"
+        android:name="com.sajjadio.laonote.presentation.ui.settings.SettingsFragment"
         android:label="SettingsFragment"
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/eventFragment"
-        android:name="com.sajjadio.laonote.presentation.ui.fragment.EventFragment"
+        android:name="com.sajjadio.laonote.presentation.ui.event.EventFragment"
         android:label="EventFragment"
         tools:layout="@layout/fragment_event" />
     <fragment
         android:id="@+id/taskFragment"
-        android:name="com.sajjadio.laonote.presentation.ui.fragment.TaskFragment"
+        android:name="com.sajjadio.laonote.presentation.ui.task.TaskFragment"
         android:label="TaskFragment"
         tools:layout="@layout/fragment_task">
         <action
@@ -71,7 +71,7 @@
     </fragment>
     <fragment
         android:id="@+id/addTaskFragment"
-        android:name="com.sajjadio.laonote.presentation.ui.fragment.AddTaskFragment"
+        android:name="com.sajjadio.laonote.presentation.ui.task.AddTaskFragment"
         android:label="AddTaskFragment"
         tools:layout="@layout/fragment_add_task" />
 

@@ -1,4 +1,4 @@
-package com.sajjadio.laonote.presentation.ui.fragment
+package com.sajjadio.laonote.presentation.ui.task
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -9,9 +9,7 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Build
 import android.provider.MediaStore
-import android.util.Patterns
 import android.view.View
-import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -26,6 +24,7 @@ import com.sajjadio.laonote.utils.extension.setToolBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.dialog_add_event.view.*
 import kotlinx.android.synthetic.main.fragment_add_note.*
+import kotlinx.android.synthetic.main.fragment_add_task.*
 import kotlinx.android.synthetic.main.fragment_task.*
 import java.util.*
 import javax.inject.Inject
@@ -62,35 +61,15 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>(R.layout.fragment_a
                 }
             }
             addURL.setOnClickListener {
-                addWebUrl.visibility = View.VISIBLE
+                layoutWebUrlTask.visibility = View.VISIBLE
             }
-            imgDelete.setOnClickListener {
+            imgDeleteTask.setOnClickListener {
                 selectedImagePath = ""
-                layoutImage.visibility = View.GONE
+                layoutImageTask.visibility = View.GONE
             }
-            btnOk.setOnClickListener {
-                if (etWebLink.text.toString().trim().isNotEmpty()) {
-                    checkWebUrl()
-                } else {
-                    Toast.makeText(requireContext(), "Url is Required", Toast.LENGTH_SHORT).show()
-                }
-            }
-            btnCancel.setOnClickListener {
-                addWebUrl.visibility = View.GONE
-            }
-        }
-    }
 
-    private fun checkWebUrl() {
-        binding?.apply {
-            if (Patterns.WEB_URL.matcher(etWebLink.text.toString()).matches()) {
-                addWebUrl.visibility = View.GONE
-                etWebLink.isEnabled = false
-                webLink = etWebLink.text.toString()
-                tvWebLink.visibility = View.VISIBLE
-                tvWebLink.text = webLink
-            } else {
-                Toast.makeText(requireContext(), "Url is not valid", Toast.LENGTH_SHORT).show()
+            clearWebURL.setOnClickListener {
+                layoutWebUrlTask.visibility = View.GONE
             }
         }
     }
@@ -109,10 +88,10 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>(R.layout.fragment_a
         val imageUri = result.data!!.data!!
         val path = requireActivity().getPathFromUri(imageUri)
         selectedImagePath = path.toString()
-        layoutImage.visibility = View.VISIBLE
+        binding?.layoutImageTask?.visibility = View.VISIBLE
         val inputStream = requireActivity().contentResolver.openInputStream(imageUri)
         val bitmap = BitmapFactory.decodeStream(inputStream)
-        binding?.imgNote?.setImageBitmap(bitmap)
+        binding?.imgTask?.setImageBitmap(bitmap)
     }
 
 

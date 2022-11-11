@@ -1,20 +1,20 @@
-package com.sajjadio.laonote.presentation.ui.fragment
+package com.sajjadio.laonote.presentation.ui.profile
 
 import com.sajjadio.laonote.R
-import com.sajjadio.laonote.databinding.FragmentTaskBinding
+import com.sajjadio.laonote.databinding.FragmentProfileBinding
 import com.sajjadio.laonote.presentation.base.BaseFragment
 import com.sajjadio.laonote.utils.extension.moveToDestination
 import com.sajjadio.laonote.utils.extension.setToolBar
-import kotlinx.android.synthetic.main.fragment_task.*
 
-class TaskFragment : BaseFragment<FragmentTaskBinding>(R.layout.fragment_task) {
+class ProfileFragment : BaseFragment<FragmentProfileBinding>(R.layout.fragment_profile) {
     override fun launchView() {
         binding?.apply {
             root.transitionName = TRANSITION_ELEMENT_ROOT
             noteActivity.setToolBar(materialToolbar)
-            fabBtnAddTask.moveToDestination(
-                TaskFragmentDirections.actionTaskFragmentToAddTaskFragment()
+            settings.moveToDestination(
+                ProfileFragmentDirections.actionProfileFragmentToSettingsFragment()
             )
         }
+
     }
 }

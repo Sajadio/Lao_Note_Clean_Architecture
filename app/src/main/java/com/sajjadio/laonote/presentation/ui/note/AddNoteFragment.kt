@@ -1,4 +1,4 @@
-package com.sajjadio.laonote.presentation.ui.fragment
+package com.sajjadio.laonote.presentation.ui.note
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -12,7 +12,6 @@ import android.os.Build
 import android.provider.MediaStore
 import android.util.Patterns
 import android.view.View
-import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -20,15 +19,18 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.sajjadio.laonote.R
 import com.sajjadio.laonote.databinding.FragmentAddNoteBinding
 import com.sajjadio.laonote.presentation.base.BaseFragment
-import com.sajjadio.laonote.presentation.ui.ActionBottomSheet
+import com.sajjadio.laonote.utils.ActionBottomSheet
 import com.sajjadio.laonote.utils.*
 import com.sajjadio.laonote.utils.extension.dateFormat
 import com.sajjadio.laonote.utils.extension.getPathFromUri
+import com.sajjadio.laonote.utils.extension.makeToast
 import com.sajjadio.laonote.utils.extension.setToolBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.color_picker_dialog.*
 import kotlinx.android.synthetic.main.fragment_add_note.*
+import kotlinx.android.synthetic.main.fragment_add_task.*
 import kotlinx.android.synthetic.main.fragment_notes_bottom_sheet.*
+import kotlinx.android.synthetic.main.fragment_notes_bottom_sheet.addWebUrl
 import kotlinx.android.synthetic.main.fragment_notes_bottom_sheet.view.*
 import java.util.*
 import javax.inject.Inject
@@ -59,16 +61,9 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>(
             miscrollaneous.setOnClickListener {
                 openBottomSheet()
             }
-            btnOk.setOnClickListener {
-                if (etWebLink.text.toString().trim().isNotEmpty()) {
-                    checkWebUrl()
-                } else {
-                    Toast.makeText(requireContext(), "Url is Required", Toast.LENGTH_SHORT).show()
-                }
-            }
 
-            btnCancel.setOnClickListener {
-                addWebUrl.visibility = View.GONE
+            clearWebURL.setOnClickListener {
+                layout_Web_url.visibility = View.GONE
             }
 
             imgDelete.setOnClickListener {
@@ -83,15 +78,8 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>(
 
     private fun checkWebUrl() {
         binding?.apply {
-            if (Patterns.WEB_URL.matcher(etWebLink.text.toString()).matches()) {
-                addWebUrl.visibility = View.GONE
-                etWebLink.isEnabled = false
-                webLink = etWebLink.text.toString()
-                tvWebLink.visibility = View.VISIBLE
-                tvWebLink.text = etWebLink.text.toString()
-            } else {
-                Toast.makeText(requireContext(), "Url is not valid", Toast.LENGTH_SHORT).show()
-            }
+            if (!(Patterns.WEB_URL.matcher(etWebLink.text.toString()).matches()))
+                noteActivity.makeToast(resources.getString(R.string.url_valid))
         }
     }
 
@@ -135,7 +123,8 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>(
                     }
 
                     "Image" -> {
-                        helper.message = resources.getString(R.string.permission_storage_rationale_message)
+                        helper.message =
+                            resources.getString(R.string.permission_storage_rationale_message)
                         helper.activity = noteActivity
                         helper.getRequestPermission(
                             REQUEST_CODE_PICK_PHOTO,
@@ -146,13 +135,12 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>(
                     }
 
                     "WebUrl" -> {
-                        addWebUrl.visibility = View.VISIBLE
+                        layout_Web_url.visibility = View.VISIBLE
                     }
                     "DeleteNote" -> {
                         selectedColor = p1.getIntExtra("selectedColor", 0)
                         pickerColor.setBackgroundResource(selectedColor)
                     }
-
 
                     else -> {
                         layoutImage.visibility = View.GONE
@@ -186,7 +174,7 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>(
         val imageUri = result.data!!.data!!
         val path = requireActivity().getPathFromUri(imageUri)
         selectedImagePath = path.toString()
-        layoutImage.visibility = View.VISIBLE
+        binding?.layoutImage?.visibility = View.VISIBLE
         val inputStream = requireActivity().contentResolver.openInputStream(imageUri)
         val bitmap = BitmapFactory.decodeStream(inputStream)
         binding?.imgNote?.setImageBitmap(bitmap)

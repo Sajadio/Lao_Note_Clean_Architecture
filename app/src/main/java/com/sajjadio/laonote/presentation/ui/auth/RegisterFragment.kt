@@ -1,4 +1,4 @@
-package com.sajjadio.laonote.presentation.ui.fragment
+package com.sajjadio.laonote.presentation.ui.auth
 
 import com.sajjadio.laonote.R
 import com.sajjadio.laonote.databinding.FragmentRegisterBinding

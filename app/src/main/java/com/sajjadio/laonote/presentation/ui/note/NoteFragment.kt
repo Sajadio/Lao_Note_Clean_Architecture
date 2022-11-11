@@ -1,4 +1,4 @@
-package com.sajjadio.laonote.presentation.ui.fragment
+package com.sajjadio.laonote.presentation.ui.note
 
 
 import com.sajjadio.laonote.R

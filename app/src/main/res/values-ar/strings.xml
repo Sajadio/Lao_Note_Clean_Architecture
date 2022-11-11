@@ -41,5 +41,6 @@
     <string name="add_event">اضف حدث</string>
     <string name="add">Add</string>
     <string name="select_date">Select date</string>
+    <string name="url_valid">Url is not valid</string>
 
 </resources>

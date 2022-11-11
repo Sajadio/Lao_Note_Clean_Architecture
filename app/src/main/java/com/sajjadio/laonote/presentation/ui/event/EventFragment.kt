@@ -1,4 +1,4 @@
-package com.sajjadio.laonote.presentation.ui.fragment
+package com.sajjadio.laonote.presentation.ui.event
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog

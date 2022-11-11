@@ -1,4 +1,4 @@
-package com.sajjadio.laonote.presentation.ui.fragment
+package com.sajjadio.laonote.presentation.ui.settings
 
 import com.sajjadio.laonote.R
 import com.sajjadio.laonote.databinding.FragmentSettingsBinding
