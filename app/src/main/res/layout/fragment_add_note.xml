@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.sajjadio.laonote.presentation.ui.viewmodel.NoteViewModel" />
+            type="com.sajjadio.laonote.presentation.ui.note.viewModel.NoteViewModel" />
 
     </data>
 
@@ -74,6 +74,7 @@
                     android:ellipsize="end"
                     android:fontFamily="@font/oxygen_bold"
                     android:hint="@string/title"
+                    android:text="@={viewModel.note_title}"
                     android:inputType="text"
                     android:maxLines="1"
                     android:padding="@dimen/_10sdp"
@@ -94,7 +95,7 @@
                     android:fontFamily="@font/oxygen_bold"
                     android:maxLines="1"
                     android:paddingHorizontal="@dimen/_10sdp"
-                    android:text="@{viewModel.date}"
+                    android:text="@{viewModel.note_date_created}"
                     android:textColor="@color/colorHint"
                     android:textSize="@dimen/_10ssp"
                     app:layout_constraintEnd_toEndOf="@+id/etNoteTitle"
@@ -129,6 +130,7 @@
                         android:hint="@string/notes_sub_title"
                         android:importantForAutofill="no"
                         android:inputType="text"
+                        android:text="@={viewModel.note_subTitle}"
                         android:maxLines="1"
                         android:padding="@dimen/_10sdp"
                         android:textColor="@color/colorHint"
@@ -144,6 +146,7 @@
                     android:background="@null"
                     android:fontFamily="@font/cabin_medium"
                     android:hint="@string/desc"
+                    android:text="@={viewModel.note_description}"
                     android:importantForAutofill="no"
                     android:inputType="textMultiLine"
                     android:padding="@dimen/_10sdp"
@@ -174,6 +177,7 @@
                         android:autoLink="web"
                         android:background="@null"
                         android:ellipsize="end"
+                        android:text="@={viewModel.note_webUrl}"
                         android:fontFamily="@font/cabin_medium"
                         android:hint="@string/web_url"
                         android:importantForAutofill="no"
@@ -220,7 +224,7 @@
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentBottom="true"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/ic_launcher_background"
+                        app:uri="@{viewModel.note_image}"
                         tools:ignore="ContentDescription" />
 
                     <ImageButton

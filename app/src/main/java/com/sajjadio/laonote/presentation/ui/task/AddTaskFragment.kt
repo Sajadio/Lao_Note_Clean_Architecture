@@ -16,6 +16,7 @@ import androidx.annotation.RequiresApi
 import com.sajjadio.laonote.R
 import com.sajjadio.laonote.databinding.FragmentAddTaskBinding
 import com.sajjadio.laonote.presentation.base.BaseFragment
+import com.sajjadio.laonote.presentation.ui.note.viewModel.NoteViewModel
 import com.sajjadio.laonote.utils.PermissionsHelper
 import com.sajjadio.laonote.utils.REQUEST_CODE_PICK_PHOTO
 import com.sajjadio.laonote.utils.extension.dateFormat
@@ -30,7 +31,9 @@ import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>(R.layout.fragment_add_task) {
+class AddTaskFragment : BaseFragment<FragmentAddTaskBinding,NoteViewModel>(R.layout.fragment_add_task) {
+
+    override val viewModelClass = NoteViewModel::class.java
 
     private var webLink = ""
     private var selectedImagePath = ""
@@ -44,7 +47,7 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>(R.layout.fragment_a
         binding?.apply {
             root.transitionName = TRANSITION_ELEMENT_ROOT
             noteActivity.setToolBar(materialToolbar)
-            noteActivity.viewModel.date.postValue(
+            viewModel?.date?.postValue(
                 Calendar.getInstance().time.toString().dateFormat()
             )
             tvDateTime.setOnClickListener {
@@ -114,7 +117,7 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding>(R.layout.fragment_a
         DatePickerDialog(requireContext(), { _, year, month, day ->
             TimePickerDialog(requireContext(), { _, hour, minute ->
                 pickedDateTime.set(year, month, day, hour, minute)
-                noteActivity.viewModel.date.postValue(
+                viewModel.date.postValue(
                     pickedDateTime.time.toString().dateFormat()
                 )
             }, startHour, startMinute, false).show()

@@ -18,10 +18,10 @@
     <string name="permission_storage_rationale_message">يجب السماح لهذا التطبيق بالوصول إلى الصور والوسائط</string>
     <string name="main_welcome">مرحبا مجددا!</string>
     <string name="sub_welcome">مرحبا بعودتك</string>
-    <string name="username">ادخل اسم المستخدم</string>
+    <string name="email">ادخل البريد ألألكتروني</string>
     <string name="password">كلمة المرور</string>
     <string name="recovery_password">استعادة كلمة المرور</string>
-    <string name="sign_in">تسجيل الدخول</string>
+    <string name="log_in">تسجيل الدخول</string>
     <string name="or_continue">أو سجل الدخول بواسطة</string>
     <string name="skip">تخطي</string>
     <string name="settings">الإعدادات</string>
@@ -42,5 +42,11 @@
     <string name="add">Add</string>
     <string name="select_date">Select date</string>
     <string name="url_valid">Url is not valid</string>
+    <string name="successful">Successful</string>
+    <string name="failure">Failure</string>
+    <string name="loading">أنتظر من فضلك…</string>
+    <string name="email_valied_msg">The email must be valid</string>
+    <string name="email_blank_msg">The user can\'t be blank</string>
+    <string name="new_password_error_msg">Password must be greater than 6 digits</string>
 
 </resources>

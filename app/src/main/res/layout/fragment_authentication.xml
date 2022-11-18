@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.sajjadio.laonote.presentation.ui.auth.viewModel.AuthViewModel" />
+
     </data>
 
     <ScrollView
@@ -48,23 +52,24 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/layout_username"
+                android:id="@+id/layout_email"
                 style="@style/TextInputLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_16sdp"
                 android:gravity="start|center"
-                android:hint="@string/username"
+                android:hint="@string/email"
                 app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv2">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/username"
+                    android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:inputType="textPassword"
+                    android:inputType="textEmailAddress"
+                    android:text="@={viewModel.email}"
                     android:paddingHorizontal="@dimen/_40sdp"
                     android:textColor="@color/colorText"
                     android:textSize="@dimen/_12ssp"
@@ -82,15 +87,16 @@
                 android:gravity="start|center"
                 android:hint="@string/password"
                 app:endIconMode="password_toggle"
-                app:layout_constraintEnd_toEndOf="@+id/layout_username"
-                app:layout_constraintStart_toStartOf="@+id/layout_username"
-                app:layout_constraintTop_toBottomOf="@+id/layout_username">
+                app:layout_constraintEnd_toEndOf="@+id/layout_email"
+                app:layout_constraintStart_toStartOf="@+id/layout_email"
+                app:layout_constraintTop_toBottomOf="@+id/layout_email">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/password"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textPassword"
+                    android:text="@={viewModel.password}"
                     android:paddingHorizontal="@dimen/_40sdp"
                     android:textColor="@color/colorText"
                     android:textSize="@dimen/_12ssp"
@@ -111,7 +117,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/layout_phoneNumber" />
 
             <TextView
-                android:id="@+id/signIn"
+                android:id="@+id/logIn"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginTop="@dimen/_20sdp"
@@ -120,7 +126,8 @@
                 android:focusable="true"
                 android:fontFamily="@font/cabin_medium"
                 android:gravity="center"
-                android:text="@string/sign_in"
+                android:onClick="@{() -> viewModel.logIn()}"
+                android:text="@string/log_in"
                 android:textColor="@color/colorBlackNote"
                 app:layout_constraintEnd_toEndOf="@+id/forgotPass"
                 app:layout_constraintStart_toStartOf="@+id/layout_phoneNumber"
@@ -135,7 +142,7 @@
                 android:background="@color/colorHint"
                 app:layout_constraintBottom_toBottomOf="@+id/textView2"
                 app:layout_constraintEnd_toStartOf="@+id/textView2"
-                app:layout_constraintStart_toStartOf="@+id/signIn"
+                app:layout_constraintStart_toStartOf="@+id/logIn"
                 app:layout_constraintTop_toTopOf="@+id/textView2" />
 
             <TextView
@@ -149,9 +156,9 @@
                 android:text="@string/or_continue"
                 android:textColor="@color/colorHint"
                 android:textSize="@dimen/_12ssp"
-                app:layout_constraintEnd_toEndOf="@+id/signIn"
-                app:layout_constraintStart_toStartOf="@+id/signIn"
-                app:layout_constraintTop_toBottomOf="@+id/signIn" />
+                app:layout_constraintEnd_toEndOf="@+id/logIn"
+                app:layout_constraintStart_toStartOf="@+id/logIn"
+                app:layout_constraintTop_toBottomOf="@+id/logIn" />
 
             <View
                 android:id="@+id/view3"
@@ -160,7 +167,7 @@
                 android:layout_marginStart="@dimen/_12sdp"
                 android:background="@color/colorHint"
                 app:layout_constraintBottom_toBottomOf="@+id/textView2"
-                app:layout_constraintEnd_toEndOf="@+id/signIn"
+                app:layout_constraintEnd_toEndOf="@+id/logIn"
                 app:layout_constraintStart_toEndOf="@+id/textView2"
                 app:layout_constraintTop_toTopOf="@+id/textView2" />
 

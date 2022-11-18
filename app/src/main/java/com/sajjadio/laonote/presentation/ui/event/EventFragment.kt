@@ -14,8 +14,10 @@ import androidx.appcompat.app.AlertDialog
 import com.sajjadio.laonote.R
 import com.sajjadio.laonote.databinding.FragmentEventBinding
 import com.sajjadio.laonote.presentation.base.BaseFragment
+import com.sajjadio.laonote.presentation.ui.note.viewModel.NoteViewModel
 import com.sajjadio.laonote.utils.extension.dateFormat
 import com.sajjadio.laonote.utils.extension.setToolBar
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.dialog_add_event.*
 import kotlinx.android.synthetic.main.dialog_add_event.view.*
 import kotlinx.android.synthetic.main.fragment_add_note.*
@@ -24,9 +26,10 @@ import kotlinx.android.synthetic.main.item_event.*
 import kotlinx.android.synthetic.main.item_event.view.*
 import java.util.*
 
+@AndroidEntryPoint
+class EventFragment : BaseFragment<FragmentEventBinding,NoteViewModel>(R.layout.fragment_event) {
 
-class EventFragment : BaseFragment<FragmentEventBinding>(R.layout.fragment_event) {
-
+    override val viewModelClass = NoteViewModel::class.java
     private lateinit var customView: View
     private lateinit var alertDialog: AlertDialog.Builder
 
@@ -51,10 +54,10 @@ class EventFragment : BaseFragment<FragmentEventBinding>(R.layout.fragment_event
         val dialog = alertDialog.create()
         val cancel = customView.findViewById<ImageButton>(R.id.cancel)
         customView.tvDateTime?.apply {
-            noteActivity.viewModel.date.observe(viewLifecycleOwner) {
+            viewModel.date.observe(viewLifecycleOwner) {
                 text = it
             }
-            noteActivity.viewModel.date.postValue(
+            viewModel.date.postValue(
                 Calendar.getInstance().time.toString().dateFormat()
             )
             setOnClickListener {
@@ -80,7 +83,7 @@ class EventFragment : BaseFragment<FragmentEventBinding>(R.layout.fragment_event
         DatePickerDialog(requireContext(), { _, year, month, day ->
             TimePickerDialog(requireContext(), { _, hour, minute ->
                 pickedDateTime.set(year, month, day, hour, minute)
-                noteActivity.viewModel.date.postValue(pickedDateTime.time.toString().dateFormat())
+                viewModel.date.postValue(pickedDateTime.time.toString().dateFormat())
             }, startHour, startMinute, false).show()
         }, startYear, startMonth, startDay).show()
     }

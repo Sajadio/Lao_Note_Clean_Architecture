@@ -18,10 +18,10 @@
     <string name="permission_storage_rationale_message">This app must be allowed to access images and media</string>
     <string name="main_welcome">Hello Again!</string>
     <string name="sub_welcome">Welcome back you\'ve been missed!</string>
-    <string name="username">Enter username</string>
+    <string name="email">Enter email</string>
     <string name="password">Password</string>
     <string name="recovery_password">Recovery Password</string>
-    <string name="sign_in">Sign In</string>
+    <string name="log_in">Log In</string>
     <string name="or_continue">Or continue with</string>
     <string name="skip">Skip</string>
     <string name="settings">Settings</string>
@@ -42,5 +42,12 @@
     <string name="add">Add</string>
     <string name="select_date">Select date</string>
     <string name="url_valid">Url is not valid</string>
+    <string name="successful">Successful</string>
+    <string name="failure">Failure</string>
+    <string name="loading">Please wait....</string>
+    <string name="email_blank_msg">The email can\'t be blank</string>
+    <string name="email_valied_msg">The email must be valid</string>
+    <string name="new_password_error_msg">Password must be greater than 6 digits</string>
+
 
 </resources>

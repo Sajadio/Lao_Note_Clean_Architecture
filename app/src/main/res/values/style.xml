@@ -74,4 +74,10 @@
         <item name="android:orientation">horizontal</item>
         <item name="android:background">@drawable/shape_of_effect_btn</item>
     </style>
+    <style name="Theme_Dialog" parent="android:Theme.DeviceDefault.Dialog">
+        <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
+        <item name="DialogTitleText">@string/loading</item>
+        <item name="DialogSpotColor">@color/colorYellow</item>
+        <item name="DialogSpotCount">8</item>
+    </style>
 </resources>

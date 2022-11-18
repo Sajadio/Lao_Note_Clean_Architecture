@@ -10,15 +10,18 @@ import android.content.IntentFilter
 import android.graphics.BitmapFactory
 import android.os.Build
 import android.provider.MediaStore
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.fragment.app.viewModels
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.sajjadio.laonote.R
 import com.sajjadio.laonote.databinding.FragmentAddNoteBinding
 import com.sajjadio.laonote.presentation.base.BaseFragment
+import com.sajjadio.laonote.presentation.ui.note.viewModel.NoteViewModel
 import com.sajjadio.laonote.utils.ActionBottomSheet
 import com.sajjadio.laonote.utils.*
 import com.sajjadio.laonote.utils.extension.dateFormat
@@ -36,12 +39,11 @@ import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>(
+class AddNoteFragment : BaseFragment<FragmentAddNoteBinding,NoteViewModel>(
     R.layout.fragment_add_note
 ) {
-
+    override val viewModelClass = NoteViewModel::class.java
     var selectedColor = R.color.colorBlackNote
-    private var webLink = ""
     private var selectedImagePath = ""
 
     @Inject
@@ -52,10 +54,7 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>(
         binding?.apply {
             noteActivity.setToolBar(materialToolbar)
 
-            noteActivity.viewModel.date.postValue(
-                Calendar.getInstance().time.toString().dateFormat()
-            )
-
+            viewModel?.note_color?.postValue(selectedColor.toString())
             pickerColor.setBackgroundColor(selectedColor)
 
             miscrollaneous.setOnClickListener {
@@ -63,7 +62,8 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>(
             }
 
             clearWebURL.setOnClickListener {
-                layout_Web_url.visibility = View.GONE
+                layoutWebUrl.visibility = View.GONE
+                etWebLink.text.clear()
             }
 
             imgDelete.setOnClickListener {
@@ -175,6 +175,7 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding>(
         val path = requireActivity().getPathFromUri(imageUri)
         selectedImagePath = path.toString()
         binding?.layoutImage?.visibility = View.VISIBLE
+        viewModel.note_image.postValue(selectedImagePath)
         val inputStream = requireActivity().contentResolver.openInputStream(imageUri)
         val bitmap = BitmapFactory.decodeStream(inputStream)
         binding?.imgNote?.setImageBitmap(bitmap)
