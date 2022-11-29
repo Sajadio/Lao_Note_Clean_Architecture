@@ -1,4 +1,4 @@
-package com.sajjadio.laonote.domain.usecase.auth
+package com.sajjadio.laonote.domain.usecase
 
 data class ValidationResult(
     val successful: Boolean,

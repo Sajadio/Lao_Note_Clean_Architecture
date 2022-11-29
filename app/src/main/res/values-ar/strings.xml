@@ -48,5 +48,6 @@
     <string name="email_valied_msg">The email must be valid</string>
     <string name="email_blank_msg">The user can\'t be blank</string>
     <string name="new_password_error_msg">Password must be greater than 6 digits</string>
+    <string name="note_title_blank_msg">Note title can\'t be empty</string>
 
 </resources>

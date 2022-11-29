@@ -9,13 +9,12 @@ import com.sajjadio.laonote.domain.model.Authentication
 import com.sajjadio.laonote.domain.repository.AuthRepository
 import com.sajjadio.laonote.domain.usecase.auth.LogInUserUseCase
 import com.sajjadio.laonote.domain.usecase.auth.LogInWithGoogleUseCase
-import com.sajjadio.laonote.domain.usecase.auth.ValidatePassword
-import com.sajjadio.laonote.domain.usecase.auth.ValidateEmail
+import com.sajjadio.laonote.domain.usecase.auth.ValidatePasswordUseCase
+import com.sajjadio.laonote.domain.usecase.auth.ValidateEmailUseCase
 import com.sajjadio.laonote.presentation.base.BaseViewModel
 import com.sajjadio.laonote.utils.NetworkResponse
 import com.sajjadio.laonote.utils.event.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -24,8 +23,8 @@ import javax.inject.Inject
 class AuthViewModel @Inject constructor(
     private val logInUserUseCase: LogInUserUseCase,
     private val logInWithGoogleUseCase: LogInWithGoogleUseCase,
-    private val validateUsername: ValidateEmail,
-    private val validatePassword: ValidatePassword,
+    private val validateUsername: ValidateEmailUseCase,
+    private val validatePasswordUseCase: ValidatePasswordUseCase,
     private val authRepo: AuthRepository,
     private val sessionManager: SessionManager
 ) : BaseViewModel() {
@@ -43,7 +42,7 @@ class AuthViewModel @Inject constructor(
                 password = password.value.toString()
             )
             val validUsername = validateUsername(userLogIn.email)
-            val validPassword = validatePassword(userLogIn.password)
+            val validPassword = validatePasswordUseCase(userLogIn.password)
             if (!validUsername.successful) {
                 _eventResponse.postValue(Event(NetworkResponse.Error(validUsername.errorMessage)))
             } else if (!validPassword.successful) {
@@ -75,7 +74,7 @@ class AuthViewModel @Inject constructor(
     }
     fun logOut(){
         viewModelScope.launch {
-            sessionManager.updateSession(null)
+            sessionManager.logout()
             authRepo.logOut()
         }
     }

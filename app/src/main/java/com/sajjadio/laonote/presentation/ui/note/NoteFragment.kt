@@ -6,6 +6,7 @@ import com.sajjadio.laonote.databinding.FragmentNoteBinding
 import com.sajjadio.laonote.presentation.base.BaseFragment
 import com.sajjadio.laonote.presentation.ui.note.viewModel.NoteViewModel
 import com.sajjadio.laonote.utils.extension.moveToDestination
+import com.sajjadio.laonote.utils.extension.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

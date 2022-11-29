@@ -32,7 +32,6 @@ class AuthenticationFragment :
         binding?.apply {
             viewModel?.eventResponse?.observeEvent(viewLifecycleOwner) { status ->
                 checkResponseStatus(status)
-                Log.d(TAG, "launchView: ${status is NetworkResponse.Success}")
             }
             skip.moveToDestination(
                 AuthenticationFragmentDirections.actionAuthenticationFragmentToNoteFragment()

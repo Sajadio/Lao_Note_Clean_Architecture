@@ -2,10 +2,11 @@ package com.sajjadio.laonote.domain.usecase.auth
 
 import android.content.Context
 import com.sajjadio.laonote.R
+import com.sajjadio.laonote.domain.usecase.ValidationResult
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class ValidatePassword @Inject constructor(
+class ValidatePasswordUseCase @Inject constructor(
     @ApplicationContext private val context: Context
 ) {
 

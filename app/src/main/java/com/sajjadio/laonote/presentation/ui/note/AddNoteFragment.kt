@@ -24,10 +24,7 @@ import com.sajjadio.laonote.presentation.base.BaseFragment
 import com.sajjadio.laonote.presentation.ui.note.viewModel.NoteViewModel
 import com.sajjadio.laonote.utils.ActionBottomSheet
 import com.sajjadio.laonote.utils.*
-import com.sajjadio.laonote.utils.extension.dateFormat
-import com.sajjadio.laonote.utils.extension.getPathFromUri
-import com.sajjadio.laonote.utils.extension.makeToast
-import com.sajjadio.laonote.utils.extension.setToolBar
+import com.sajjadio.laonote.utils.extension.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.color_picker_dialog.*
 import kotlinx.android.synthetic.main.fragment_add_note.*
@@ -53,8 +50,16 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding,NoteViewModel>(
     override fun launchView() {
         binding?.apply {
             noteActivity.setToolBar(materialToolbar)
-
-            viewModel?.note_color?.postValue(selectedColor.toString())
+            viewModel?.apply {
+                eventResponse.observeEvent(viewLifecycleOwner) { status ->
+                    checkResponseStatus(status)
+                }
+                save.setOnClickListener {
+                    setNote()
+                    note_color.postValue(selectedColor.toString())
+                    Log.d(TAG, "launchView: $selectedColor")
+                }
+            }
             pickerColor.setBackgroundColor(selectedColor)
 
             miscrollaneous.setOnClickListener {

@@ -1,6 +1,7 @@
 package com.sajjadio.laonote.presentation.ui.profile
 
 import android.util.Log
+import androidx.navigation.fragment.findNavController
 import com.sajjadio.laonote.R
 import com.sajjadio.laonote.databinding.FragmentProfileBinding
 import com.sajjadio.laonote.presentation.base.BaseFragment
@@ -10,6 +11,7 @@ import com.sajjadio.laonote.utils.TAG
 import com.sajjadio.laonote.utils.extension.moveToDestination
 import com.sajjadio.laonote.utils.extension.setToolBar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class ProfileFragment : BaseFragment<FragmentProfileBinding,AuthViewModel>(R.layout.fragment_profile) {

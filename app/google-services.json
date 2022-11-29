@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "843028999422",
+    "project_id": "lao-note-3c2ee",
+    "storage_bucket": "lao-note-3c2ee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:843028999422:android:1426ad455ada3bd6c249af",
+        "android_client_info": {
+          "package_name": "com.sajjadio.laonote"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "843028999422-hb487gpm8vdjtj9v9h5bc8j8vtk3og0m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sajjadio.laonote",
+            "certificate_hash": "2d348c8c0ad317c45e1f527147bcaaaf9f05fd69"
+          }
+        },
+        {
+          "client_id": "843028999422-uh31mk85njfa6gh05pucrng4v8a7cmjk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBkifm42W142kY0-eVb5fgVXkZomj62iLo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "843028999422-uh31mk85njfa6gh05pucrng4v8a7cmjk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

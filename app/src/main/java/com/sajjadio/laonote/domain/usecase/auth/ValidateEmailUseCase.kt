@@ -3,10 +3,11 @@ package com.sajjadio.laonote.domain.usecase.auth
 import android.content.Context
 import android.util.Patterns
 import com.sajjadio.laonote.R
+import com.sajjadio.laonote.domain.usecase.ValidationResult
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class ValidateEmail @Inject constructor(
+class ValidateEmailUseCase @Inject constructor(
     @ApplicationContext private val context: Context
 ) {
 
