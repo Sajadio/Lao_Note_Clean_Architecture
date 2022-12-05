@@ -1,6 +1,5 @@
 package com.sajjadio.laonote.domain.usecase.note
 
-import android.util.Log
 import com.sajjadio.laonote.domain.model.Note
 import com.sajjadio.laonote.domain.repository.NoteRepository
 import com.sajjadio.laonote.utils.*
@@ -22,6 +21,7 @@ class SetNoteUseCase @Inject constructor(
             setNote[NOTE_IMAGE] = note.note_image
             setNote[NOTE_WEB_URL] = note.note_webUrl
             setNote[NOTE_COLOR] = note.note_color
+            setNote[FONT_COLOR] = note.font_color
             setNote[NOTE_DATE_CREATED] = note.note_date_created
             val response = noteRepo.setNote(setNote)
             emit(NetworkResponse.Success(response))

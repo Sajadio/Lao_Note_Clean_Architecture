@@ -16,7 +16,7 @@ import androidx.annotation.RequiresApi
 import com.sajjadio.laonote.R
 import com.sajjadio.laonote.databinding.FragmentAddTaskBinding
 import com.sajjadio.laonote.presentation.base.BaseFragment
-import com.sajjadio.laonote.presentation.ui.note.viewModel.NoteViewModel
+import com.sajjadio.laonote.presentation.ui.note.NoteViewModel
 import com.sajjadio.laonote.utils.PermissionsHelper
 import com.sajjadio.laonote.utils.REQUEST_CODE_PICK_PHOTO
 import com.sajjadio.laonote.utils.extension.dateFormat
@@ -31,7 +31,7 @@ import java.util.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class AddTaskFragment : BaseFragment<FragmentAddTaskBinding,NoteViewModel>(R.layout.fragment_add_task) {
+class AddTaskFragment : BaseFragment<FragmentAddTaskBinding, NoteViewModel>(R.layout.fragment_add_task) {
 
     override val viewModelClass = NoteViewModel::class.java
 

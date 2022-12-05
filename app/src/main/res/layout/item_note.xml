@@ -5,93 +5,96 @@
 
     <data>
 
+        <variable
+            name="note"
+            type="com.sajjadio.laonote.domain.model.Note" />
+
+        <import type="android.view.View" />
+
+
     </data>
 
-    <LinearLayout
-        android:id="@+id/layoutNote"
-        android:foreground="?attr/selectableItemBackground"        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:ignore="UnusedAttribute">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:foreground="?attr/selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:layout_margin="@dimen/_5sdp"
+        app:cardCornerRadius="@dimen/_10sdp"
+        app:cardElevation="@dimen/_5sdp">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/_5sdp"
+            android:orientation="vertical"
             android:padding="@dimen/_5sdp"
-            app:cardBackgroundColor="@color/colorSecond"
-            app:cardCornerRadius="@dimen/_10sdp"
-            app:cardElevation="@dimen/_5sdp">
+            app:setBackgroundColor="@{note.note_color}">
 
-            <LinearLayout
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/imgNote"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:adjustViewBounds="true"
+                android:visibility="gone"
+                app:riv_corner_radius_top_left="@dimen/_10sdp"
+                app:riv_corner_radius_top_right="@dimen/_10sdp" />
 
-                <com.makeramen.roundedimageview.RoundedImageView
-                    android:id="@+id/imgNote"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:visibility="gone"
-                    app:riv_corner_radius_top_left="@dimen/_10sdp"
-                    app:riv_corner_radius_top_right="@dimen/_10sdp" />
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/oxygen_bold"
+                android:padding="@dimen/_8sdp"
+                android:text="@{note.note_title}"
+                android:textAlignment="textStart"
+                app:setFontColor="@{note.font_color}"
+                android:textSize="@dimen/_16ssp"
+                tools:text="@string/title" />
 
-                <TextView
-                    android:id="@+id/tvTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/oxygen_bold"
-                    android:padding="@dimen/_8sdp"
-                    android:text="@string/title"
-                    android:textAlignment="textStart"
-                    android:textColor="@color/colorText"
-                    android:textSize="@dimen/_16ssp" />
+            <TextView
+                android:id="@+id/tvWebLink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:autoLink="web"
+                android:ellipsize="end"
+                android:fontFamily="@font/oxygen_bold"
+                android:padding="@dimen/_10sdp"
+                app:setFontColor="@{note.font_color}"
+                android:textColorLink="@color/colorBlue"
+                android:textSize="@dimen/_12ssp"
+                app:setText="@{note.note_webUrl}"
+                tools:text="www.google.com" />
 
-                <TextView
-                    android:id="@+id/tvWebLink"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_5sdp"
-                    android:autoLink="web"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/oxygen_bold"
-                    android:padding="@dimen/_10sdp"
-                    android:text="www.google.com"
-                    android:textColor="@color/colorHint"
-                    android:textColorLink="@color/colorBlue"
-                    android:textSize="@dimen/_12ssp"
-                    android:visibility="gone" />
+            <TextView
+                android:id="@+id/tvDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cabin_medium"
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                app:setFontColor="@{note.font_color}"
+                android:textSize="@dimen/_11ssp"
+                tools:ignore="RtlSymmetry"
+                tools:text="@string/desc" />
 
-                <TextView
-                    android:id="@+id/tvDesc"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/cabin_medium"
-                    android:paddingStart="@dimen/_10sdp"
-                    android:paddingTop="@dimen/_5sdp"
-                    android:paddingBottom="@dimen/_5sdp"
-                    android:text="@string/desc"
-                    android:textColor="@color/colorHint"
-                    android:textSize="@dimen/_11ssp"
-                    tools:ignore="RtlSymmetry" />
+            <TextView
+                android:id="@+id/tvDateTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cabin_medium"
+                android:padding="@dimen/_10sdp"
+                android:paddingTop="@dimen/_2sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:text="@{note.note_date_created}"
+                app:setFontColor="@{note.font_color}"
+                android:textSize="@dimen/_9ssp"
+                tools:text="@string/notes_sub_title" />
 
-                <TextView
-                    android:id="@+id/tvDateTime"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/cabin_medium"
-                    android:padding="@dimen/_10sdp"
-                    android:paddingTop="@dimen/_2sdp"
-                    android:paddingBottom="@dimen/_5sdp"
-                    android:text="@string/notes_sub_title"
-                    android:textColor="@color/colorHint"
-                    android:textSize="@dimen/_9ssp" />
-
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-    </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </layout>

@@ -7,9 +7,9 @@ import kotlinx.coroutines.tasks.await
 import java.util.UUID
 import javax.inject.Inject
 
-class NoteFireStoreDocumentaryNoteImpl @Inject constructor(
+class DocumentaryFireStoreImpl @Inject constructor(
     private val fireStore: FirebaseFirestore
-) : NoteDocumentaryFireStore {
+) : DocumentaryFireStore {
 
 
     override suspend fun setNote(data: HashMap<String, Any?>): Void? {
@@ -18,5 +18,8 @@ class NoteFireStoreDocumentaryNoteImpl @Inject constructor(
         return collection.document(document).set(data).await()
     }
 
-    override suspend fun getNotes(): List<Note> =  fireStore.collection(NOTES).get().await().toObjects(Note::class.java)
+    override suspend fun getNotes(): List<Note> =
+        fireStore.collection(NOTES).get().await().toObjects(Note::class.java)
+
+
 }

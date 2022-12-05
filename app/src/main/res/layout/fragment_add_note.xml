@@ -7,23 +7,25 @@
 
         <variable
             name="viewModel"
-            type="com.sajjadio.laonote.presentation.ui.note.viewModel.NoteViewModel" />
+            type="com.sajjadio.laonote.presentation.ui.note.NoteViewModel" />
 
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary">
+        android:background="@null">
 
         <ScrollView
+            android:id="@+id/noteRoot"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@null"
+            app:setBackgroundColor="@{viewModel.note_color}">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary">
+                android:layout_height="wrap_content">
 
                 <com.google.android.material.appbar.AppBarLayout
                     android:id="@+id/appBarLayout"
@@ -50,6 +52,7 @@
                             android:layout_gravity="end|center"
                             android:layout_marginEnd="@dimen/_12sdp"
                             android:background="@drawable/shape_of_effect_btn_round"
+                            android:onClick="@{() -> viewModel.setNote()}"
                             android:padding="@dimen/_6sdp"
                             android:src="@drawable/ic_check_circle"
                             app:layout_constraintBottom_toBottomOf="@+id/imgBack"
@@ -74,16 +77,15 @@
                     android:ellipsize="end"
                     android:fontFamily="@font/oxygen_bold"
                     android:hint="@string/title"
-                    android:text="@={viewModel.note_title}"
                     android:inputType="text"
                     android:maxLines="1"
                     android:padding="@dimen/_10sdp"
-                    android:textColor="@color/colorText"
-                    android:textColorHint="@color/colorHint"
+                    android:text="@={viewModel.note_title}"
                     android:textSize="@dimen/_15ssp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
+                    app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+                    app:setFontColor="@{viewModel.font_color}" />
 
 
                 <TextView
@@ -96,47 +98,35 @@
                     android:maxLines="1"
                     android:paddingHorizontal="@dimen/_10sdp"
                     android:text="@{viewModel.note_date_created}"
-                    android:textColor="@color/colorHint"
                     android:textSize="@dimen/_10ssp"
                     app:layout_constraintEnd_toEndOf="@+id/etNoteTitle"
                     app:layout_constraintStart_toStartOf="@id/etNoteTitle"
                     app:layout_constraintTop_toBottomOf="@id/etNoteTitle"
+                    app:setFontColor="@{viewModel.font_color}"
                     tools:ignore="RtlSymmetry"
                     tools:text="2022/11/1, 10:00 PM" />
 
-                <LinearLayout
-                    android:id="@+id/l1"
+
+                <EditText
+                    android:id="@+id/etNoteSubTitle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="@dimen/_10sdp"
+                    android:background="@null"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/cabin_medium"
+                    android:hint="@string/notes_sub_title"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:maxLines="1"
                     android:orientation="horizontal"
+                    android:padding="@dimen/_10sdp"
+                    android:text="@={viewModel.note_subTitle}"
+                    android:textSize="@dimen/_12ssp"
                     app:layout_constraintEnd_toEndOf="@+id/tvDateTime"
                     app:layout_constraintStart_toStartOf="@+id/tvDateTime"
-                    app:layout_constraintTop_toBottomOf="@id/tvDateTime">
-
-                    <View
-                        android:id="@+id/pickerColor"
-                        android:layout_width="@dimen/_5sdp"
-                        android:layout_height="match_parent"
-                        tools:background="@color/colorBlue" />
-
-                    <EditText
-                        android:id="@+id/etNoteSubTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:ellipsize="end"
-                        android:fontFamily="@font/cabin_medium"
-                        android:hint="@string/notes_sub_title"
-                        android:importantForAutofill="no"
-                        android:inputType="text"
-                        android:text="@={viewModel.note_subTitle}"
-                        android:maxLines="1"
-                        android:padding="@dimen/_10sdp"
-                        android:textColor="@color/colorHint"
-                        android:textColorHint="@color/colorHint"
-                        android:textSize="@dimen/_12ssp" />
-                </LinearLayout>
+                    app:layout_constraintTop_toBottomOf="@id/tvDateTime"
+                    app:setFontColor="@{viewModel.font_color}" />
 
                 <EditText
                     android:id="@+id/etNoteDesc"
@@ -146,15 +136,15 @@
                     android:background="@null"
                     android:fontFamily="@font/cabin_medium"
                     android:hint="@string/desc"
-                    android:text="@={viewModel.note_description}"
                     android:importantForAutofill="no"
                     android:inputType="textMultiLine"
                     android:padding="@dimen/_10sdp"
-                    android:textColor="@color/colorHint"
+                    android:text="@={viewModel.note_description}"
                     android:textSize="@dimen/_12ssp"
-                    app:layout_constraintEnd_toEndOf="@+id/l1"
-                    app:layout_constraintStart_toStartOf="@+id/l1"
-                    app:layout_constraintTop_toBottomOf="@id/l1" />
+                    app:layout_constraintEnd_toEndOf="@+id/etNoteSubTitle"
+                    app:layout_constraintStart_toStartOf="@+id/etNoteSubTitle"
+                    app:layout_constraintTop_toBottomOf="@id/etNoteSubTitle"
+                    app:setFontColor="@{viewModel.font_color}" />
 
                 <LinearLayout
                     android:id="@+id/layout_Web_url"
@@ -177,11 +167,11 @@
                         android:autoLink="web"
                         android:background="@null"
                         android:ellipsize="end"
-                        android:text="@={viewModel.note_webUrl}"
                         android:fontFamily="@font/cabin_medium"
                         android:hint="@string/web_url"
                         android:importantForAutofill="no"
                         android:inputType="textMultiLine"
+                        android:text="@={viewModel.note_webUrl}"
                         android:textColor="@color/colorHint"
                         android:textColorHint="@color/colorHint"
                         android:textColorLink="@color/colorBlackNote"
@@ -243,6 +233,7 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
+
 
         <FrameLayout
             android:layout_width="match_parent"

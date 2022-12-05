@@ -27,7 +27,15 @@
         android:id="@+id/addNoteFragment"
         android:name="com.sajjadio.laonote.presentation.ui.note.AddNoteFragment"
         android:label="@string/add_note"
-        tools:layout="@layout/fragment_add_note" />
+        tools:layout="@layout/fragment_add_note" >
+        <action
+            android:id="@+id/action_addNoteFragment_to_noteFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/addNoteFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/noteFragment" />
+    </fragment>
     <fragment
         android:id="@+id/authenticationFragment"
         android:name="com.sajjadio.laonote.presentation.ui.auth.AuthenticationFragment"

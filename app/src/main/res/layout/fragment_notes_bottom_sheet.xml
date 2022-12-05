@@ -35,13 +35,15 @@
         </FrameLayout>
 
         <TextView
+            android:id="@+id/noteColor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_6sdp"
+            android:clickable="true"
             android:fontFamily="@font/oxygen_bold"
             android:maxLines="1"
             android:padding="@dimen/_6sdp"
-            android:text="@string/pick_color"
+            android:text="@string/note_color"
             android:textAlignment="textStart"
             android:textColor="@color/colorHint"
             android:textSize="@dimen/_14ssp"
@@ -50,11 +52,11 @@
             app:layout_constraintTop_toBottomOf="@id/etNoteTitle"
             tools:ignore="RtlSymmetry" />
 
-
-        <ScrollView
+        <HorizontalScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:scrollIndicators="start"
+            android:scrollbarSize="0dp"
             android:scrollbars="horizontal">
 
             <LinearLayout
@@ -65,52 +67,52 @@
                 android:padding="@dimen/_5sdp">
 
                 <ImageButton
-                    android:id="@+id/imgNote1"
+                    android:id="@+id/noteColor1"
                     style="@style/StylePickColor"
                     android:background="@drawable/note_color_1"
                     tools:ignore="ContentDescription" />
 
                 <ImageButton
-                    android:id="@+id/imgNote2"
+                    android:id="@+id/noteColor2"
                     style="@style/StylePickColor"
                     android:background="@drawable/note_color_2"
                     tools:ignore="ContentDescription" />
 
                 <ImageButton
-                    android:id="@+id/imgNote8"
+                    android:id="@+id/noteColor8"
                     style="@style/StylePickColor"
                     android:background="@drawable/note_color_8"
                     tools:ignore="ContentDescription" />
 
                 <ImageButton
-                    android:id="@+id/imgNote3"
+                    android:id="@+id/noteColor3"
                     style="@style/StylePickColor"
                     android:background="@drawable/note_color_3"
                     tools:ignore="ContentDescription" />
 
                 <ImageButton
-                    android:id="@+id/imgNote4"
+                    android:id="@+id/noteColor4"
                     style="@style/StylePickColor"
                     android:background="@drawable/note_color_4"
                     tools:ignore="ContentDescription" />
 
 
                 <ImageButton
-                    android:id="@+id/imgNote5"
+                    android:id="@+id/noteColor5"
                     style="@style/StylePickColor"
                     android:background="@drawable/note_color_5"
                     tools:ignore="ContentDescription" />
 
 
                 <ImageButton
-                    android:id="@+id/imgNote6"
+                    android:id="@+id/noteColor6"
                     style="@style/StylePickColor"
                     android:background="@drawable/note_color_6"
                     tools:ignore="ContentDescription" />
 
 
                 <ImageButton
-                    android:id="@+id/imgNote7"
+                    android:id="@+id/noteColor7"
                     style="@style/StylePickColor"
                     android:background="@drawable/note_color_7"
                     android:tint="@color/colorBlackNote"
@@ -118,8 +120,94 @@
 
             </LinearLayout>
 
-        </ScrollView>
+        </HorizontalScrollView>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_6sdp"
+            android:fontFamily="@font/oxygen_bold"
+            android:maxLines="1"
+            android:padding="@dimen/_6sdp"
+            android:text="@string/font_color"
+            android:textAlignment="textStart"
+            android:textColor="@color/colorHint"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etNoteTitle"
+            tools:ignore="RtlSymmetry" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollIndicators="start"
+            android:scrollbarSize="0dp"
+            android:scrollbars="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="start"
+                android:orientation="horizontal"
+                android:padding="@dimen/_5sdp">
+
+                <ImageButton
+                    android:id="@+id/fontColor1"
+                    style="@style/StylePickColor"
+                    android:background="@drawable/note_color_1"
+                    tools:ignore="ContentDescription" />
+
+
+                <ImageButton
+                    android:id="@+id/fontColor2"
+                    style="@style/StylePickColor"
+                    android:background="@drawable/note_color_2"
+                    tools:ignore="ContentDescription" />
+
+                <ImageButton
+                    android:id="@+id/fontColor8"
+                    style="@style/StylePickColor"
+                    android:background="@drawable/note_color_8"
+                    tools:ignore="ContentDescription" />
+
+                <ImageButton
+                    android:id="@+id/fontColor3"
+                    style="@style/StylePickColor"
+                    android:background="@drawable/note_color_3"
+                    tools:ignore="ContentDescription" />
+
+
+                <ImageButton
+                    android:id="@+id/fontColor4"
+                    style="@style/StylePickColor"
+                    android:background="@drawable/note_color_4"
+                    tools:ignore="ContentDescription" />
+
+
+                <ImageButton
+                    android:id="@+id/fontColor5"
+                    style="@style/StylePickColor"
+                    android:background="@drawable/note_color_5"
+                    tools:ignore="ContentDescription" />
+
+
+                <ImageButton
+                    android:id="@+id/fontColor6"
+                    style="@style/StylePickColor"
+                    android:background="@drawable/note_color_6"
+                    tools:ignore="ContentDescription" />
+
+                <ImageButton
+                    android:id="@+id/fontColor7"
+                    style="@style/StylePickColor"
+                    android:background="@drawable/note_color_7"
+                    android:tint="@color/colorBlackNote"
+                    tools:ignore="ContentDescription" />
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
 
         <TextView
             android:id="@+id/addImage"

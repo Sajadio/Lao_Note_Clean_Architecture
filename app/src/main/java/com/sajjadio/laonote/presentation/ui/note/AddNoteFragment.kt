@@ -10,18 +10,16 @@ import android.content.IntentFilter
 import android.graphics.BitmapFactory
 import android.os.Build
 import android.provider.MediaStore
-import android.util.Log
 import android.util.Patterns
 import android.view.View
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
-import androidx.fragment.app.viewModels
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import androidx.navigation.fragment.findNavController
 import com.sajjadio.laonote.R
 import com.sajjadio.laonote.databinding.FragmentAddNoteBinding
 import com.sajjadio.laonote.presentation.base.BaseFragment
-import com.sajjadio.laonote.presentation.ui.note.viewModel.NoteViewModel
 import com.sajjadio.laonote.utils.ActionBottomSheet
 import com.sajjadio.laonote.utils.*
 import com.sajjadio.laonote.utils.extension.*
@@ -35,37 +33,38 @@ import kotlinx.android.synthetic.main.fragment_notes_bottom_sheet.view.*
 import java.util.*
 import javax.inject.Inject
 
+@Suppress("DUPLICATE_LABEL_IN_WHEN")
 @AndroidEntryPoint
-class AddNoteFragment : BaseFragment<FragmentAddNoteBinding,NoteViewModel>(
+class AddNoteFragment : BaseFragment<FragmentAddNoteBinding, NoteViewModel>(
     R.layout.fragment_add_note
 ) {
     override val viewModelClass = NoteViewModel::class.java
-    var selectedColor = R.color.colorBlackNote
+    var selectedNoteColor = R.color.colorBlackNote
+    var selectedFontColor = R.color.colorHint
     private var selectedImagePath = ""
 
     @Inject
     lateinit var helper: PermissionsHelper
 
+    @RequiresApi(Build.VERSION_CODES.P)
     @SuppressLint("SimpleDateFormat")
     override fun launchView() {
         binding?.apply {
             noteActivity.setToolBar(materialToolbar)
+            setNoteColor(selectedNoteColor)
+            setFontColor(selectedFontColor)
+
             viewModel?.apply {
                 eventResponse.observeEvent(viewLifecycleOwner) { status ->
                     checkResponseStatus(status)
-                }
-                save.setOnClickListener {
-                    setNote()
-                    note_color.postValue(selectedColor.toString())
-                    Log.d(TAG, "launchView: $selectedColor")
+                    if (status is NetworkResponse.Success) {
+                        findNavController().navigate(R.id.action_addNoteFragment_to_noteFragment)
+                    }
                 }
             }
-            pickerColor.setBackgroundColor(selectedColor)
-
             miscrollaneous.setOnClickListener {
                 openBottomSheet()
             }
-
             clearWebURL.setOnClickListener {
                 layoutWebUrl.visibility = View.GONE
                 etWebLink.text.clear()
@@ -88,48 +87,14 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding,NoteViewModel>(
         }
     }
 
+
     private val broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         @RequiresApi(Build.VERSION_CODES.P)
         override fun onReceive(p0: Context?, p1: Intent?) {
             binding?.apply {
                 when (p1?.getStringExtra("action")) {
-
-                    "Blue" -> {
-                        selectedColor = p1.getIntExtra("selectedColor", 0)
-                        pickerColor.setBackgroundResource(selectedColor)
-                    }
-                    "Yellow" -> {
-                        selectedColor = p1.getIntExtra("selectedColor", 0)
-                        pickerColor.setBackgroundResource(selectedColor)
-                    }
-                    "Purple" -> {
-                        selectedColor = p1.getIntExtra("selectedColor", 0)
-                        pickerColor.setBackgroundResource(selectedColor)
-                    }
-                    "Green" -> {
-                        selectedColor = p1.getIntExtra("selectedColor", 0)
-                        pickerColor.setBackgroundResource(selectedColor)
-                    }
-                    "Orange" -> {
-                        selectedColor = p1.getIntExtra("selectedColor", 0)
-                        pickerColor.setBackgroundResource(selectedColor)
-                    }
-                    "Black" -> {
-                        selectedColor = p1.getIntExtra("selectedColor", 0)
-                        pickerColor.setBackgroundResource(selectedColor)
-                    }
-                    "White" -> {
-                        selectedColor = p1.getIntExtra("selectedColor", 0)
-                        pickerColor.setBackgroundResource(selectedColor)
-                    }
-                    "Red" -> {
-                        selectedColor = p1.getIntExtra("selectedColor", 0)
-                        pickerColor.setBackgroundResource(selectedColor)
-                    }
-
                     "Image" -> {
-                        helper.message =
-                            resources.getString(R.string.permission_storage_rationale_message)
+                        helper.message = resources.getString(R.string.permission_storage_rationale_message)
                         helper.activity = noteActivity
                         helper.getRequestPermission(
                             REQUEST_CODE_PICK_PHOTO,
@@ -143,20 +108,34 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding,NoteViewModel>(
                         layout_Web_url.visibility = View.VISIBLE
                     }
                     "DeleteNote" -> {
-                        selectedColor = p1.getIntExtra("selectedColor", 0)
-                        pickerColor.setBackgroundResource(selectedColor)
+                        //
+                    }
+                    "FontYellow", "FontBlue", "FontPurple", "FontGreen", "FontOrange", "FontBlack", "FontWhite", "FontRed" -> {
+                        selectedFontColor = p1.getIntExtra("selectedFontColors", 0)
+                        setFontColor(selectedFontColor)
+                    }
+                    "Blue", "Yellow", "Purple", "Green", "Orange", "Black", "White", "Red" -> {
+                        selectedNoteColor = p1.getIntExtra("selectedNoteColors", 0)
+                        setNoteColor(selectedNoteColor)
                     }
 
                     else -> {
                         layoutImage.visibility = View.GONE
-                        addWebUrl.visibility = View.GONE
-                        selectedColor = p1?.getIntExtra("selectedColor", 0)!!
-                        pickerColor.setBackgroundResource(selectedColor)
+//                        addWebUrl.visibility = View.GONE
                     }
                 }
             }
         }
 
+    }
+
+
+    private fun setNoteColor(color: Int) {
+        viewModel.note_color.postValue(color)
+    }
+
+    private fun setFontColor(color: Int) {
+        viewModel.font_color.postValue(color)
     }
 
     private fun openBottomSheet() {

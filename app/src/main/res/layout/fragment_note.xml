@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.sajjadio.laonote.presentation.ui.note.NoteViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -111,6 +114,7 @@
             android:layout_marginTop="@dimen/_4sdp"
             android:background="@color/colorPrimary"
             android:orientation="vertical"
+            app:items="@{viewModel.eventResponseNotes.peekContent().data()}"
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/layout"
             app:layout_constraintEnd_toEndOf="parent"

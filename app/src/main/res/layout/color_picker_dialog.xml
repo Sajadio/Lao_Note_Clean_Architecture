@@ -90,6 +90,7 @@
 
         <com.skydoves.colorpickerview.AlphaTileView
             android:id="@+id/alphaTileView"
+            android:clickable="true"
             android:layout_width="0dp"
             android:layout_height="@dimen/_50sdp"
             android:layout_gravity="center"
@@ -98,7 +99,8 @@
             app:layout_constraintEnd_toEndOf="@+id/textView"
             app:layout_constraintStart_toStartOf="@+id/textView"
             app:layout_constraintTop_toBottomOf="@+id/textView"
-            app:tileSize="20" />
+            app:tileSize="20"
+            android:focusable="true" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

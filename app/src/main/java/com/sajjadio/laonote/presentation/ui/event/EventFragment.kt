@@ -14,7 +14,7 @@ import androidx.appcompat.app.AlertDialog
 import com.sajjadio.laonote.R
 import com.sajjadio.laonote.databinding.FragmentEventBinding
 import com.sajjadio.laonote.presentation.base.BaseFragment
-import com.sajjadio.laonote.presentation.ui.note.viewModel.NoteViewModel
+import com.sajjadio.laonote.presentation.ui.note.NoteViewModel
 import com.sajjadio.laonote.utils.extension.dateFormat
 import com.sajjadio.laonote.utils.extension.setToolBar
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,7 +27,7 @@ import kotlinx.android.synthetic.main.item_event.view.*
 import java.util.*
 
 @AndroidEntryPoint
-class EventFragment : BaseFragment<FragmentEventBinding,NoteViewModel>(R.layout.fragment_event) {
+class EventFragment : BaseFragment<FragmentEventBinding, NoteViewModel>(R.layout.fragment_event) {
 
     override val viewModelClass = NoteViewModel::class.java
     private lateinit var customView: View

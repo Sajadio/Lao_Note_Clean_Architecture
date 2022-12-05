@@ -3,7 +3,7 @@ package com.sajjadio.laonote.di
 
 
 import com.sajjadio.laonote.data.remote.auth.Authentication
-import com.sajjadio.laonote.data.remote.firestore.NoteDocumentaryFireStore
+import com.sajjadio.laonote.data.remote.firestore.DocumentaryFireStore
 import com.sajjadio.laonote.data.repository.AuthRepositoryImpl
 import com.sajjadio.laonote.data.repository.NoteRepositoryImpl
 import com.sajjadio.laonote.domain.repository.AuthRepository
@@ -25,6 +25,6 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideNoteRepository(noteDocumentaryFireStore: NoteDocumentaryFireStore): NoteRepository= NoteRepositoryImpl(noteDocumentaryFireStore)
+    fun provideNoteRepository(documentaryFireStore: DocumentaryFireStore): NoteRepository= NoteRepositoryImpl(documentaryFireStore)
 
 }

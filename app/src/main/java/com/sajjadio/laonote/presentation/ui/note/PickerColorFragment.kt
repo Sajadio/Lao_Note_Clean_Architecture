@@ -11,6 +11,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.sajjadio.laonote.R
 import com.sajjadio.laonote.databinding.ColorPickerDialogBinding
+import com.sajjadio.laonote.utils.TAG_PICKER_COLOR
 import com.skydoves.colorpickerview.AlphaTileView
 import com.skydoves.colorpickerview.ColorEnvelope
 import com.skydoves.colorpickerview.ColorPickerView
@@ -45,7 +46,7 @@ class PickerColorFragment : BottomSheetDialogFragment() {
             dismiss()
         }
         binding?.apply {
-            mColorPickerView = colorPickerView.apply {  }
+            mColorPickerView = colorPickerView.apply { }
             colorPickerView.setColorListener(
                 ColorEnvelopeListener { envelope: ColorEnvelope, _: Boolean ->
                     setLayoutColor(envelope)
@@ -60,15 +61,13 @@ class PickerColorFragment : BottomSheetDialogFragment() {
 
     @SuppressLint("SetTextI18n")
     private fun setLayoutColor(envelope: ColorEnvelope) {
-        val textView = binding?.textView!!
-        textView.text = "#" + envelope.hexCode
-
-        val intent = Intent("Picker Color")
-        intent.putExtra("selectedColor", textView.text)
-        LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
-
+        val color = binding?.textView!!
+        color.text = "#" + envelope.hexCode
         val alphaTileView: AlphaTileView? = binding?.alphaTileView
         alphaTileView?.setPaintColor(envelope.color)
+        val intent = Intent(TAG_PICKER_COLOR)
+        intent.putExtra("selectedColor", envelope.color)
+        LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
     }
 
     override fun onDestroyView() {

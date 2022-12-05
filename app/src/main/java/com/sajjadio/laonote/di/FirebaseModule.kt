@@ -7,8 +7,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.sajjadio.laonote.data.remote.auth.Authentication
 import com.sajjadio.laonote.data.remote.auth.AuthenticationImpl
-import com.sajjadio.laonote.data.remote.firestore.NoteDocumentaryFireStore
-import com.sajjadio.laonote.data.remote.firestore.NoteFireStoreDocumentaryNoteImpl
+import com.sajjadio.laonote.data.remote.firestore.DocumentaryFireStore
+import com.sajjadio.laonote.data.remote.firestore.DocumentaryFireStoreImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,8 +32,8 @@ object FirebaseModule {
 
     @Singleton
     @Provides
-    fun provideFireStoreDocumentary(fireStore: FirebaseFirestore): NoteDocumentaryFireStore {
-        return NoteFireStoreDocumentaryNoteImpl(fireStore)
+    fun provideFireStoreDocumentary(fireStore: FirebaseFirestore): DocumentaryFireStore {
+        return DocumentaryFireStoreImpl(fireStore)
     }
 
     @Singleton

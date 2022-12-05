@@ -23,8 +23,8 @@ import kotlinx.android.synthetic.main.fragment_notes_bottom_sheet.*
 class BottomSheetFragment : BottomSheetDialogFragment() {
 
     private var binding: FragmentNotesBottomSheetBinding? = null
-    private var selectedColor: Int = 0
-    private lateinit var selectColor: MutableList<ImageButton>
+    private var selectNoteColors = R.color.colorBlackNote
+    private var selectFontColors = R.color.colorBlackNote
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,63 +44,84 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setListener()
-        selectColor = mutableListOf(
-            imgNote1, imgNote2, imgNote3, imgNote4, imgNote5, imgNote6, imgNote7, imgNote8
-        )
+        setListenerNoteColor()
+        setListenerFontColor()
     }
 
     private fun broadcastSender(tag: String, action: String) {
         val intent = Intent(tag)
         intent.putExtra("action", action)
-        intent.putExtra("selectedColor", selectedColor)
+        intent.putExtra("selectedNoteColors", selectNoteColors)
+        intent.putExtra("selectedFontColors", selectFontColors)
         LocalBroadcastManager.getInstance(requireContext()).sendBroadcast(intent)
     }
 
-    private fun handelSelectedColor(view: ImageButton, color: Int) {
-        selectedColor = color
-        selectColor.forEach {
-            if (it == view)
-                view.setImageResource(R.drawable.ic_tick)
-            else it.setImageResource(0)
+    private fun handelSelectedNoteColor(view: ImageButton, color: Int) {
+        selectNoteColors = color
+       val noteColors = mutableListOf(
+            noteColor1,
+            noteColor2,
+            noteColor3,
+            noteColor4,
+            noteColor5,
+            noteColor6,
+            noteColor7,
+            noteColor8
+        )
+        noteColors.forEach {
+            if (it == view) view.setImageResource(R.drawable.ic_tick) else it.setImageResource(0)
         }
     }
 
+    private fun handelSelectedFontColor(view: ImageButton, color: Int) {
+        selectFontColors = color
+        val fontColors = mutableListOf(
+            fontColor1,
+            fontColor2,
+            fontColor3,
+            fontColor4,
+            fontColor5,
+            fontColor6,
+            fontColor7,
+            fontColor8
+        )
+        fontColors.forEach {
+            if (it == view) view.setImageResource(R.drawable.ic_tick) else it.setImageResource(0)
+        }
+    }
+
+    private fun ImageButton.setListenerNoteColorBtn(color:Int, action:String){
+        this.setOnClickListener {
+            handelSelectedNoteColor(this, color)
+            handelSelectedFontColor(this, color)
+            broadcastSender(TAG_NOTE_BOTTOM_SHEET, action)
+        }
+    }
+
+
+    private fun setListenerNoteColor(){
+        noteColor1.setListenerNoteColorBtn(R.color.colorBlue,"Blue")
+        noteColor2.setListenerNoteColorBtn(R.color.colorYellowNote,"Yellow")
+        noteColor3.setListenerNoteColorBtn(R.color.colorPurpleNote,"Purple")
+        noteColor4.setListenerNoteColorBtn(R.color.colorGreenNote,"Green")
+        noteColor5.setListenerNoteColorBtn(R.color.colorOrangeNote,"Orange")
+        noteColor6.setListenerNoteColorBtn(R.color.colorBlackNote,"Black")
+        noteColor7.setListenerNoteColorBtn(R.color.colorWhiteNote,"White")
+        noteColor8.setListenerNoteColorBtn(R.color.colorRedNote,"Red")
+    }
+
+    private fun setListenerFontColor(){
+        fontColor1.setListenerNoteColorBtn(R.color.colorBlue,"FontBlue")
+        fontColor2.setListenerNoteColorBtn(R.color.colorYellowNote,"FontYellow")
+        fontColor3.setListenerNoteColorBtn(R.color.colorPurpleNote,"FontPurple")
+        fontColor4.setListenerNoteColorBtn(R.color.colorGreenNote,"FontGreen")
+        fontColor5.setListenerNoteColorBtn(R.color.colorOrangeNote,"FontOrange")
+        fontColor6.setListenerNoteColorBtn(R.color.colorBlackNote,"FontBlack")
+        fontColor7.setListenerNoteColorBtn(R.color.colorWhiteNote,"FontWhite")
+        fontColor8.setListenerNoteColorBtn(R.color.colorRedNote,"FontRed")
+    }
+
     private fun setListener() {
-        imgNote1.setOnClickListener {
-            handelSelectedColor(imgNote1, R.color.colorBlue)
-            broadcastSender(TAG_NOTE_BOTTOM_SHEET, "Blue")
-        }
-        imgNote2.setOnClickListener {
-            handelSelectedColor(imgNote2, R.color.colorYellowNote)
-            broadcastSender(TAG_NOTE_BOTTOM_SHEET, "Yellow")
-        }
-        imgNote3.setOnClickListener {
-            handelSelectedColor(imgNote3, R.color.colorPurpleNote)
-            broadcastSender(TAG_NOTE_BOTTOM_SHEET, "Purple")
-        }
-        imgNote4.setOnClickListener {
-            handelSelectedColor(imgNote4, R.color.colorGreenNote)
-            broadcastSender(TAG_NOTE_BOTTOM_SHEET, "Green")
-        }
-        imgNote5.setOnClickListener {
-            handelSelectedColor(imgNote5, R.color.colorOrangeNote)
-            broadcastSender(TAG_NOTE_BOTTOM_SHEET, "Orange")
-        }
-        imgNote6.setOnClickListener {
-            handelSelectedColor(imgNote6, R.color.colorBlackNote)
-            broadcastSender(TAG_NOTE_BOTTOM_SHEET, "Black")
-        }
-
-        imgNote7.setOnClickListener {
-            handelSelectedColor(imgNote7, R.color.colorWhiteNote)
-            broadcastSender(TAG_NOTE_BOTTOM_SHEET, "White")
-        }
-
-        imgNote8.setOnClickListener {
-            handelSelectedColor(imgNote8, R.color.colorRedNote)
-            broadcastSender(TAG_NOTE_BOTTOM_SHEET, "Red")
-        }
-
         addImage.setOnClickListener {
             broadcastSender(TAG_NOTE_BOTTOM_SHEET, "Image")
             dismiss()
