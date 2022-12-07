@@ -43,56 +43,55 @@
                         android:id="@+id/materialToolbar"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:layout_gravity="start"
                         android:gravity="start"
                         app:navigationIcon="@drawable/ic_back"
                         app:title="@string/add_note">
 
-                        <ImageButton
-                            android:id="@+id/save"
+                        <LinearLayout
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end|center"
-                            android:layout_marginEnd="@dimen/_12sdp"
-                            android:background="@drawable/shape_of_effect_btn_round"
-                            android:onClick="@{() -> viewModel.setNote()}"
-                            android:padding="@dimen/_6sdp"
-                            android:src="@drawable/ic_check_circle"
-                            app:layout_constraintBottom_toBottomOf="@+id/imgBack"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/imgBack"
-                            tools:ignore="ContentDescription" />
+                            android:layout_height="match_parent"
+                            android:layout_gravity="end"
+                            android:gravity="end"
+                            android:orientation="horizontal">
 
-                        <ImageButton
-                            android:id="@+id/update"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end|center"
-                            android:layout_marginEnd="@dimen/_12sdp"
-                            android:background="@drawable/shape_of_effect_btn_round"
-                            android:onClick="@{() -> viewModel.updateNoteByID()}"
-                            android:padding="@dimen/_6sdp"
-                            android:src="@drawable/ic_check_circle"
-                            android:visibility="gone"
-                            app:layout_constraintBottom_toBottomOf="@+id/imgBack"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/imgBack"
-                            tools:ignore="ContentDescription" />
+                            <ImageButton
+                                android:id="@+id/deleteNote"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/_12sdp"
+                                android:background="@drawable/shape_of_effect_btn_round"
+                                android:onClick="@{() -> viewModel.deleteNotes()}"
+                                android:padding="@dimen/_6sdp"
+                                android:src="@drawable/ic_delete"
+                                android:visibility="visible"
+                                tools:ignore="ContentDescription" />
 
-                        <ImageButton
-                            android:id="@+id/deleteNote"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="end|center"
-                            android:layout_marginEnd="@dimen/_12sdp"
-                            android:background="@drawable/shape_of_effect_btn_round"
-                            android:padding="@dimen/_6sdp"
-                            android:src="@drawable/ic_delete"
-                            android:visibility="invisible"
-                            app:layout_constraintBottom_toBottomOf="@+id/imgBack"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="@+id/imgBack"
-                            tools:ignore="ContentDescription" />
+                            <ImageButton
+                                android:id="@+id/save"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/_12sdp"
+                                android:background="@drawable/shape_of_effect_btn_round"
+                                android:onClick="@{() -> viewModel.setNote()}"
+                                android:padding="@dimen/_6sdp"
+                                android:src="@drawable/ic_check_circle"
+                                tools:ignore="ContentDescription" />
 
+                            <ImageButton
+                                android:id="@+id/update"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="@dimen/_12sdp"
+                                android:background="@drawable/shape_of_effect_btn_round"
+                                android:onClick="@{() -> viewModel.updateNoteByID()}"
+                                android:padding="@dimen/_6sdp"
+                                android:src="@drawable/ic_check_circle"
+                                android:visibility="gone"
+                                tools:ignore="ContentDescription" />
+
+
+                        </LinearLayout>
 
                     </com.google.android.material.appbar.MaterialToolbar>
 
@@ -130,11 +129,29 @@
                     android:fontFamily="@font/oxygen_bold"
                     android:maxLines="1"
                     android:paddingHorizontal="@dimen/_10sdp"
-                    android:text="@{viewModel.note_date_created}"
+                    android:text="@{@string/note_date_created+' '+viewModel.note_date_created}"
                     android:textSize="@dimen/_10ssp"
                     app:layout_constraintEnd_toEndOf="@+id/etNoteTitle"
                     app:layout_constraintStart_toStartOf="@id/etNoteTitle"
                     app:layout_constraintTop_toBottomOf="@id/etNoteTitle"
+                    app:setFontColor="@{viewModel.font_color}"
+                    tools:ignore="RtlSymmetry"
+                    tools:text="2022/11/1, 10:00 PM" />
+
+                <TextView
+                    android:id="@+id/tvLastDateTime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/oxygen_bold"
+                    android:maxLines="1"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:text="@{@string/note_last_date+' '+viewModel.note_last_update}"
+                    android:textSize="@dimen/_10ssp"
+                    app:layout_constraintEnd_toEndOf="@+id/tvDateTime"
+                    app:layout_constraintStart_toStartOf="@id/tvDateTime"
+                    app:layout_constraintTop_toBottomOf="@id/tvDateTime"
                     app:setFontColor="@{viewModel.font_color}"
                     tools:ignore="RtlSymmetry"
                     tools:text="2022/11/1, 10:00 PM" />
@@ -158,7 +175,7 @@
                     android:textSize="@dimen/_12ssp"
                     app:layout_constraintEnd_toEndOf="@+id/tvDateTime"
                     app:layout_constraintStart_toStartOf="@+id/tvDateTime"
-                    app:layout_constraintTop_toBottomOf="@id/tvDateTime"
+                    app:layout_constraintTop_toBottomOf="@id/tvLastDateTime"
                     app:setFontColor="@{viewModel.font_color}" />
 
                 <EditText

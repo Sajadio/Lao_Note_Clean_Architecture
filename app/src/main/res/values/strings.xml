@@ -52,6 +52,8 @@
     <string name="note_title_blank_msg">Note title can\'t be empty</string>
     <string name="event_title_blank_msg">Event title can\'t be empty</string>
     <string name="note_details">Note details</string>
+    <string name="note_date_created">Date created:</string>
+    <string name="note_last_date">Last updated:</string>
 
 
 </resources>

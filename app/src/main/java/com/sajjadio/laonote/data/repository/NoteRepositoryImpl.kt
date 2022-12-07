@@ -13,4 +13,6 @@ class NoteRepositoryImpl @Inject constructor(
     override suspend fun getNotes() = docFireStore.getNotes()
 
     override suspend fun updateNoteByID(noteId: String, data: HashMap<String, Any?>) = docFireStore.updateNoteByID(noteId,data)
+
+    override suspend fun deleteNoteByID(noteId: String) = docFireStore.deleteNoteByID(noteId)
 }

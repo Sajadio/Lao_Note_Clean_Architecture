@@ -23,5 +23,6 @@ class DocumentaryFireStoreImpl @Inject constructor(
     override suspend fun updateNoteByID(noteId: String, data: HashMap<String, Any?>): Void? =
         fireStore.collection(NOTES).document(noteId).update(data).await()
 
-
+    override suspend fun deleteNoteByID(noteId: String): Void? =
+        fireStore.collection(NOTES).document(noteId).delete().await()
 }

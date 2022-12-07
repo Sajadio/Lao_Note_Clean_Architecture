@@ -79,7 +79,7 @@
                 android:fontFamily="@font/cabin_medium"
                 android:paddingHorizontal="@dimen/_10sdp"
                 android:paddingBottom="@dimen/_10sdp"
-                android:textSize="@dimen/_14ssp"
+                android:textSize="@dimen/_13ssp"
                 app:setFontColor="@{note.font_color}"
                 app:setText="@{note.note_description}"
                 tools:ignore="RtlSymmetry"

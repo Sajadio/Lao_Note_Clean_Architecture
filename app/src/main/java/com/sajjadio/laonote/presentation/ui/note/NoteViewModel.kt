@@ -6,10 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.sajjadio.laonote.domain.model.Note
 import com.sajjadio.laonote.domain.usecase.ValidateWebURLUseCase
-import com.sajjadio.laonote.domain.usecase.note.UpdateNoteByIDUseCase
-import com.sajjadio.laonote.domain.usecase.note.GetNotesUseCase
-import com.sajjadio.laonote.domain.usecase.note.SetNoteUseCase
-import com.sajjadio.laonote.domain.usecase.note.ValidateNoteTitleUseCase
+import com.sajjadio.laonote.domain.usecase.note.*
 import com.sajjadio.laonote.presentation.base.BaseViewModel
 import com.sajjadio.laonote.utils.NetworkResponse
 import com.sajjadio.laonote.utils.TAG
@@ -26,6 +23,7 @@ class NoteViewModel @Inject constructor(
     private val setNoteUseCase: SetNoteUseCase,
     private val getNotesUseCase: GetNotesUseCase,
     private val updateNoteByIDUseCase: UpdateNoteByIDUseCase,
+    private val deleteNotesUseCase: DeleteNotesUseCase,
     private val validateNoteTitleUseCase: ValidateNoteTitleUseCase,
     private val validateWebURLUseCase: ValidateWebURLUseCase,
 ) : BaseViewModel() {
@@ -65,6 +63,15 @@ class NoteViewModel @Inject constructor(
         }
     }
 
+     fun deleteNotes() {
+        viewModelScope.launch {
+            deleteNotesUseCase(notID.value.toString()).collectLatest {
+                _eventResponse.postValue(Event(checkNetworkResponseStatus(it)))
+                isLoading.postValue(it is NetworkResponse.Loading)
+            }
+        }
+    }
+
     fun setNote() {
         viewModelScope.launch {
             if (validateNoteFiled()) {
@@ -88,7 +95,6 @@ class NoteViewModel @Inject constructor(
     fun updateNoteByID() {
         viewModelScope.launch {
             if (validateNoteFiled()) {
-                Log.d(TAG, "updateNoteByID: ${notID.value}")
                 val note = Note(
                     note_id = notID.value.toString(),
                     note_title = note_title.value.toString(),
@@ -108,7 +114,7 @@ class NoteViewModel @Inject constructor(
     }
 
     private fun validateNoteFiled(): Boolean {
-        val validNoteTitle = validateNoteTitleUseCase( note_title.value.toString())
+        val validNoteTitle = validateNoteTitleUseCase(note_title.value.toString())
         if (!validNoteTitle.successful) {
             _eventResponse.postValue(Event(NetworkResponse.Error(validNoteTitle.errorMessage)))
             return false
