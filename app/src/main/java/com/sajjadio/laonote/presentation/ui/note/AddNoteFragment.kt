@@ -10,15 +10,17 @@ import android.content.IntentFilter
 import android.graphics.BitmapFactory
 import android.os.Build
 import android.provider.MediaStore
-import android.util.Patterns
 import android.view.View
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.core.view.isVisible
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.sajjadio.laonote.R
 import com.sajjadio.laonote.databinding.FragmentAddNoteBinding
+import com.sajjadio.laonote.domain.model.Note
 import com.sajjadio.laonote.presentation.base.BaseFragment
 import com.sajjadio.laonote.utils.ActionBottomSheet
 import com.sajjadio.laonote.utils.*
@@ -28,8 +30,8 @@ import kotlinx.android.synthetic.main.color_picker_dialog.*
 import kotlinx.android.synthetic.main.fragment_add_note.*
 import kotlinx.android.synthetic.main.fragment_add_task.*
 import kotlinx.android.synthetic.main.fragment_notes_bottom_sheet.*
-import kotlinx.android.synthetic.main.fragment_notes_bottom_sheet.addWebUrl
 import kotlinx.android.synthetic.main.fragment_notes_bottom_sheet.view.*
+import kotlinx.android.synthetic.main.item_event.*
 import java.util.*
 import javax.inject.Inject
 
@@ -42,6 +44,7 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding, NoteViewModel>(
     var selectedNoteColor = R.color.colorBlackNote
     var selectedFontColor = R.color.colorHint
     private var selectedImagePath = ""
+    private val args: AddNoteFragmentArgs by navArgs()
 
     @Inject
     lateinit var helper: PermissionsHelper
@@ -53,7 +56,7 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding, NoteViewModel>(
             noteActivity.setToolBar(materialToolbar)
             setNoteColor(selectedNoteColor)
             setFontColor(selectedFontColor)
-
+            noteDetails(args.note)
             viewModel?.apply {
                 eventResponse.observeEvent(viewLifecycleOwner) { status ->
                     checkResponseStatus(status)
@@ -80,13 +83,20 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding, NoteViewModel>(
         )
     }
 
-    private fun checkWebUrl() {
-        binding?.apply {
-            if (!(Patterns.WEB_URL.matcher(etWebLink.text.toString()).matches()))
-                noteActivity.makeToast(resources.getString(R.string.url_valid))
+    private fun noteDetails(note: Note?) {
+        viewModel.apply {
+            note?.let {
+                showNoteDetails(it)
+                binding?.apply {
+                    materialToolbar.title = resources.getString(R.string.note_details)
+                    layoutWebUrl.isVisible = note.note_webUrl?.isNotEmpty() == true
+                    deleteNote.isVisible = true
+                    update.isVisible = true
+                    save.isVisible = false
+                }
+            }
         }
     }
-
 
     private val broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         @RequiresApi(Build.VERSION_CODES.P)
@@ -94,7 +104,8 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding, NoteViewModel>(
             binding?.apply {
                 when (p1?.getStringExtra("action")) {
                     "Image" -> {
-                        helper.message = resources.getString(R.string.permission_storage_rationale_message)
+                        helper.message =
+                            resources.getString(R.string.permission_storage_rationale_message)
                         helper.activity = noteActivity
                         helper.getRequestPermission(
                             REQUEST_CODE_PICK_PHOTO,

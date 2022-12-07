@@ -51,6 +51,7 @@
     <string name="new_password_error_msg">Password must be greater than 6 digits</string>
     <string name="note_title_blank_msg">Note title can\'t be empty</string>
     <string name="event_title_blank_msg">Event title can\'t be empty</string>
+    <string name="note_details">Note details</string>
 
 
 </resources>

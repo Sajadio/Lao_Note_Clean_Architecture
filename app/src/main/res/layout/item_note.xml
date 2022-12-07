@@ -9,7 +9,10 @@
             name="note"
             type="com.sajjadio.laonote.domain.model.Note" />
 
-        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.sajjadio.laonote.presentation.ui.note.NoteViewModel" />
 
 
     </data>
@@ -17,15 +20,16 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:foreground="?attr/selectableItemBackground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@null"
         android:layout_margin="@dimen/_5sdp"
+        android:background="@null"
+        android:foreground="?attr/selectableItemBackground"
         app:cardCornerRadius="@dimen/_10sdp"
         app:cardElevation="@dimen/_5sdp">
 
         <LinearLayout
+            android:id="@+id/parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -46,54 +50,64 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/oxygen_bold"
-                android:padding="@dimen/_8sdp"
+                android:paddingHorizontal="@dimen/_8sdp"
+                android:paddingTop="@dimen/_8sdp"
                 android:text="@{note.note_title}"
                 android:textAlignment="textStart"
+                android:textSize="@dimen/_18ssp"
                 app:setFontColor="@{note.font_color}"
-                android:textSize="@dimen/_16ssp"
                 tools:text="@string/title" />
 
             <TextView
-                android:id="@+id/tvWebLink"
+                android:id="@+id/tvSubTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
-                android:autoLink="web"
-                android:ellipsize="end"
-                android:fontFamily="@font/oxygen_bold"
-                android:padding="@dimen/_10sdp"
+                android:fontFamily="@font/cabin_medium"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:paddingTop="@dimen/_2sdp"
+                android:paddingBottom="@dimen/_4sdp"
+                android:textSize="@dimen/_15ssp"
                 app:setFontColor="@{note.font_color}"
-                android:textColorLink="@color/colorBlue"
-                android:textSize="@dimen/_12ssp"
-                app:setText="@{note.note_webUrl}"
-                tools:text="www.google.com" />
+                app:setText="@{note.note_subTitle}"
+                tools:ignore="RtlSymmetry"
+                tools:text="@string/notes_sub_title" />
 
             <TextView
                 android:id="@+id/tvDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cabin_medium"
-                android:paddingStart="@dimen/_10sdp"
-                android:paddingTop="@dimen/_5sdp"
-                android:paddingBottom="@dimen/_5sdp"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:paddingBottom="@dimen/_10sdp"
+                android:textSize="@dimen/_14ssp"
                 app:setFontColor="@{note.font_color}"
-                android:textSize="@dimen/_11ssp"
+                app:setText="@{note.note_description}"
                 tools:ignore="RtlSymmetry"
                 tools:text="@string/desc" />
+
+            <TextView
+                android:id="@+id/etWebLink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/cabin_medium"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:paddingTop="@dimen/_4sdp"
+                android:text="@{note.note_webUrl}"
+                android:textColorLink="@color/colorBlue"
+                android:textSize="@dimen/_12ssp"
+                tools:text="www.google.com" />
 
             <TextView
                 android:id="@+id/tvDateTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cabin_medium"
-                android:padding="@dimen/_10sdp"
-                android:paddingTop="@dimen/_2sdp"
-                android:paddingBottom="@dimen/_5sdp"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:paddingTop="@dimen/_4sdp"
                 android:text="@{note.note_date_created}"
+                android:textSize="@dimen/_10ssp"
                 app:setFontColor="@{note.font_color}"
-                android:textSize="@dimen/_9ssp"
-                tools:text="@string/notes_sub_title" />
+                tools:text="Dec 5, 2022 20:10:44" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

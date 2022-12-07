@@ -19,6 +19,7 @@ const val NOTE_WEB_URL = "note_webUrl"
 const val NOTE_COLOR = "note_color"
 const val FONT_COLOR = "font_color"
 const val NOTE_DATE_CREATED = "note_date_created"
+const val NOTE_LAT_UPDATE = "note_last_update"
 
 const val REQUEST_CODE_PICK_PHOTO = 124
 

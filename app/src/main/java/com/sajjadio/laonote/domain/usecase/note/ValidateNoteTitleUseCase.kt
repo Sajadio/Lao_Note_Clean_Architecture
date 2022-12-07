@@ -11,14 +11,14 @@ class ValidateNoteTitleUseCase @Inject constructor(
 ) {
 
     operator fun invoke(noteTitle: String): ValidationResult {
-        if(noteTitle.isBlank()) {
-            return ValidationResult(
+        return if (noteTitle.isNullOrBlank()) {
+            ValidationResult(
                 successful = false,
                 errorMessage = context.resources.getString(R.string.note_title_blank_msg)
             )
-        }
-        return ValidationResult(
-            successful = true
-        )
+        } else
+            ValidationResult(
+                successful = true
+            )
     }
 }

@@ -107,21 +107,31 @@
             app:searchIcon="@drawable/ic_search"
             tools:ignore="LabelFor" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_view"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/_4sdp"
-            android:background="@color/colorPrimary"
-            android:orientation="vertical"
-            app:items="@{viewModel.eventResponseNotes.peekContent().data()}"
-            app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
             app:layout_constraintBottom_toTopOf="@+id/layout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/searchBox"
-            app:spanCount="2"
-            tools:listitem="@layout/item_note" />
+            app:onRefreshListener="@{() -> viewModel.onRefresh()}"
+            app:refreshing="@{viewModel.isLoading}">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorPrimary"
+                android:orientation="vertical"
+                app:items="@{viewModel.eventResponseNotes.peekContent().data()}"
+                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                app:layout_constraintTop_toBottomOf="@+id/searchBox"
+                app:spanCount="2"
+                tools:listitem="@layout/item_note" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 
         <LinearLayout
             android:id="@+id/layout"
@@ -169,4 +179,5 @@
             tools:ignore="ContentDescription" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

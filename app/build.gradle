@@ -126,4 +126,7 @@ dependencies {
     // Dialog
     implementation 'com.github.d-max:spots-dialog:0.4@aar'
 
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+
+
 }

@@ -14,12 +14,14 @@ class DocumentaryFireStoreImpl @Inject constructor(
 
     override suspend fun setNote(data: HashMap<String, Any?>): Void? {
         val collection = fireStore.collection(NOTES)
-        val document = UUID.randomUUID().toString()
-        return collection.document(document).set(data).await()
+        return collection.document(data["note_id"].toString()).set(data).await()
     }
 
     override suspend fun getNotes(): List<Note> =
         fireStore.collection(NOTES).get().await().toObjects(Note::class.java)
+
+    override suspend fun updateNoteByID(noteId: String, data: HashMap<String, Any?>): Void? =
+        fireStore.collection(NOTES).document(noteId).update(data).await()
 
 
 }

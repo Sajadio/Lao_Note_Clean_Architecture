@@ -9,6 +9,8 @@
             name="viewModel"
             type="com.sajjadio.laonote.presentation.ui.note.NoteViewModel" />
 
+        <import type="android.view.View" />
+
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -55,6 +57,37 @@
                             android:onClick="@{() -> viewModel.setNote()}"
                             android:padding="@dimen/_6sdp"
                             android:src="@drawable/ic_check_circle"
+                            app:layout_constraintBottom_toBottomOf="@+id/imgBack"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/imgBack"
+                            tools:ignore="ContentDescription" />
+
+                        <ImageButton
+                            android:id="@+id/update"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end|center"
+                            android:layout_marginEnd="@dimen/_12sdp"
+                            android:background="@drawable/shape_of_effect_btn_round"
+                            android:onClick="@{() -> viewModel.updateNoteByID()}"
+                            android:padding="@dimen/_6sdp"
+                            android:src="@drawable/ic_check_circle"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="@+id/imgBack"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/imgBack"
+                            tools:ignore="ContentDescription" />
+
+                        <ImageButton
+                            android:id="@+id/deleteNote"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end|center"
+                            android:layout_marginEnd="@dimen/_12sdp"
+                            android:background="@drawable/shape_of_effect_btn_round"
+                            android:padding="@dimen/_6sdp"
+                            android:src="@drawable/ic_delete"
+                            android:visibility="invisible"
                             app:layout_constraintBottom_toBottomOf="@+id/imgBack"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/imgBack"
@@ -132,7 +165,6 @@
                     android:id="@+id/etNoteDesc"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/_10sdp"
                     android:background="@null"
                     android:fontFamily="@font/cabin_medium"
                     android:hint="@string/desc"
@@ -148,15 +180,15 @@
 
                 <LinearLayout
                     android:id="@+id/layout_Web_url"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_marginVertical="@dimen/_10sdp"
                     android:orientation="horizontal"
                     android:padding="@dimen/_10sdp"
                     android:visibility="gone"
                     android:weightSum="2"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/etNoteDesc"
+                    app:layout_constraintStart_toStartOf="@+id/etNoteDesc"
                     app:layout_constraintTop_toBottomOf="@id/etNoteDesc">
 
                     <EditText
@@ -172,10 +204,9 @@
                         android:importantForAutofill="no"
                         android:inputType="textMultiLine"
                         android:text="@={viewModel.note_webUrl}"
-                        android:textColor="@color/colorHint"
-                        android:textColorHint="@color/colorHint"
-                        android:textColorLink="@color/colorBlackNote"
-                        android:textSize="@dimen/_12ssp" />
+                        android:textColorLink="@color/colorBlue"
+                        android:textSize="@dimen/_12ssp"
+                        app:setFontColor="@{viewModel.font_color}" />
 
                     <ImageButton
                         android:id="@+id/clearWebURL"

@@ -35,6 +35,11 @@
             app:popUpTo="@+id/addNoteFragment"
             app:popUpToInclusive="true"
             app:destination="@id/noteFragment" />
+        <argument
+            android:name="note"
+            app:argType="com.sajjadio.laonote.domain.model.Note"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
     <fragment
         android:id="@+id/authenticationFragment"

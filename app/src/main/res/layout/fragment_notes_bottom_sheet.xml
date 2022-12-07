@@ -233,26 +233,5 @@
             android:layout_height="@dimen/_1sdp"
             android:layout_marginHorizontal="@dimen/_10sdp"
             android:background="@color/color_border" />
-
-        <FrameLayout
-            android:id="@+id/deleteNote"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone">
-
-            <TextView
-                style="@style/FieldBottomSheet"
-                android:drawableStart="@drawable/ic_delete"
-                android:text="@string/delete_note"
-                android:textColor="@color/colorRedNote" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_1sdp"
-                android:layout_gravity="bottom"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:background="@color/btn_effect" />
-        </FrameLayout>
-
     </LinearLayout>
 </layout>

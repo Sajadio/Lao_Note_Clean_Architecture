@@ -130,14 +130,6 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
             broadcastSender(TAG_NOTE_BOTTOM_SHEET, "WebUrl")
             dismiss()
         }
-
-        deleteNote.setOnClickListener {
-            val intent = Intent(TAG_NOTE_BOTTOM_SHEET)
-            intent.putExtra("action", "DeleteNote")
-            broadcastSender(TAG_NOTE_BOTTOM_SHEET, "DeleteNote")
-            dismiss()
-        }
-
     }
 
 

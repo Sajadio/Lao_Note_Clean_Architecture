@@ -11,13 +11,18 @@ class ValidateWebURLUseCase @Inject constructor(
 ) {
 
     operator fun invoke(url: String): ValidationResult {
-        if(!(Patterns.WEB_URL.matcher(url).matches())) {
-            return ValidationResult(
-                successful = false,
-                errorMessage = context.resources.getString(R.string.url_valid)
-            )
+        if (url.isNotEmpty()) {
+            return if (Patterns.WEB_URL.matcher(url).matches())
+                ValidationResult(
+                    successful = true
+                )
+            else
+                ValidationResult(
+                    successful = false,
+                    errorMessage = context.resources.getString(R.string.url_valid)
+                )
         }
-        return ValidationResult(
+        return  ValidationResult(
             successful = true
         )
     }
