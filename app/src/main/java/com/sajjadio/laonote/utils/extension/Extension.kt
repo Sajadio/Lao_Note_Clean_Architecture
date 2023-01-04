@@ -47,3 +47,6 @@ fun Context.getPathFromUri(contentUri: Uri): String? {
     }
     return filePath
 }
+
+
+fun getFileExtension(context: Context,uri: Uri?) = MimeTypeMap.getSingleton().getExtensionFromMimeType(context.contentResolver.getType(uri!!))

@@ -49,7 +49,7 @@
             android:textSize="@dimen/_14ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etNoteTitle"
+            app:layout_constraintTop_toBottomOf="@id/etTaskTitle"
             tools:ignore="RtlSymmetry" />
 
         <HorizontalScrollView
@@ -135,7 +135,7 @@
             android:textSize="@dimen/_14ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etNoteTitle"
+            app:layout_constraintTop_toBottomOf="@id/etTaskTitle"
             tools:ignore="RtlSymmetry" />
 
         <HorizontalScrollView
@@ -208,13 +208,6 @@
             </LinearLayout>
 
         </HorizontalScrollView>
-
-        <TextView
-            android:id="@+id/addImage"
-            style="@style/FieldBottomSheet"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:drawableStart="@drawable/ic_image"
-            android:text="@string/add_image" />
 
         <View
             android:layout_width="match_parent"

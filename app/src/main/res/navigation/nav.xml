@@ -84,11 +84,27 @@
         <action
             android:id="@+id/action_taskFragment_to_addTaskFragment"
             app:destination="@id/addTaskFragment" />
+        <action
+            android:id="@+id/action_taskFragment_to_addTaskFragment2"
+            app:destination="@id/addTaskFragment" />
     </fragment>
     <fragment
         android:id="@+id/addTaskFragment"
         android:name="com.sajjadio.laonote.presentation.ui.task.AddTaskFragment"
         android:label="AddTaskFragment"
-        tools:layout="@layout/fragment_add_task" />
+        tools:layout="@layout/fragment_add_task" >
+        <action
+            android:id="@+id/action_addTaskFragment_to_taskFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/addTaskFragment"
+            app:popUpToInclusive="true"
+            app:destination="@id/taskFragment" />
+        <argument
+            android:name="task"
+            app:argType="com.sajjadio.laonote.domain.model.Task"
+            app:nullable="true"
+            android:defaultValue="@null" />
+    </fragment>
 
 </navigation>

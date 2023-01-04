@@ -122,10 +122,6 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     private fun setListener() {
-        addImage.setOnClickListener {
-            broadcastSender(TAG_NOTE_BOTTOM_SHEET, "Image")
-            dismiss()
-        }
         addWebUrl.setOnClickListener {
             broadcastSender(TAG_NOTE_BOTTOM_SHEET, "WebUrl")
             dismiss()

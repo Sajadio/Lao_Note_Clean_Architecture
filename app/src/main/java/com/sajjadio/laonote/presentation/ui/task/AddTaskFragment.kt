@@ -1,26 +1,21 @@
 package com.sajjadio.laonote.presentation.ui.task
 
-import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import android.content.Intent
-import android.graphics.BitmapFactory
 import android.os.Build
-import android.provider.MediaStore
 import android.view.View
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
+import androidx.core.view.isVisible
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.sajjadio.laonote.R
 import com.sajjadio.laonote.databinding.FragmentAddTaskBinding
+import com.sajjadio.laonote.domain.model.Task
 import com.sajjadio.laonote.presentation.base.BaseFragment
-import com.sajjadio.laonote.presentation.ui.note.NoteViewModel
-import com.sajjadio.laonote.utils.PermissionsHelper
-import com.sajjadio.laonote.utils.REQUEST_CODE_PICK_PHOTO
+import com.sajjadio.laonote.utils.NetworkResponse
 import com.sajjadio.laonote.utils.extension.dateFormat
-import com.sajjadio.laonote.utils.extension.getPathFromUri
+import com.sajjadio.laonote.utils.extension.observeEvent
 import com.sajjadio.laonote.utils.extension.setToolBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.dialog_add_event.view.*
@@ -28,18 +23,12 @@ import kotlinx.android.synthetic.main.fragment_add_note.*
 import kotlinx.android.synthetic.main.fragment_add_task.*
 import kotlinx.android.synthetic.main.fragment_task.*
 import java.util.*
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class AddTaskFragment : BaseFragment<FragmentAddTaskBinding, NoteViewModel>(R.layout.fragment_add_task) {
+class AddTaskFragment : BaseFragment<FragmentAddTaskBinding, TaskViewModel>(R.layout.fragment_add_task) {
 
-    override val viewModelClass = NoteViewModel::class.java
-
-    private var webLink = ""
-    private var selectedImagePath = ""
-
-    @Inject
-    lateinit var helper: PermissionsHelper
+    override val viewModelClass = TaskViewModel::class.java
+    private val args: AddTaskFragmentArgs by navArgs()
 
     @RequiresApi(Build.VERSION_CODES.N)
     @SuppressLint("SimpleDateFormat", "NewApi")
@@ -47,64 +36,47 @@ class AddTaskFragment : BaseFragment<FragmentAddTaskBinding, NoteViewModel>(R.la
         binding?.apply {
             root.transitionName = TRANSITION_ELEMENT_ROOT
             noteActivity.setToolBar(materialToolbar)
+            taskDetails(args.task)
+            viewModel?.apply {
+                eventResponse.observeEvent(viewLifecycleOwner) { status ->
+                    checkResponseStatus(status)
+                    if (status is NetworkResponse.Success) {
+                        findNavController().navigate(R.id.action_addTaskFragment_to_taskFragment)
+                    }
+                }
+            }
+
             viewModel?.date?.postValue(
                 Calendar.getInstance().time.toString().dateFormat()
             )
             tvDateTime.setOnClickListener {
                 pickDateTime()
             }
-            addImage.setOnClickListener {
-                helper.message = resources.getString(R.string.permission_storage_rationale_message)
-                helper.activity = noteActivity
-                helper.getRequestPermission(
-                    REQUEST_CODE_PICK_PHOTO,
-                    Manifest.permission.READ_EXTERNAL_STORAGE
-                ) {
-                    pickPhoto()
-                }
-            }
             addURL.setOnClickListener {
                 layoutWebUrlTask.visibility = View.VISIBLE
             }
-            imgDeleteTask.setOnClickListener {
-                selectedImagePath = ""
-                layoutImageTask.visibility = View.GONE
-            }
-
             clearWebURL.setOnClickListener {
                 layoutWebUrlTask.visibility = View.GONE
+                viewModel?.task_webUrl?.postValue(null)
             }
         }
     }
 
-
-    @RequiresApi(Build.VERSION_CODES.P)
-    private val photoResultLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK && result.data != null) {
-                getPhotoResultIntent(result)
+    private fun taskDetails(task: Task?) {
+        viewModel.apply {
+            task?.let {
+                showTaskDetails(it)
+                binding?.apply {
+                    materialToolbar.title = resources.getString(R.string.edit)
+                    layoutWebUrlTask.isVisible = task.task_webUrl?.isNotEmpty() == true
+                    deleteTask.isVisible = true
+                    update.isVisible = true
+                    save.isVisible = false
+                }
             }
         }
-
-    @RequiresApi(Build.VERSION_CODES.P)
-    private fun getPhotoResultIntent(result: ActivityResult) {
-        val imageUri = result.data!!.data!!
-        val path = requireActivity().getPathFromUri(imageUri)
-        selectedImagePath = path.toString()
-        binding?.layoutImageTask?.visibility = View.VISIBLE
-        val inputStream = requireActivity().contentResolver.openInputStream(imageUri)
-        val bitmap = BitmapFactory.decodeStream(inputStream)
-        binding?.imgTask?.setImageBitmap(bitmap)
     }
 
-
-    @RequiresApi(Build.VERSION_CODES.P)
-    private fun pickPhoto() {
-        Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI).also {
-            it.type = "image/*"
-            photoResultLauncher.launch(it)
-        }
-    }
 
     private fun pickDateTime() {
         val currentDateTime = Calendar.getInstance()

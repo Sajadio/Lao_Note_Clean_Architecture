@@ -7,23 +7,23 @@ const val TAG_PICKER_COLOR = "Picker Color"
 const val LAO_NOTE_DB = "lao_note_db"
 const val STORAGE_NAME = "session_manager"
 const val NOTES = "notes"
-const val EVENTS = "notes"
+const val TASKS = "tasks"
+const val EVENTS = "events"
 
 // note collection
 const val NOTE_ID = "note_id"
 const val NOTE_TITLE = "note_title"
 const val NOTE_SUB_TITLE = "note_subTitle"
 const val NOTE_DESCRIPTION = "note_description"
-const val NOTE_IMAGE = "note_image"
 const val NOTE_WEB_URL = "note_webUrl"
 const val NOTE_COLOR = "note_color"
 const val FONT_COLOR = "font_color"
 const val NOTE_DATE_CREATED = "note_date_created"
-const val NOTE_LAT_UPDATE = "note_last_update"
+const val NOTE_LATS_UPDATE = "note_last_update"
 
-const val REQUEST_CODE_PICK_PHOTO = 124
-
-
-enum class SelectItem {
-
-}
+// task collection
+const val TASK_ID = "task_id"
+const val TASK_TITLE = "task_title"
+const val TASK_DESCRIPTION = "task_description"
+const val TASK_WEB_URL = "task_webUrl"
+const val TASK_DATE_CREATED = "task_date_created"

@@ -5,7 +5,7 @@ import com.sajjadio.laonote.domain.repository.NoteRepository
 import javax.inject.Inject
 
 class NoteRepositoryImpl @Inject constructor(
-    private val docFireStore: DocumentaryFireStore
+    private val docFireStore: DocumentaryFireStore,
 ) : NoteRepository {
 
     override suspend fun setNote(data: HashMap<String, Any?>) = docFireStore.setNote(data)

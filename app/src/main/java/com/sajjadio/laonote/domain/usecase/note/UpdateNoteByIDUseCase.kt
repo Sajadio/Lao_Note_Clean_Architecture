@@ -16,15 +16,14 @@ class UpdateNoteByIDUseCase @Inject constructor(
         try {
             emit(NetworkResponse.Loading)
             val updateNote = HashMap<String, Any?>()
+            updateNote[NOTE_ID] = note.note_id
             updateNote[NOTE_TITLE] = note.note_title
             updateNote[NOTE_SUB_TITLE] = note.note_subTitle
             updateNote[NOTE_DESCRIPTION] = note.note_description
-            updateNote[NOTE_IMAGE] = note.note_image
             updateNote[NOTE_WEB_URL] = note.note_webUrl
             updateNote[NOTE_COLOR] = note.note_color
             updateNote[FONT_COLOR] = note.font_color
-            updateNote[NOTE_DATE_CREATED] = note.note_date_created
-            updateNote[NOTE_LAT_UPDATE] = Calendar.getInstance().time.toString().dateFormat()
+            updateNote[NOTE_LATS_UPDATE] = Calendar.getInstance().time.toString().dateFormat()
             val response = noteRepo.updateNoteByID(note.note_id, updateNote)
             emit(NetworkResponse.Success(response))
         } catch (e: Exception) {

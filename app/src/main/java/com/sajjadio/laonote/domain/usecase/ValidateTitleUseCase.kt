@@ -1,20 +1,19 @@
-package com.sajjadio.laonote.domain.usecase.note
+package com.sajjadio.laonote.domain.usecase
 
 import android.content.Context
 import com.sajjadio.laonote.R
-import com.sajjadio.laonote.domain.usecase.ValidationResult
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class ValidateNoteTitleUseCase @Inject constructor(
+class ValidateTitleUseCase @Inject constructor(
     @ApplicationContext private val context: Context
 ) {
 
-    operator fun invoke(noteTitle: String): ValidationResult {
-        return if (noteTitle.isNullOrBlank()) {
+    operator fun invoke(title: String): ValidationResult {
+        return if (title.isBlank()) {
             ValidationResult(
                 successful = false,
-                errorMessage = context.resources.getString(R.string.note_title_blank_msg)
+                errorMessage = context.resources.getString(R.string.title_blank_msg)
             )
         } else
             ValidationResult(

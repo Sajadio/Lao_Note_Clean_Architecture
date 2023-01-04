@@ -24,7 +24,7 @@
     </style>
 
     <style name="FieldBottomSheet">
-        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginHorizontal" tools:ignore="NewApi">@dimen/_6sdp</item>
         <item name="android:drawablePadding">@dimen/_6sdp</item>

@@ -64,7 +64,7 @@
                                 android:onClick="@{() -> viewModel.deleteNotes()}"
                                 android:padding="@dimen/_6sdp"
                                 android:src="@drawable/ic_delete"
-                                android:visibility="visible"
+                                android:visibility="gone"
                                 tools:ignore="ContentDescription" />
 
                             <ImageButton
@@ -99,7 +99,7 @@
 
 
                 <EditText
-                    android:id="@+id/etNoteTitle"
+                    android:id="@+id/etTaskTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_6sdp"
@@ -129,11 +129,11 @@
                     android:fontFamily="@font/oxygen_bold"
                     android:maxLines="1"
                     android:paddingHorizontal="@dimen/_10sdp"
-                    android:text="@{@string/note_date_created+' '+viewModel.note_date_created}"
+                    android:text="@{@string/date_created+' '+viewModel.note_date_created}"
                     android:textSize="@dimen/_10ssp"
-                    app:layout_constraintEnd_toEndOf="@+id/etNoteTitle"
-                    app:layout_constraintStart_toStartOf="@id/etNoteTitle"
-                    app:layout_constraintTop_toBottomOf="@id/etNoteTitle"
+                    app:layout_constraintEnd_toEndOf="@+id/etTaskTitle"
+                    app:layout_constraintStart_toStartOf="@id/etTaskTitle"
+                    app:layout_constraintTop_toBottomOf="@id/etTaskTitle"
                     app:setFontColor="@{viewModel.font_color}"
                     tools:ignore="RtlSymmetry"
                     tools:text="2022/11/1, 10:00 PM" />
@@ -141,13 +141,14 @@
                 <TextView
                     android:id="@+id/tvLastDateTime"
                     android:layout_width="0dp"
+                    android:visibility="gone"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:ellipsize="end"
                     android:fontFamily="@font/oxygen_bold"
                     android:maxLines="1"
                     android:paddingHorizontal="@dimen/_10sdp"
-                    android:text="@{@string/note_last_date+' '+viewModel.note_last_update}"
+                    android:text="@{@string/last_date+' '+viewModel.note_last_update}"
                     android:textSize="@dimen/_10ssp"
                     app:layout_constraintEnd_toEndOf="@+id/tvDateTime"
                     app:layout_constraintStart_toStartOf="@id/tvDateTime"
@@ -240,44 +241,6 @@
                         tools:ignore="ContentDescription" />
 
                 </LinearLayout>
-
-                <RelativeLayout
-                    android:id="@+id/layout_image"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginVertical="@dimen/_10sdp"
-                    android:padding="@dimen/_10sdp"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/layout_Web_url">
-
-                    <ImageView
-                        android:id="@+id/imgNote"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_alignParentBottom="true"
-                        android:scaleType="centerCrop"
-                        app:uri="@{viewModel.note_image}"
-                        tools:ignore="ContentDescription" />
-
-                    <ImageButton
-                        android:id="@+id/imgDelete"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignTop="@+id/imgNote"
-                        android:layout_alignParentEnd="true"
-                        android:background="@drawable/shape_of_effect_btn"
-                        android:padding="@dimen/_6sdp"
-                        android:src="@drawable/ic_close"
-                        tools:ignore="ContentDescription" />
-
-                </RelativeLayout>
-
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

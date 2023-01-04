@@ -3,10 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+
     <data>
 
-    </data>
+        <variable
+            name="task"
+            type="com.sajjadio.laonote.domain.model.Task" />
 
+
+        <variable
+            name="viewModel"
+            type="com.sajjadio.laonote.presentation.ui.task.TaskViewModel" />
+
+
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -37,7 +47,8 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/taskNameView"
+                android:text="@{task.task_title}"
+                android:id="@+id/taskTitle"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -49,16 +60,15 @@
                 tools:text="Draw the Flowchart" />
 
             <TextView
-                android:id="@+id/dueDateView"
+                android:id="@+id/tvDateTime"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:ellipsize="end"
+                android:layout_height="wrap_content"
                 android:fontFamily="@font/cabin_medium"
-                android:lines="1"
-                android:textColor="@color/colorHint"
-                android:textSize="@dimen/_12ssp"
-                tools:text="Tomorrow at 1:00PM" />
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:paddingTop="@dimen/_4sdp"
+                android:text="@{task.task_date_created}"
+                android:textSize="@dimen/_10ssp"
+                tools:text="Dec 5, 2022 20:10:44" />
 
         </LinearLayout>
 

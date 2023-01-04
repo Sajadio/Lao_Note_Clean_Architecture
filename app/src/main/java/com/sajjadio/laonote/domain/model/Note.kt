@@ -1,17 +1,13 @@
 package com.sajjadio.laonote.domain.model
 
 import android.os.Parcelable
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.sajjadio.laonote.utils.ParentListAdapter
 import com.sajjadio.laonote.utils.extension.dateFormat
 import kotlinx.android.parcel.Parcelize
 import java.util.*
 
-@Entity(tableName = "note_table")
 @Parcelize
 data class Note(
-    @PrimaryKey(autoGenerate = false)
     val note_id: String = UUID.randomUUID().toString(),
     val note_title: String? = null,
     val note_subTitle: String? = null,

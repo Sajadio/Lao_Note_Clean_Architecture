@@ -1,11 +1,9 @@
 package com.sajjadio.laonote.presentation.ui.note
 
-import android.util.Log
 import com.sajjadio.laonote.R
 import com.sajjadio.laonote.databinding.ItemNoteBinding
 import com.sajjadio.laonote.domain.model.Note
 import com.sajjadio.laonote.presentation.base.BaseAdapter
-import com.sajjadio.laonote.utils.TAG
 import javax.inject.Inject
 
 class NoteAdapter @Inject constructor() : BaseAdapter<ItemNoteBinding, Note>() {

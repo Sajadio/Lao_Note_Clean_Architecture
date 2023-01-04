@@ -36,15 +36,6 @@
             android:padding="@dimen/_5sdp"
             app:setBackgroundColor="@{note.note_color}">
 
-            <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/imgNote"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:adjustViewBounds="true"
-                android:visibility="gone"
-                app:riv_corner_radius_top_left="@dimen/_10sdp"
-                app:riv_corner_radius_top_right="@dimen/_10sdp" />
-
             <TextView
                 android:id="@+id/tvTitle"
                 android:layout_width="match_parent"

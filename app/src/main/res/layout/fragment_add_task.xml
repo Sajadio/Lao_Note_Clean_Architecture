@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.sajjadio.laonote.presentation.ui.note.NoteViewModel" />
+            type="com.sajjadio.laonote.presentation.ui.task.TaskViewModel" />
 
     </data>
 
@@ -43,36 +43,54 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_gravity="end|center"
-                        android:gravity="end">
-
-                        <ImageButton
-                            android:id="@+id/addImage"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/shape_of_effect_btn_round"
-                            android:padding="@dimen/_6sdp"
-                            android:src="@drawable/ic_image"
-                            tools:ignore="ContentDescription" />
+                        android:layout_gravity="end"
+                        android:gravity="end"
+                        android:orientation="horizontal">
 
                         <ImageButton
                             android:id="@+id/addURL"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_12sdp"
+                            android:padding="@dimen/_6sdp"
                             android:layout_marginHorizontal="@dimen/_12sdp"
                             android:background="@drawable/shape_of_effect_btn_round"
-                            android:padding="@dimen/_6sdp"
                             android:src="@drawable/ic_language"
+                            tools:ignore="ContentDescription" />
+
+                        <ImageButton
+                            android:id="@+id/deleteTask"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_12sdp"
+                            android:background="@drawable/shape_of_effect_btn_round"
+                            android:onClick="@{() -> viewModel.deleteTask()}"
+                            android:padding="@dimen/_6sdp"
+                            android:src="@drawable/ic_delete"
+                            android:visibility="gone"
                             tools:ignore="ContentDescription" />
 
                         <ImageButton
                             android:id="@+id/save"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/shape_of_effect_btn_round"
-                            android:padding="@dimen/_6sdp"
                             android:layout_marginEnd="@dimen/_12sdp"
+                            android:padding="@dimen/_6sdp"
+                            android:background="@drawable/shape_of_effect_btn_round"
                             android:src="@drawable/ic_check_circle"
+                            android:onClick="@{() -> viewModel.setTask()}"
+                            tools:ignore="ContentDescription" />
+
+                        <ImageButton
+                            android:id="@+id/update"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/_12sdp"
+                            android:background="@drawable/shape_of_effect_btn_round"
+                            android:onClick="@{() -> viewModel.updateTaskByID()}"
+                            android:padding="@dimen/_6sdp"
+                            android:src="@drawable/ic_check_circle"
+                            android:visibility="gone"
                             tools:ignore="ContentDescription" />
 
 
@@ -83,21 +101,11 @@
 
             </com.google.android.material.appbar.AppBarLayout>
 
-            <View
-                android:id="@+id/pickerColor"
-                android:layout_width="@dimen/_5sdp"
-                android:layout_height="0dp"
-                android:layout_marginHorizontal="@dimen/_6sdp"
-                app:layout_constraintBottom_toBottomOf="@+id/etNoteTitle"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/etNoteTitle"
-                tools:background="@color/colorBlue" />
-
             <EditText
-                android:id="@+id/etNoteTitle"
+                android:id="@+id/etTaskTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_16sdp"
                 android:autofillHints=""
                 android:background="@null"
                 android:ellipsize="end"
@@ -106,34 +114,31 @@
                 android:inputType="text"
                 android:maxLines="1"
                 android:padding="@dimen/_10sdp"
+                android:text="@={viewModel.task_title}"
                 android:textColor="@color/colorText"
                 android:textColorHint="@color/colorHint"
                 android:textSize="@dimen/_15ssp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/pickerColor"
+                app:layout_constraintEnd_toEndOf="@+id/tvDateTime"
+                app:layout_constraintStart_toStartOf="@+id/tvDateTime"
                 app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
 
 
             <TextView
                 android:id="@+id/tvDateTime"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/_10sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:padding="@dimen/_10sdp"
                 android:background="@drawable/shape_of_effect_btn"
-                android:clickable="true"
-                android:drawablePadding="@dimen/_6sdp"
                 android:ellipsize="end"
-                android:focusable="true"
                 android:fontFamily="@font/oxygen_bold"
-                android:gravity="center|start"
                 android:maxLines="1"
-                android:paddingStart="@dimen/_10sdp"
-                android:text="@{viewModel.date}"
-                android:textColor="@color/colorHint"
+                android:text="@{@string/date_created+' '+viewModel.date}"
                 android:textSize="@dimen/_10ssp"
                 app:drawableEndCompat="@drawable/ic_add_small"
-                app:layout_constraintStart_toStartOf="@id/etNoteTitle"
-                app:layout_constraintTop_toBottomOf="@id/etNoteTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/etTaskTitle"
                 tools:ignore="RtlSymmetry"
                 tools:text="2022/11/1, 10:00 PM" />
 
@@ -141,30 +146,29 @@
                 android:id="@+id/etTaskDesc"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/_10sdp"
                 android:background="@null"
                 android:fontFamily="@font/cabin_medium"
                 android:hint="@string/desc"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
                 android:padding="@dimen/_10sdp"
+                android:text="@={viewModel.task_description}"
                 android:textColor="@color/colorHint"
                 android:textSize="@dimen/_12ssp"
-                app:layout_constraintEnd_toEndOf="@+id/etNoteTitle"
-                app:layout_constraintStart_toStartOf="@+id/tvDateTime"
+                app:layout_constraintEnd_toEndOf="@+id/tvDateTime"
+                app:layout_constraintStart_toStartOf="@+id/etTaskTitle"
                 app:layout_constraintTop_toBottomOf="@id/tvDateTime" />
 
             <LinearLayout
                 android:id="@+id/layout_Web_url_task"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginVertical="@dimen/_10sdp"
                 android:orientation="horizontal"
                 android:padding="@dimen/_10sdp"
-                android:visibility="gone"
+                android:visibility="visible"
                 android:weightSum="2"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/etTaskDesc"
+                app:layout_constraintStart_toStartOf="@+id/etTaskDesc"
                 app:layout_constraintTop_toBottomOf="@id/etTaskDesc">
 
                 <EditText
@@ -179,6 +183,7 @@
                     android:hint="@string/web_url"
                     android:importantForAutofill="no"
                     android:inputType="textMultiLine"
+                    android:text="@={viewModel.task_webUrl}"
                     android:textColor="@color/colorHint"
                     android:textColorHint="@color/colorHint"
                     android:textColorLink="@color/colorBlackNote"
@@ -200,42 +205,6 @@
 
 
             </LinearLayout>
-
-            <RelativeLayout
-                android:id="@+id/layout_image_task"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="@dimen/_10sdp"
-                android:padding="@dimen/_10sdp"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layout_Web_url_task">
-
-                <ImageView
-                    android:id="@+id/imgTask"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_background"
-                    tools:ignore="ContentDescription" />
-
-                <ImageButton
-                    android:id="@+id/imgDeleteTask"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/imgTask"
-                    android:layout_alignParentEnd="true"
-                    android:background="@drawable/shape_of_effect_btn"
-                    android:padding="@dimen/_6sdp"
-                    android:src="@drawable/ic_close"
-                    tools:ignore="ContentDescription" />
-
-            </RelativeLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

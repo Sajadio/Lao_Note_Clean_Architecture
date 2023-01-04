@@ -5,6 +5,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.sajjadio.laonote.data.remote.auth.Authentication
 import com.sajjadio.laonote.data.remote.auth.AuthenticationImpl
 import com.sajjadio.laonote.data.remote.firestore.DocumentaryFireStore
@@ -26,9 +27,16 @@ object FirebaseModule {
 
     @Singleton
     @Provides
+    fun provideFirebaseStorage(): FirebaseStorage {
+        return FirebaseStorage.getInstance()
+    }
+
+    @Singleton
+    @Provides
     fun provideFirebaseFirestore(): FirebaseFirestore {
         return FirebaseFirestore.getInstance()
     }
+
 
     @Singleton
     @Provides

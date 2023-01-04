@@ -18,7 +18,6 @@ class SetNoteUseCase @Inject constructor(
             setNote[NOTE_TITLE] = note.note_title
             setNote[NOTE_SUB_TITLE] = note.note_subTitle
             setNote[NOTE_DESCRIPTION] = note.note_description
-            setNote[NOTE_IMAGE] = note.note_image
             setNote[NOTE_WEB_URL] = note.note_webUrl
             setNote[NOTE_COLOR] = note.note_color
             setNote[FONT_COLOR] = note.font_color

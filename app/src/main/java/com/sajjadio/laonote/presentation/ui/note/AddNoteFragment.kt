@@ -1,18 +1,12 @@
 package com.sajjadio.laonote.presentation.ui.note
 
-import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.graphics.BitmapFactory
 import android.os.Build
-import android.provider.MediaStore
 import android.view.View
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
@@ -33,7 +27,6 @@ import kotlinx.android.synthetic.main.fragment_notes_bottom_sheet.*
 import kotlinx.android.synthetic.main.fragment_notes_bottom_sheet.view.*
 import kotlinx.android.synthetic.main.item_event.*
 import java.util.*
-import javax.inject.Inject
 
 @Suppress("DUPLICATE_LABEL_IN_WHEN")
 @AndroidEntryPoint
@@ -43,11 +36,7 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding, NoteViewModel>(
     override val viewModelClass = NoteViewModel::class.java
     var selectedNoteColor = R.color.colorBlackNote
     var selectedFontColor = R.color.colorHint
-    private var selectedImagePath = ""
     private val args: AddNoteFragmentArgs by navArgs()
-
-    @Inject
-    lateinit var helper: PermissionsHelper
 
     @RequiresApi(Build.VERSION_CODES.P)
     @SuppressLint("SimpleDateFormat")
@@ -72,11 +61,6 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding, NoteViewModel>(
                 layoutWebUrl.visibility = View.GONE
                 etWebLink.text.clear()
             }
-
-            imgDelete.setOnClickListener {
-                selectedImagePath = ""
-                layoutImage.visibility = View.GONE
-            }
         }
         LocalBroadcastManager.getInstance(requireContext()).registerReceiver(
             broadcastReceiver, IntentFilter(TAG_NOTE_BOTTOM_SHEET)
@@ -88,11 +72,12 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding, NoteViewModel>(
             note?.let {
                 showNoteDetails(it)
                 binding?.apply {
-                    materialToolbar.title = resources.getString(R.string.note_details)
+                    materialToolbar.title = resources.getString(R.string.edit)
                     layoutWebUrl.isVisible = note.note_webUrl?.isNotEmpty() == true
                     deleteNote.isVisible = true
                     update.isVisible = true
                     save.isVisible = false
+                    tvLastDateTime.isVisible = true
                 }
             }
         }
@@ -103,18 +88,6 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding, NoteViewModel>(
         override fun onReceive(p0: Context?, p1: Intent?) {
             binding?.apply {
                 when (p1?.getStringExtra("action")) {
-                    "Image" -> {
-                        helper.message =
-                            resources.getString(R.string.permission_storage_rationale_message)
-                        helper.activity = noteActivity
-                        helper.getRequestPermission(
-                            REQUEST_CODE_PICK_PHOTO,
-                            Manifest.permission.READ_EXTERNAL_STORAGE
-                        ) {
-                            pickPhoto()
-                        }
-                    }
-
                     "WebUrl" -> {
                         layout_Web_url.visibility = View.VISIBLE
                     }
@@ -128,11 +101,6 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding, NoteViewModel>(
                     "Blue", "Yellow", "Purple", "Green", "Orange", "Black", "White", "Red" -> {
                         selectedNoteColor = p1.getIntExtra("selectedNoteColors", 0)
                         setNoteColor(selectedNoteColor)
-                    }
-
-                    else -> {
-                        layoutImage.visibility = View.GONE
-//                        addWebUrl.visibility = View.GONE
                     }
                 }
             }
@@ -155,36 +123,6 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding, NoteViewModel>(
             TAG_NOTE_BOTTOM_SHEET
         )
     }
-
-    @RequiresApi(Build.VERSION_CODES.P)
-    private val photoResultLauncher =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK && result.data != null) {
-                getPhotoResultIntent(result)
-            }
-        }
-
-    @RequiresApi(Build.VERSION_CODES.P)
-    private fun getPhotoResultIntent(result: ActivityResult) {
-        val imageUri = result.data!!.data!!
-        val path = requireActivity().getPathFromUri(imageUri)
-        selectedImagePath = path.toString()
-        binding?.layoutImage?.visibility = View.VISIBLE
-        viewModel.note_image.postValue(selectedImagePath)
-        val inputStream = requireActivity().contentResolver.openInputStream(imageUri)
-        val bitmap = BitmapFactory.decodeStream(inputStream)
-        binding?.imgNote?.setImageBitmap(bitmap)
-    }
-
-
-    @RequiresApi(Build.VERSION_CODES.P)
-    private fun pickPhoto() {
-        Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI).also {
-            it.type = "image/*"
-            photoResultLauncher.launch(it)
-        }
-    }
-
 
     override fun onDestroy() {
         super.onDestroy()
