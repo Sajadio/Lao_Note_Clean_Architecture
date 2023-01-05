@@ -41,7 +41,7 @@
     <string name="add_task">اضف مهمة</string>
     <string name="add_event">اضف حدث</string>
     <string name="add">Add</string>
-    <string name="select_date">Select date</string>
+    <string name="select_date">حدد تاريخ ووقت الحدث</string>
     <string name="url_valid">Url is not valid</string>
     <string name="successful">Successful</string>
     <string name="failure">Failure</string>

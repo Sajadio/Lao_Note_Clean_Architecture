@@ -1,6 +1,5 @@
 package com.sajjadio.laonote.presentation.ui.task
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -13,7 +12,6 @@ import com.sajjadio.laonote.domain.usecase.task.SetTaskUseCase
 import com.sajjadio.laonote.domain.usecase.task.UpdateTaskByIDUseCase
 import com.sajjadio.laonote.presentation.base.BaseViewModel
 import com.sajjadio.laonote.utils.NetworkResponse
-import com.sajjadio.laonote.utils.TAG
 import com.sajjadio.laonote.utils.event.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
@@ -38,7 +36,7 @@ class TaskViewModel @Inject constructor(
     val task_title = MutableLiveData("")
     val task_description = MutableLiveData("")
     val task_webUrl = MutableLiveData("")
-    val date = MutableLiveData<String>()
+    val date = MutableLiveData("")
     val taskID = MutableLiveData<String>()
 
     init {
@@ -53,7 +51,6 @@ class TaskViewModel @Inject constructor(
         viewModelScope.launch {
             getTasksUseCase().collectLatest {
                 eventResponseTask.postValue(Event(checkNetworkResponseStatus(it)))
-                Log.d(TAG, "setTask: ${it.data()}")
                 isLoading.postValue(it is NetworkResponse.Loading)
             }
         }
@@ -70,7 +67,7 @@ class TaskViewModel @Inject constructor(
 
     fun setTask() {
         viewModelScope.launch {
-            if (validateNoteFiled()) {
+            if (validateTaskFiled()) {
                 val task = Task(
                     task_title = task_title.value.toString(),
                     task_description = task_description.value.toString(),
@@ -87,7 +84,7 @@ class TaskViewModel @Inject constructor(
 
     fun updateTaskByID() {
         viewModelScope.launch {
-            if (validateNoteFiled()) {
+            if (validateTaskFiled()) {
                 val task = Task(
                     task_id = taskID.value.toString(),
                     task_title = task_title.value.toString(),
@@ -103,10 +100,10 @@ class TaskViewModel @Inject constructor(
         }
     }
 
-    private fun validateNoteFiled(): Boolean {
-        val validNoteTitle = validateTitleUseCase(task_title.value.toString())
-        if (!validNoteTitle.successful) {
-            _eventResponse.postValue(Event(NetworkResponse.Error(validNoteTitle.errorMessage)))
+    private fun validateTaskFiled(): Boolean {
+        val validTaskTitle = validateTitleUseCase(task_title.value.toString())
+        if (!validTaskTitle.successful) {
+            _eventResponse.postValue(Event(NetworkResponse.Error(validTaskTitle.errorMessage)))
             return false
         }
         val validWeURL = validateWebURLUseCase(task_webUrl.value.toString())

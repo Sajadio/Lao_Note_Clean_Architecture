@@ -27,3 +27,12 @@ const val TASK_TITLE = "task_title"
 const val TASK_DESCRIPTION = "task_description"
 const val TASK_WEB_URL = "task_webUrl"
 const val TASK_DATE_CREATED = "task_date_created"
+
+// event collection
+const val EVENT_ID = "event_id"
+const val EVENT_TITLE = "event_title"
+const val EVENT_DESCRIPTION = "event_description"
+const val EVENT_DATE_CREATED = "event_date_created"
+
+// format Date
+const val HOUR_AND_MINT = "hh:mm aa"

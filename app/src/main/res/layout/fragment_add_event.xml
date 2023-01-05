@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.sajjadio.laonote.presentation.ui.task.TaskViewModel" />
+            type="com.sajjadio.laonote.presentation.ui.event.EventViewModel" />
 
     </data>
 
@@ -38,7 +38,7 @@
                     android:layout_height="match_parent"
                     android:gravity="start"
                     app:navigationIcon="@drawable/ic_back"
-                    app:title="@string/add_task">
+                    app:title="@string/add_event">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -48,23 +48,12 @@
                         android:orientation="horizontal">
 
                         <ImageButton
-                            android:id="@+id/addURL"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/_12sdp"
-                            android:padding="@dimen/_6sdp"
-                            android:layout_marginHorizontal="@dimen/_12sdp"
-                            android:background="@drawable/shape_of_effect_btn_round"
-                            android:src="@drawable/ic_language"
-                            tools:ignore="ContentDescription" />
-
-                        <ImageButton
                             android:id="@+id/deleteTask"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/_12sdp"
                             android:background="@drawable/shape_of_effect_btn_round"
-                            android:onClick="@{() -> viewModel.deleteTask()}"
+                            android:onClick="@{() -> viewModel.deleteEvent()}"
                             android:padding="@dimen/_6sdp"
                             android:src="@drawable/ic_delete"
                             android:visibility="gone"
@@ -78,7 +67,7 @@
                             android:padding="@dimen/_6sdp"
                             android:background="@drawable/shape_of_effect_btn_round"
                             android:src="@drawable/ic_check_circle"
-                            android:onClick="@{() -> viewModel.setTask()}"
+                            android:onClick="@{() -> viewModel.setEvent()}"
                             tools:ignore="ContentDescription" />
 
                         <ImageButton
@@ -87,7 +76,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/_12sdp"
                             android:background="@drawable/shape_of_effect_btn_round"
-                            android:onClick="@{() -> viewModel.updateTaskByID()}"
+                            android:onClick="@{() -> viewModel.updateEventByID()}"
                             android:padding="@dimen/_6sdp"
                             android:src="@drawable/ic_check_circle"
                             android:visibility="gone"
@@ -106,17 +95,17 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_16sdp"
-                android:textColorHint="@color/colorHint"
-                android:textColor="@color/colorText"
                 android:autofillHints=""
                 android:background="@null"
+                android:textColorHint="@color/colorHint"
+                android:textColor="@color/colorText"
                 android:ellipsize="end"
                 android:fontFamily="@font/oxygen_bold"
                 android:hint="@string/title"
                 android:inputType="text"
                 android:maxLines="1"
                 android:padding="@dimen/_10sdp"
-                android:text="@={viewModel.task_title}"
+                android:text="@={viewModel.event_title}"
                 android:textSize="@dimen/_15ssp"
                 app:layout_constraintEnd_toEndOf="@+id/tvDateTime"
                 app:layout_constraintStart_toStartOf="@+id/tvDateTime"
@@ -129,11 +118,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_10sdp"
                 android:padding="@dimen/_10sdp"
-                android:textColorHint="@color/colorHint"
                 android:background="@drawable/shape_of_effect_btn"
                 android:ellipsize="end"
                 android:fontFamily="@font/oxygen_bold"
                 android:maxLines="1"
+                android:textColorHint="@color/colorHint"
                 android:text="@{@string/date_created+' '+viewModel.date}"
                 android:textSize="@dimen/_10ssp"
                 app:drawableEndCompat="@drawable/ic_add_small"
@@ -148,65 +137,18 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:background="@null"
+                android:textColorHint="@color/colorHint"
                 android:textColor="@color/colorText"
                 android:fontFamily="@font/cabin_medium"
                 android:hint="@string/desc"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
                 android:padding="@dimen/_10sdp"
-                android:text="@={viewModel.task_description}"
-                android:textColorHint="@color/colorHint"
+                android:text="@={viewModel.event_description}"
                 android:textSize="@dimen/_12ssp"
                 app:layout_constraintEnd_toEndOf="@+id/tvDateTime"
                 app:layout_constraintStart_toStartOf="@+id/etEventTitle"
                 app:layout_constraintTop_toBottomOf="@id/tvDateTime" />
-
-            <LinearLayout
-                android:id="@+id/layout_Web_url_task"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:padding="@dimen/_10sdp"
-                android:visibility="gone"
-                android:weightSum="2"
-                app:layout_constraintEnd_toEndOf="@+id/etEventDesc"
-                app:layout_constraintStart_toStartOf="@+id/etEventDesc"
-                app:layout_constraintTop_toBottomOf="@id/etEventDesc">
-
-                <EditText
-                    android:id="@+id/etWebLink"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:autoLink="web"
-                    android:background="@null"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/cabin_medium"
-                    android:hint="@string/web_url"
-                    android:importantForAutofill="no"
-                    android:inputType="textMultiLine"
-                    android:text="@={viewModel.task_webUrl}"
-                    android:textColor="@color/colorHint"
-                    android:textColorHint="@color/colorHint"
-                    android:textColorLink="@color/colorBlackNote"
-                    android:textSize="@dimen/_12ssp" />
-
-                <ImageButton
-                    android:id="@+id/clearWebURL"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end|center"
-                    android:layout_weight="1"
-                    android:background="@drawable/shape_of_effect_btn_round"
-                    android:padding="@dimen/_6sdp"
-                    android:src="@drawable/ic_close"
-                    app:layout_constraintBottom_toBottomOf="@+id/imgBack"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/imgBack"
-                    tools:ignore="ContentDescription" />
-
-
-            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

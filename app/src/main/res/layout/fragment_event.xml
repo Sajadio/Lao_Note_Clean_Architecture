@@ -5,13 +5,17 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="com.sajjadio.laonote.presentation.ui.event.EventViewModel" />
+
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:foreground="?attr/selectableItemBackground"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
+        android:foreground="?attr/selectableItemBackground"
         tools:ignore="UnusedAttribute">
 
         <com.google.android.material.appbar.AppBarLayout
@@ -49,26 +53,42 @@
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.core.widget.NestedScrollView
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_4sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/searchBox"
+            app:onRefreshListener="@{() -> viewModel.onRefresh()}"
+            app:refreshing="@{viewModel.isLoading}"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_view"
+
+        <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimary"
-                android:orientation="vertical"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toTopOf="@+id/layout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/searchBox"
-                tools:listitem="@layout/item_event" />
+                android:orientation="vertical">
 
-        </androidx.core.widget.NestedScrollView>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorPrimary"
+                    android:orientation="vertical"
+                    app:items="@{viewModel.eventResponseEvent.peekContent().data()}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+                    tools:listitem="@layout/item_event" />
+
+            </androidx.core.widget.NestedScrollView>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
         <ImageButton
             android:id="@+id/fabBtnAddEvent"
@@ -80,6 +100,7 @@
             android:background="@drawable/background_add_btn"
             android:src="@drawable/ic_add"
             tools:ignore="ContentDescription" />
+
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

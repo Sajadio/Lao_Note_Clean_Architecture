@@ -1,5 +1,6 @@
 package com.sajjadio.laonote.utils.extension
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
 import android.view.View
@@ -11,6 +12,9 @@ import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import com.sajjadio.laonote.utils.event.Event
 import com.sajjadio.laonote.utils.event.EventObserver
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 fun View.moveToDestination(
@@ -50,3 +54,21 @@ fun Context.getPathFromUri(contentUri: Uri): String? {
 
 
 fun getFileExtension(context: Context,uri: Uri?) = MimeTypeMap.getSingleton().getExtensionFromMimeType(context.contentResolver.getType(uri!!))
+
+
+@SuppressLint("SimpleDateFormat")
+fun String?.formatDate(pattern:String): String? {
+    this?.let {
+        try {
+            val formatterFrom = SimpleDateFormat("MMM dd,yyyy  hh:mm aa")
+            val formatterTo = SimpleDateFormat(pattern)
+            val dateResult: Date? = formatterFrom.parse(this.toString())
+           return dateResult?.let { it1 -> formatterTo.format(it1) }
+        } catch (e: ParseException) {
+            e.printStackTrace()
+        }
+    }
+    return null
+}
+
+// "hh:mm aa"

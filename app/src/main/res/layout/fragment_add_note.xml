@@ -99,7 +99,7 @@
 
 
                 <EditText
-                    android:id="@+id/etTaskTitle"
+                    android:id="@+id/etEventTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_6sdp"
@@ -131,9 +131,9 @@
                     android:paddingHorizontal="@dimen/_10sdp"
                     android:text="@{@string/date_created+' '+viewModel.note_date_created}"
                     android:textSize="@dimen/_10ssp"
-                    app:layout_constraintEnd_toEndOf="@+id/etTaskTitle"
-                    app:layout_constraintStart_toStartOf="@id/etTaskTitle"
-                    app:layout_constraintTop_toBottomOf="@id/etTaskTitle"
+                    app:layout_constraintEnd_toEndOf="@+id/etEventTitle"
+                    app:layout_constraintStart_toStartOf="@id/etEventTitle"
+                    app:layout_constraintTop_toBottomOf="@id/etEventTitle"
                     app:setFontColor="@{viewModel.font_color}"
                     tools:ignore="RtlSymmetry"
                     tools:text="2022/11/1, 10:00 PM" />

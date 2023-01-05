@@ -1,5 +1,6 @@
 package com.sajjadio.laonote.utils
 
+import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.os.Build
 import android.view.View
@@ -14,7 +15,11 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.google.android.material.textview.MaterialTextView
 import com.sajjadio.laonote.presentation.base.BaseAdapter
+import com.sajjadio.laonote.utils.extension.formatDate
 import kotlinx.android.synthetic.main.color_picker_dialog.view.*
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 @BindingAdapter(value = ["app:items"])
@@ -28,7 +33,7 @@ fun setRecyclerItems(view: RecyclerView, items: List<ParentListAdapter>?) {
 @BindingAdapter(value = ["app:setImage"])
 fun setImage(imageView: ImageView, url: Bitmap?) {
     url?.let {
-        imageView.load(it){
+        imageView.load(it) {
             crossfade(true)
         }
     }
@@ -64,3 +69,13 @@ fun setFontColor(view: View, color: Int?) {
         }
     }
 }
+
+
+@SuppressLint("SimpleDateFormat")
+@RequiresApi(Build.VERSION_CODES.M)
+@BindingAdapter(value = ["app:formatDate"])
+fun formatDate(view: TextView, date: String?) {
+    view.text = date.formatDate(HOUR_AND_MINT)
+}
+
+

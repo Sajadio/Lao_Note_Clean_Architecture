@@ -11,11 +11,6 @@
             type="com.sajjadio.laonote.domain.model.Task" />
 
 
-        <variable
-            name="viewModel"
-            type="com.sajjadio.laonote.presentation.ui.task.TaskViewModel" />
-
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

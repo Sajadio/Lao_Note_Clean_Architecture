@@ -5,6 +5,10 @@
 
     <data>
 
+        <variable
+            name="event"
+            type="com.sajjadio.laonote.domain.model.EventModel" />
+
     </data>
 
     <androidx.cardview.widget.CardView
@@ -29,6 +33,7 @@
                 android:layout_margin="@dimen/_10sdp"
                 android:ellipsize="end"
                 android:gravity="center"
+                app:formatDate="@{event.event_date_created}"
                 android:maxLines="1"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
@@ -55,6 +60,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:ellipsize="end"
+                    android:text="@{event.event_title}"
                     android:fontFamily="@font/cabin_medium"
                     android:gravity="start|center"
                     android:lines="1"
@@ -63,24 +69,12 @@
                     tools:text="Academic Seminar" />
 
                 <TextView
-                    android:id="@+id/location"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/cabin_medium"
-                    android:gravity="start|center"
-                    android:lines="1"
-                    android:textColor="@color/colorHint"
-                    android:textSize="@dimen/_11ssp"
-                    tools:text="CLSU Auditorium" />
-
-                <TextView
-                    android:id="@+id/note"
+                    android:id="@+id/tvDesc"
                     android:layout_width="@dimen/_200sdp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:ellipsize="end"
+                    android:text="@{event.event_description}"
                     android:fontFamily="@font/cabin_medium"
                     android:gravity="start|center"
                     android:lines="1"
