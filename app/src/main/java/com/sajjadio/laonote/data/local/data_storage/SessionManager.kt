@@ -4,11 +4,8 @@ import com.sajjadio.laonote.utils.UiMode
 import kotlinx.coroutines.flow.Flow
 
 
-interface LocalDataStorage {
+interface SessionManager {
     val accessToken: Flow<String?>
     suspend fun updateSession(token: String?)
     suspend fun logout()
-
-    val uiModeFlow: Flow<String>
-    suspend fun setUIMode(uiMode: UiMode)
 }

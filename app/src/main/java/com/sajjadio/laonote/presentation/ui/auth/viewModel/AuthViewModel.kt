@@ -4,7 +4,7 @@ import androidx.activity.result.ActivityResult
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.sajjadio.laonote.data.local.data_storage.LocalDataStorage
+import com.sajjadio.laonote.data.local.data_storage.SessionManager
 import com.sajjadio.laonote.domain.model.Authentication
 import com.sajjadio.laonote.domain.repository.AuthRepository
 import com.sajjadio.laonote.domain.usecase.auth.LogInUserUseCase
@@ -26,7 +26,7 @@ class AuthViewModel @Inject constructor(
     private val validateUsername: ValidateEmailUseCase,
     private val validatePasswordUseCase: ValidatePasswordUseCase,
     private val authRepo: AuthRepository,
-    private val localDataStorage: LocalDataStorage
+    private val sessionManager: SessionManager
 ) : BaseViewModel() {
 
     val email = MutableLiveData<String>()
@@ -52,7 +52,7 @@ class AuthViewModel @Inject constructor(
                     _eventResponse.postValue(Event(checkNetworkResponseStatus(response)))
                     if (response is NetworkResponse.Success){
                         val token = response.data().toString()
-                        localDataStorage.updateSession(token)
+                        sessionManager.updateSession(token)
                     }
                 }
             }
@@ -67,14 +67,14 @@ class AuthViewModel @Inject constructor(
                 _eventResponse.postValue(Event(checkNetworkResponseStatus(response)))
                 if (response is NetworkResponse.Success){
                     val token = response.data().toString()
-                    localDataStorage.updateSession(token)
+                    sessionManager.updateSession(token)
                 }
             }
         }
     }
     fun logOut(){
         viewModelScope.launch {
-            localDataStorage.logout()
+            sessionManager.logout()
             authRepo.logOut()
         }
     }

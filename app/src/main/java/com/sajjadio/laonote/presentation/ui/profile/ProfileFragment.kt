@@ -1,5 +1,7 @@
 package com.sajjadio.laonote.presentation.ui.profile
 
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.sajjadio.laonote.R
 import com.sajjadio.laonote.databinding.FragmentProfileBinding
 import com.sajjadio.laonote.presentation.base.BaseFragment
@@ -9,7 +11,8 @@ import com.sajjadio.laonote.utils.extension.setToolBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ProfileFragment : BaseFragment<FragmentProfileBinding,AuthViewModel>(R.layout.fragment_profile) {
+class ProfileFragment :
+    BaseFragment<FragmentProfileBinding, AuthViewModel>(R.layout.fragment_profile) {
     override val viewModelClass = AuthViewModel::class.java
 
     override fun launchView() {
@@ -19,13 +22,13 @@ class ProfileFragment : BaseFragment<FragmentProfileBinding,AuthViewModel>(R.lay
             settings.moveToDestination(
                 ProfileFragmentDirections.actionProfileFragmentToSettingsFragment()
             )
-            logout.apply {
-                viewModel?.logOut()
-                moveToDestination(
+            logout.setOnClickListener {
+                Navigation.findNavController(it).navigate(
                     ProfileFragmentDirections.actionProfileFragmentToAuthenticationFragment()
                 )
+                viewModel?.logOut()
             }
         }
-
     }
+
 }

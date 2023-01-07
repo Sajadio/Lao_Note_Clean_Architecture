@@ -4,7 +4,7 @@ import android.widget.CompoundButton
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.sajjadio.laonote.data.local.data_storage.LocalDataStorage
+import com.sajjadio.laonote.data.local.data_storage.UIThemeStorageManager
 import com.sajjadio.laonote.presentation.base.BaseViewModel
 import com.sajjadio.laonote.utils.UiMode
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,10 +13,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
-    private val dataStorage: LocalDataStorage
+    private val uiThemeStorageManager: UIThemeStorageManager
 ) : BaseViewModel() {
 
-    val selectedTheme = dataStorage.uiModeFlow.asLiveData()
+    val selectedTheme = uiThemeStorageManager.uiModeFlow.asLiveData()
 
     val isChecked: MutableLiveData<Boolean> = MutableLiveData()
 
@@ -24,10 +24,10 @@ class SettingsViewModel @Inject constructor(
         viewModelScope.launch {
             when (isChecked) {
                 false -> {
-                    dataStorage.setUIMode(UiMode.LIGHT)
+                    uiThemeStorageManager.setUIMode(UiMode.LIGHT)
                 }
                 true -> {
-                    dataStorage.setUIMode(UiMode.DARK)
+                    uiThemeStorageManager.setUIMode(UiMode.DARK)
                 }
             }
         }

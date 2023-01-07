@@ -6,7 +6,7 @@ import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.sajjadio.laonote.R
-import com.sajjadio.laonote.data.local.data_storage.LocalDataStorage
+import com.sajjadio.laonote.data.local.data_storage.SessionManager
 import com.sajjadio.laonote.databinding.ActivityNoteBinding
 import com.sajjadio.laonote.presentation.ui.settings.SettingsViewModel
 import com.sajjadio.laonote.utils.ThemeHelper
@@ -20,7 +20,7 @@ class NoteActivity : AppCompatActivity() {
     val viewModel: SettingsViewModel by viewModels()
 
     @Inject
-    lateinit var localDataStorage: LocalDataStorage
+    lateinit var sessionManager: SessionManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,6 +30,7 @@ class NoteActivity : AppCompatActivity() {
 
     private fun observeUiPreferences() {
         viewModel.selectedTheme.observe(this) { uiMode ->
+            println("Theme $uiMode is enabled")
             ThemeHelper.applyTheme(uiMode)
         }
     }

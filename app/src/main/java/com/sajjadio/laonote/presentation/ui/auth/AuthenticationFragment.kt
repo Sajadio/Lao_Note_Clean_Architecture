@@ -58,7 +58,7 @@ class AuthenticationFragment :
     override fun onStart() {
         super.onStart()
         launchOnLifecycleScope {
-            noteActivity.localDataStorage.accessToken.collectLatest { token ->
+            noteActivity.sessionManager.accessToken.collectLatest { token ->
                 if (token?.isNotEmpty() == true) {
                     findNavController().navigate(R.id.action_authenticationFragment_to_noteFragment)
                 }

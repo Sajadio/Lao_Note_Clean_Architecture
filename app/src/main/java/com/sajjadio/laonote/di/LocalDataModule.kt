@@ -1,8 +1,10 @@
 package com.sajjadio.laonote.di
 
 import android.content.Context
-import com.sajjadio.laonote.data.local.data_storage.LocalDataStorage
-import com.sajjadio.laonote.data.local.data_storage.LocalDataStorageImpl
+import com.sajjadio.laonote.data.local.data_storage.SessionManager
+import com.sajjadio.laonote.data.local.data_storage.SessionManagerImpl
+import com.sajjadio.laonote.data.local.data_storage.UIThemeStorageManager
+import com.sajjadio.laonote.data.local.data_storage.UIThemeStorageManagerImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,8 +18,14 @@ object LocalDataModule {
 
     @Singleton
     @Provides
-    fun providePreferenceManager(@ApplicationContext context: Context): LocalDataStorage {
-        return LocalDataStorageImpl(context)
+    fun provideSessionManager(@ApplicationContext context: Context): SessionManager {
+        return SessionManagerImpl(context)
+    }
+
+    @Singleton
+    @Provides
+    fun provideUIThemeStorageManager(@ApplicationContext context: Context): UIThemeStorageManager {
+        return UIThemeStorageManagerImpl(context)
     }
 
 }
