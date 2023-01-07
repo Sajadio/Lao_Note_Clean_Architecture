@@ -35,6 +35,9 @@ class TaskFragment : BaseFragment<FragmentTaskBinding, TaskViewModel>(R.layout.f
                         bundle
                     )
                 }
+                checkBoxListener {task_id,isDone ->
+                    viewModel?.isTaskDoneUseCase(task_id,isDone)
+                }
             }
         }
     }

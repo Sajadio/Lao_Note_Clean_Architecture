@@ -41,6 +41,9 @@ class DocumentaryFireStoreImpl @Inject constructor(
     override suspend fun updateTaskByID(data: HashMap<String, Any?>): Void? =
         fireStore.collection(TASKS).document(data[TASK_ID].toString()).update(data).await()
 
+    override suspend fun isTaskDone(data: HashMap<String, Any?>): Void? =
+        fireStore.collection(TASKS).document(data[TASK_ID].toString()).update(data).await()
+
     override suspend fun deleteTaskByID(taskId: String): Void? =
         fireStore.collection(TASKS).document(taskId).delete().await()
 

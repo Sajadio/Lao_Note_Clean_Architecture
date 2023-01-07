@@ -6,10 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.sajjadio.laonote.domain.model.Task
 import com.sajjadio.laonote.domain.usecase.ValidateTitleUseCase
 import com.sajjadio.laonote.domain.usecase.ValidateWebURLUseCase
-import com.sajjadio.laonote.domain.usecase.task.DeleteTaskUseCase
-import com.sajjadio.laonote.domain.usecase.task.GetTasksUseCase
-import com.sajjadio.laonote.domain.usecase.task.SetTaskUseCase
-import com.sajjadio.laonote.domain.usecase.task.UpdateTaskByIDUseCase
+import com.sajjadio.laonote.domain.usecase.task.*
 import com.sajjadio.laonote.presentation.base.BaseViewModel
 import com.sajjadio.laonote.utils.NetworkResponse
 import com.sajjadio.laonote.utils.event.Event
@@ -24,6 +21,7 @@ class TaskViewModel @Inject constructor(
     private val getTasksUseCase: GetTasksUseCase,
     private val updateTaskByIDUseCase: UpdateTaskByIDUseCase,
     private val deleteTaskUseCase: DeleteTaskUseCase,
+    private val isTaskDoneUseCase: TaskDoneUseCase,
     private val validateTitleUseCase: ValidateTitleUseCase,
     private val validateWebURLUseCase: ValidateWebURLUseCase,
 ) : BaseViewModel() {
@@ -33,11 +31,12 @@ class TaskViewModel @Inject constructor(
     val eventResponseTask = MutableLiveData<Event<NetworkResponse<List<Task>>>>()
     val isLoading = MutableLiveData<Boolean>()
 
+    val taskID = MutableLiveData<String>()
     val task_title = MutableLiveData("")
     val task_description = MutableLiveData("")
     val task_webUrl = MutableLiveData("")
     val date = MutableLiveData("")
-    val taskID = MutableLiveData<String>()
+    val isTaskDone = MutableLiveData<Boolean>()
 
     init {
         getTasks()
@@ -47,24 +46,6 @@ class TaskViewModel @Inject constructor(
         getTasks()
     }
 
-    private fun getTasks() {
-        viewModelScope.launch {
-            getTasksUseCase().collectLatest {
-                eventResponseTask.postValue(Event(checkNetworkResponseStatus(it)))
-                isLoading.postValue(it is NetworkResponse.Loading)
-            }
-        }
-    }
-
-     fun deleteTask() {
-        viewModelScope.launch {
-            deleteTaskUseCase(taskID.value.toString()).collectLatest {
-                _eventResponse.postValue(Event(checkNetworkResponseStatus(it)))
-                isLoading.postValue(it is NetworkResponse.Loading)
-            }
-        }
-    }
-
     fun setTask() {
         viewModelScope.launch {
             if (validateTaskFiled()) {
@@ -72,13 +53,24 @@ class TaskViewModel @Inject constructor(
                     task_title = task_title.value.toString(),
                     task_description = task_description.value.toString(),
                     task_webUrl = task_webUrl.value.toString(),
-                    task_date_created = date.value.toString()
+                    task_date_created = date.value.toString(),
+                    is_done = false
                 )
                 setTaskUseCase(task).collectLatest { response ->
                     _eventResponse.postValue(Event(checkNetworkResponseStatus(response)))
                 }
             } else
                 return@launch
+        }
+    }
+
+    private fun getTasks() {
+        viewModelScope.launch {
+            getTasksUseCase().collectLatest {
+                eventResponseTask.postValue(Event(checkNetworkResponseStatus(it)))
+                println(it.data())
+                isLoading.postValue(it is NetworkResponse.Loading)
+            }
         }
     }
 
@@ -90,13 +82,36 @@ class TaskViewModel @Inject constructor(
                     task_title = task_title.value.toString(),
                     task_description = task_description.value.toString(),
                     task_webUrl = task_webUrl.value.toString(),
-                    task_date_created = date.value.toString()
+                    task_date_created = date.value.toString(),
+                    is_done = isTaskDone.value
                 )
                 updateTaskByIDUseCase(task).collectLatest { response ->
                     _eventResponse.postValue(Event(checkNetworkResponseStatus(response)))
                 }
             } else
                 return@launch
+        }
+    }
+
+    fun isTaskDoneUseCase(taskId: String, isDone: Boolean) {
+        viewModelScope.launch {
+            val task = Task(
+                task_id = taskId,
+                is_done = isDone
+            )
+            println("$taskId $isDone")
+            isTaskDoneUseCase(task).collectLatest { response ->
+                _eventResponse.postValue(Event(checkNetworkResponseStatus(response)))
+            }
+        }
+    }
+
+    fun deleteTask() {
+        viewModelScope.launch {
+            deleteTaskUseCase(taskID.value.toString()).collectLatest {
+                _eventResponse.postValue(Event(checkNetworkResponseStatus(it)))
+                isLoading.postValue(it is NetworkResponse.Loading)
+            }
         }
     }
 

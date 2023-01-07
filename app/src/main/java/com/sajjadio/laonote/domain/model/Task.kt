@@ -11,6 +11,7 @@ data class Task(
     val task_title: String? = null,
     val task_description: String? = null,
     val task_webUrl: String? = null,
-    val task_date_created: String ? = null,
+    val task_date_created: String? = null,
+    val is_done: Boolean? = null,
     override val item: String = task_id,
 ) : Parcelable, ParentListAdapter

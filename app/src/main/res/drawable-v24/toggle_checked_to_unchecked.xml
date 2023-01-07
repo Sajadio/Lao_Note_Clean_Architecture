@@ -22,7 +22,7 @@
                 android:interpolator="@android:interpolator/accelerate_decelerate"
                 android:propertyName="strokeColor"
                 android:valueFrom="@color/colorPrimary"
-                android:valueTo="@color/colorText"
+                android:valueTo="@color/colorGray"
                 android:valueType="intType" />
         </aapt:attr>
     </target>

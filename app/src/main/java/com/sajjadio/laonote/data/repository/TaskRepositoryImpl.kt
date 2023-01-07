@@ -14,5 +14,8 @@ class TaskRepositoryImpl @Inject constructor(
 
     override suspend fun updateTaskByID(data: HashMap<String, Any?>) = docFireStore.updateTaskByID(data)
 
+    override suspend fun isTaskDone(data: HashMap<String, Any?>): Void? =
+        docFireStore.isTaskDone(data)
+
     override suspend fun deleteTaskByID(taskId: String) = docFireStore.deleteTaskByID(taskId)
 }

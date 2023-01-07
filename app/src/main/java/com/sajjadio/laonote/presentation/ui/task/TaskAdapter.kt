@@ -15,11 +15,22 @@ class TaskAdapter @Inject constructor() : BaseAdapter<ItemTaskBinding, Task>() {
         onItemClickListener = listener
     }
 
+    private var checkBoxListener: ((String,Boolean) -> Unit)? = null
+    fun checkBoxListener(listener: (String,Boolean) -> Unit) {
+        checkBoxListener = listener
+    }
+
+
     override fun binder(binding: ItemTaskBinding, item: Task) {
         binding.apply {
             task = item
             detailsLayout.setOnClickListener {
                 onItemClickListener?.let { it(item) }
+            }
+            checkBox.setOnClickListener {
+                checkBoxListener?.let {
+                    it(item.task_id,checkBox.isChecked)
+                }
             }
             executePendingBindings()
         }

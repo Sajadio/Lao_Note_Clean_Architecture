@@ -5,10 +5,13 @@ const val TAG = "TestingApp"
 const val TAG_NOTE_BOTTOM_SHEET = "Note Bottom Sheet"
 const val TAG_PICKER_COLOR = "Picker Color"
 const val LAO_NOTE_DB = "lao_note_db"
-const val STORAGE_NAME = "session_manager"
+const val STORAGE_NAME = "Local_DataStorage_manager"
 const val NOTES = "notes"
 const val TASKS = "tasks"
 const val EVENTS = "events"
+const val THEME_APP = "theme_app"
+const val LIGHT = "light"
+const val DARK = "dark"
 
 // note collection
 const val NOTE_ID = "note_id"
@@ -27,6 +30,7 @@ const val TASK_TITLE = "task_title"
 const val TASK_DESCRIPTION = "task_description"
 const val TASK_WEB_URL = "task_webUrl"
 const val TASK_DATE_CREATED = "task_date_created"
+const val IS_DONE = "is_done"
 
 // event collection
 const val EVENT_ID = "event_id"

@@ -28,9 +28,9 @@
     <string name="settings">Settings</string>
     <string name="about">About</string>
     <string name="profile">Profile</string>
-    <string name="note_count">Note count</string>
-    <string name="task_count">Task count</string>
-    <string name="event_count">Event count</string>
+    <string name="note_count">Notes count</string>
+    <string name="task_count">Tasks count</string>
+    <string name="event_count">Events count</string>
     <string name="logout">Logout</string>
     <string name="Theme">Theme</string>
     <string name="light_dark">Light/Dark</string>

@@ -3,7 +3,6 @@ package com.sajjadio.laonote.presentation.ui.auth
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Build
-import android.util.Log
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
@@ -12,13 +11,10 @@ import com.sajjadio.laonote.R
 import com.sajjadio.laonote.databinding.FragmentAuthenticationBinding
 import com.sajjadio.laonote.presentation.base.BaseFragment
 import com.sajjadio.laonote.presentation.ui.auth.viewModel.AuthViewModel
-import com.sajjadio.laonote.utils.NetworkResponse
-import com.sajjadio.laonote.utils.TAG
 import com.sajjadio.laonote.utils.extension.moveToDestination
 import com.sajjadio.laonote.utils.extension.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.item_event.*
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
@@ -62,7 +58,7 @@ class AuthenticationFragment :
     override fun onStart() {
         super.onStart()
         launchOnLifecycleScope {
-            noteActivity.sessionManager.accessToken.collectLatest { token ->
+            noteActivity.localDataStorage.accessToken.collectLatest { token ->
                 if (token?.isNotEmpty() == true) {
                     findNavController().navigate(R.id.action_authenticationFragment_to_noteFragment)
                 }

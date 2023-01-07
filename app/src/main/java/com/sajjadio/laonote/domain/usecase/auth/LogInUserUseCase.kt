@@ -1,6 +1,5 @@
 package com.sajjadio.laonote.domain.usecase.auth
 
-import com.sajjadio.laonote.data.local.data_storage.SessionManager
 import com.sajjadio.laonote.domain.model.Authentication
 import com.sajjadio.laonote.domain.repository.AuthRepository
 import com.sajjadio.laonote.utils.NetworkResponse
