@@ -30,8 +30,7 @@ class NoteActivity : AppCompatActivity() {
 
     private fun observeUiPreferences() {
         viewModel.selectedTheme.observe(this) { uiMode ->
-            println("Theme $uiMode is enabled")
-            ThemeHelper.applyTheme(uiMode)
+            uiMode?.let { ThemeHelper.applyTheme(it) }
         }
     }
 

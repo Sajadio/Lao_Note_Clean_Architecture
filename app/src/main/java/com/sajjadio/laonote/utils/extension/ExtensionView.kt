@@ -5,7 +5,6 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
 import android.graphics.Color
-import android.icu.util.ULocale.getCountry
 import android.util.Log
 import android.view.View
 import android.view.Window
@@ -19,12 +18,9 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.snackbar.Snackbar
 import com.sajjadio.laonote.R
 import com.sajjadio.laonote.utils.TAG
-import org.ocpsoft.prettytime.PrettyTime
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -35,12 +31,10 @@ fun ImageView.loadImage(url: String?) {
         url?.let {
             Glide.with(this)
                 .load(url)
-                .transition(DrawableTransitionOptions.withCrossFade())
-                .apply(RequestOptions().override(200, 200))
+                .error(this.context.getDrawable(R.drawable.ic_outline_image_24))
+                .placeholder(this.context.getDrawable(R.drawable.ic_outline_image_24))
                 .into(this)
-        } ?: Glide.with(this)
-            .load(this.context.getDrawable(R.drawable.ic_launcher_background))
-
+        }
     } catch (e: GlideException) {
         Log.d(TAG, "loadImage: ${e.causes}")
     }

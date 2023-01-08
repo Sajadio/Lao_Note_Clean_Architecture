@@ -11,20 +11,19 @@
 
     </data>
 
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/_5sdp"
-        android:padding="@dimen/_5sdp"
         app:cardBackgroundColor="@color/colorSecond"
         app:cardCornerRadius="@dimen/_10sdp"
         app:cardElevation="@dimen/_5sdp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/colorPrimary">
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/date"
@@ -33,10 +32,10 @@
                 android:layout_margin="@dimen/_10sdp"
                 android:ellipsize="end"
                 android:gravity="center"
-                app:formatDate="@{event.event_date_created}"
                 android:maxLines="1"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                app:formatDate="@{event.event_date_created}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -60,10 +59,10 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:ellipsize="end"
-                    android:text="@{event.event_title}"
                     android:fontFamily="@font/cabin_medium"
                     android:gravity="start|center"
                     android:lines="1"
+                    android:text="@{event.event_title}"
                     android:textColor="@color/colorHint"
                     android:textSize="@dimen/_12ssp"
                     tools:text="Academic Seminar" />
@@ -74,10 +73,10 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:ellipsize="end"
-                    android:text="@{event.event_description}"
                     android:fontFamily="@font/cabin_medium"
                     android:gravity="start|center"
                     android:lines="1"
+                    android:text="@{event.event_description}"
                     android:textColor="@color/colorHint"
                     android:textSize="@dimen/_10ssp"
                     tools:text="Intech 11wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww00" />

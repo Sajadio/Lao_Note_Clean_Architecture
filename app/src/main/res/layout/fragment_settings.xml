@@ -8,6 +8,10 @@
         <variable
             name="viewModel"
             type="com.sajjadio.laonote.presentation.ui.settings.SettingsViewModel" />
+
+        <variable
+            name="uiMode"
+            type="com.sajjadio.laonote.utils.UiMode" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,7 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_12sdp"
             android:layout_marginTop="@dimen/_10sdp"
-            android:checked="@={viewModel.isChecked()}"
+            android:checked="@{viewModel.selectedTheme == uiMode.LIGHT ? false: true}"
             android:onCheckedChanged="@{viewModel::changeSelectedTheme}"
             android:text="@string/Theme"
             android:textSize="@dimen/_14ssp"

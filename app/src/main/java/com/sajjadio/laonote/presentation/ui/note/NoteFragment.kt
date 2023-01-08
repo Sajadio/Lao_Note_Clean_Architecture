@@ -2,12 +2,10 @@ package com.sajjadio.laonote.presentation.ui.note
 
 
 import android.os.Bundle
-import android.util.Log
 import androidx.navigation.fragment.findNavController
 import com.sajjadio.laonote.R
 import com.sajjadio.laonote.databinding.FragmentNoteBinding
 import com.sajjadio.laonote.presentation.base.BaseFragment
-import com.sajjadio.laonote.utils.TAG
 import com.sajjadio.laonote.utils.extension.moveToDestination
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

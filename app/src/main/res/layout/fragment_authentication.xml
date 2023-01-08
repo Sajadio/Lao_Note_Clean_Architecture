@@ -117,7 +117,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/layout_phoneNumber" />
 
             <TextView
-                android:id="@+id/logIn"
+                android:id="@+id/userName"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginTop="@dimen/_20sdp"
@@ -142,7 +142,7 @@
                 android:background="@color/colorHint"
                 app:layout_constraintBottom_toBottomOf="@+id/textView2"
                 app:layout_constraintEnd_toStartOf="@+id/textView2"
-                app:layout_constraintStart_toStartOf="@+id/logIn"
+                app:layout_constraintStart_toStartOf="@+id/userName"
                 app:layout_constraintTop_toTopOf="@+id/textView2" />
 
             <TextView
@@ -156,9 +156,9 @@
                 android:text="@string/or_continue"
                 android:textColor="@color/colorHint"
                 android:textSize="@dimen/_12ssp"
-                app:layout_constraintEnd_toEndOf="@+id/logIn"
-                app:layout_constraintStart_toStartOf="@+id/logIn"
-                app:layout_constraintTop_toBottomOf="@+id/logIn" />
+                app:layout_constraintEnd_toEndOf="@+id/userName"
+                app:layout_constraintStart_toStartOf="@+id/userName"
+                app:layout_constraintTop_toBottomOf="@+id/userName" />
 
             <View
                 android:id="@+id/view3"
@@ -167,7 +167,7 @@
                 android:layout_marginStart="@dimen/_12sdp"
                 android:background="@color/colorHint"
                 app:layout_constraintBottom_toBottomOf="@+id/textView2"
-                app:layout_constraintEnd_toEndOf="@+id/logIn"
+                app:layout_constraintEnd_toEndOf="@+id/userName"
                 app:layout_constraintStart_toEndOf="@+id/textView2"
                 app:layout_constraintTop_toTopOf="@+id/textView2" />
 

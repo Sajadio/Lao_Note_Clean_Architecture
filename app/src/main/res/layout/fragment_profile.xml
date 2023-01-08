@@ -5,6 +5,11 @@
 
     <data>
 
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="com.sajjadio.laonote.presentation.ui.profile.ProfileViewModel" />
     </data>
 
     <ScrollView
@@ -45,7 +50,6 @@
                 android:layout_height="@dimen/_100sdp"
                 android:layout_marginTop="@dimen/_50sdp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/person"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
@@ -53,7 +57,9 @@
                 app:riv_border_width="@dimen/_2sdp"
                 app:riv_corner_radius="@dimen/_50sdp"
                 app:riv_oval="true"
-                app:riv_tile_mode="clamp" />
+                app:riv_tile_mode="clamp"
+                app:setImage="@{viewModel.user.photo}"
+                tools:src="@drawable/person" />
 
             <ImageButton
                 android:id="@+id/editBtn"
@@ -73,12 +79,33 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:fontFamily="@font/oxygen_bold"
-                android:text="Mohammed Aziz"
+                android:text="@{viewModel.user.userName}"
                 android:textColor="@color/colorText"
                 android:textSize="@dimen/_18sdp"
+                android:visibility="@{viewModel.isLogIn() ?View.VISIBLE: View.GONE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editBtn" />
+                app:layout_constraintTop_toBottomOf="@+id/editBtn"
+                tools:text="Mohammed Aziz" />
+
+            <TextView
+                android:id="@+id/logIn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/shape_of_effect_btn"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="@font/oxygen_bold"
+                android:padding="@dimen/_6sdp"
+                android:text="@string/log_in"
+                android:textColor="@color/colorText"
+                android:textSize="@dimen/_18sdp"
+                android:visibility="@{viewModel.isLogIn() ?View.GONE: View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editBtn"
+                tools:text="Mohammed Aziz" />
 
             <LinearLayout
                 android:id="@+id/linearLayout1"
@@ -242,10 +269,11 @@
             <TextView
                 android:id="@+id/logout"
                 style="@style/FieldsProfile"
-                android:text="@string/logout"
                 android:background="@drawable/shape_of_effect_btn"
                 android:clickable="true"
                 android:focusable="true"
+                android:text="@string/logout"
+                android:visibility="@{viewModel.isLogIn() ?View.VISIBLE: View.GONE}"
                 app:drawableEndCompat="@drawable/ic_right"
                 app:drawableStartCompat="@drawable/ic_logout"
                 app:layout_constraintEnd_toEndOf="@+id/about"
@@ -258,6 +286,7 @@
                 android:layout_width="0dp"
                 android:layout_height="@dimen/_1sdp"
                 android:background="@color/color_border"
+                android:visibility="@{viewModel.isLogIn() ?View.VISIBLE: View.GONE}"
                 app:layout_constraintEnd_toEndOf="@+id/logout"
                 app:layout_constraintStart_toStartOf="@+id/logout"
                 app:layout_constraintTop_toBottomOf="@+id/logout" />

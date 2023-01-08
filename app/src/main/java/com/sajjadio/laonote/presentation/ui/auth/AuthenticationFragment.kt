@@ -17,6 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.item_event.*
 import kotlinx.coroutines.flow.collectLatest
 
+
 @AndroidEntryPoint
 class AuthenticationFragment :
     BaseFragment<FragmentAuthenticationBinding, AuthViewModel>(R.layout.fragment_authentication) {

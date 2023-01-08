@@ -19,7 +19,7 @@ class UIThemeStorageManagerImpl @Inject constructor(context: Context) : UIThemeS
     private val dataStore = context.accessToken
 
 
-    override val uiModeFlow: Flow<String> = dataStore.data
+    override val uiModeFlow: Flow<UiMode?> = dataStore.data
         .catch {
             if (it is IOException) {
                 it.printStackTrace()
@@ -30,9 +30,11 @@ class UIThemeStorageManagerImpl @Inject constructor(context: Context) : UIThemeS
         }
         .map { preference ->
             when (preference[SELECTED_THEME]) {
-                LIGHT -> LIGHT
-                DARK -> DARK
-                else -> ""
+                LIGHT -> UiMode.LIGHT
+                DARK -> UiMode.DARK
+                else -> {
+                    null
+                }
             }
         }
 

@@ -4,12 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.sajjadio.laonote.domain.model.Note
+import com.sajjadio.laonote.domain.model.User
 import com.sajjadio.laonote.domain.usecase.ValidateTitleUseCase
 import com.sajjadio.laonote.domain.usecase.ValidateWebURLUseCase
 import com.sajjadio.laonote.domain.usecase.note.DeleteNotesUseCase
 import com.sajjadio.laonote.domain.usecase.note.GetNotesUseCase
 import com.sajjadio.laonote.domain.usecase.note.SetNoteUseCase
 import com.sajjadio.laonote.domain.usecase.note.UpdateNoteByIDUseCase
+import com.sajjadio.laonote.domain.usecase.profile.GetUserInfoUseCase
 import com.sajjadio.laonote.presentation.base.BaseViewModel
 import com.sajjadio.laonote.utils.NetworkResponse
 import com.sajjadio.laonote.utils.event.Event
@@ -28,6 +30,7 @@ class NoteViewModel @Inject constructor(
     private val deleteNotesUseCase: DeleteNotesUseCase,
     private val validateTitleUseCase: ValidateTitleUseCase,
     private val validateWebURLUseCase: ValidateWebURLUseCase,
+    private val getUserInfoUseCase: GetUserInfoUseCase,
 ) : BaseViewModel() {
 
     private val _eventResponse = MutableLiveData<Event<NetworkResponse<Any>>>()
@@ -47,9 +50,17 @@ class NoteViewModel @Inject constructor(
     val date = MutableLiveData<String>()
     val notID = MutableLiveData<String>()
 
+    val user = MutableLiveData<User>()
+
     init {
+        viewModelScope.launch {
+            getUserInfoUseCase().collect { info ->
+                user.postValue(info.data())
+            }
+        }
         getNotes()
     }
+
 
     fun onRefresh() {
         getNotes()
@@ -64,7 +75,7 @@ class NoteViewModel @Inject constructor(
         }
     }
 
-     fun deleteNotes() {
+    fun deleteNotes() {
         viewModelScope.launch {
             deleteNotesUseCase(notID.value.toString()).collectLatest {
                 _eventResponse.postValue(Event(checkNetworkResponseStatus(it)))
@@ -83,7 +94,7 @@ class NoteViewModel @Inject constructor(
                     note_webUrl = note_webUrl.value.toString(),
                     note_color = note_color.value?.toInt(),
                     font_color = font_color.value?.toInt(),
-                    note_date_created =  note_date_created.value.toString(),
+                    note_date_created = note_date_created.value.toString(),
                 )
                 setNoteUseCase(note).collectLatest { response ->
                     _eventResponse.postValue(Event(checkNetworkResponseStatus(response)))

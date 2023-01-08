@@ -55,6 +55,7 @@
     <string name="date_created">Date created:</string>
     <string name="last_date">Last updated:</string>
     <string name="failed_upolad_message">Failed upolad image</string>
+    <string name="userName">User Name</string>
 
 
 </resources>

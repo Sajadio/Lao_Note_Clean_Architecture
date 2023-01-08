@@ -4,6 +4,6 @@ import com.sajjadio.laonote.utils.UiMode
 import kotlinx.coroutines.flow.Flow
 
 interface UIThemeStorageManager {
-    val uiModeFlow: Flow<String>
+    val uiModeFlow: Flow<UiMode?>
     suspend fun setUIMode(uiMode: UiMode)
 }

@@ -14,6 +14,9 @@ const val THEME_APP = "theme_app"
 const val LIGHT = "light"
 const val DARK = "dark"
 
+const val REQUEST_CODE_PICK_PHOTO = 124
+
+
 // note collection
 const val NOTE_ID = "note_id"
 const val NOTE_TITLE = "note_title"

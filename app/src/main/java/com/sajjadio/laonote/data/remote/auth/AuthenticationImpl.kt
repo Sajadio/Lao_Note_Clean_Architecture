@@ -4,17 +4,14 @@ package com.sajjadio.laonote.data.remote.auth
 import android.content.Context
 import androidx.activity.result.ActivityResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.sajjadio.laonote.R
+import com.sajjadio.laonote.domain.model.User
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
@@ -23,6 +20,16 @@ class AuthenticationImpl @Inject constructor(
     private val auth: FirebaseAuth,
     @ApplicationContext private val context: Context
 ) : Authentication {
+    override fun getUserInfo(): User {
+        val currentUser = auth.currentUser
+        return User(
+            uId = auth.uid.toString(),
+            userName = currentUser?.displayName.toString(),
+            email = currentUser?.email.toString(),
+            photo = currentUser?.photoUrl.toString()
+        )
+    }
+
 
     override fun logIn(
         email: String,

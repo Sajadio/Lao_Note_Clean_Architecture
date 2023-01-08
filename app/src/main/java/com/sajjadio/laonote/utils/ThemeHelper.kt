@@ -4,17 +4,14 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatDelegate
 
 object ThemeHelper {
-    fun applyTheme(uiMode: String) {
+    fun applyTheme(uiMode: UiMode) {
 
         return when (uiMode) {
-            LIGHT -> {
+            UiMode.LIGHT -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
-            DARK -> {
+            UiMode.DARK -> {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            }
-            else -> {
-                checkSystemVersion()
             }
         }
     }
