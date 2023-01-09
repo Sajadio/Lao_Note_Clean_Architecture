@@ -1,7 +1,6 @@
 package com.sajjadio.laonote.domain.usecase.event
 
 import com.sajjadio.laonote.domain.repository.EventRepository
-import com.sajjadio.laonote.domain.repository.TaskRepository
 import com.sajjadio.laonote.utils.NetworkResponse
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -9,7 +8,7 @@ import javax.inject.Inject
 class GetEventsUseCase @Inject constructor(
     private val eventRepository: EventRepository
 ) {
-    suspend operator fun invoke() = flow {
+    operator fun invoke() = flow {
         try {
             emit(NetworkResponse.Loading)
             val response = eventRepository.getEvents()

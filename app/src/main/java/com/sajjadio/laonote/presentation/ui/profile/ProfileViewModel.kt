@@ -16,10 +16,10 @@ import javax.inject.Inject
 class ProfileViewModel @Inject constructor(
     private val getUserInfoUseCase: GetUserInfoUseCase,
     private val logoutUserUseCase: LogoutUserUseCase,
-    private val sessionManager: SessionManager
+    private val sessionManager: SessionManager,
 ) : BaseViewModel() {
-    val user = MutableLiveData<User>()
 
+    val user = MutableLiveData<User>()
     val isLogIn = MutableLiveData<Boolean>()
 
     init {

@@ -56,5 +56,6 @@
     <string name="last_date">آخر تحديث:</string>
     <string name="failed_upolad_message">فشل رفع الصورة</string>
     <string name="userName">أسم المستخدم</string>
+    <string name="result_search_empty">لا توجد نتيجة مطابقة</string>
 
 </resources>

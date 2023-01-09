@@ -21,7 +21,6 @@ class DocumentaryFireStoreImpl @Inject constructor(
 
     override suspend fun getNotes(): List<Note> =
         fireStore.collection(NOTES).get().await().toObjects(Note::class.java)
-
     override suspend fun updateNoteByID(noteId: String, data: HashMap<String, Any?>): Void? =
         fireStore.collection(NOTES).document(noteId).update(data).await()
 

@@ -7,10 +7,7 @@ import com.sajjadio.laonote.domain.model.Note
 import com.sajjadio.laonote.domain.model.User
 import com.sajjadio.laonote.domain.usecase.ValidateTitleUseCase
 import com.sajjadio.laonote.domain.usecase.ValidateWebURLUseCase
-import com.sajjadio.laonote.domain.usecase.note.DeleteNotesUseCase
-import com.sajjadio.laonote.domain.usecase.note.GetNotesUseCase
-import com.sajjadio.laonote.domain.usecase.note.SetNoteUseCase
-import com.sajjadio.laonote.domain.usecase.note.UpdateNoteByIDUseCase
+import com.sajjadio.laonote.domain.usecase.note.*
 import com.sajjadio.laonote.domain.usecase.profile.GetUserInfoUseCase
 import com.sajjadio.laonote.presentation.base.BaseViewModel
 import com.sajjadio.laonote.utils.NetworkResponse
@@ -26,6 +23,7 @@ import javax.inject.Inject
 class NoteViewModel @Inject constructor(
     private val setNoteUseCase: SetNoteUseCase,
     private val getNotesUseCase: GetNotesUseCase,
+    private val getNotesByTitleUseCase: GetNotesByTitleUseCase,
     private val updateNoteByIDUseCase: UpdateNoteByIDUseCase,
     private val deleteNotesUseCase: DeleteNotesUseCase,
     private val validateTitleUseCase: ValidateTitleUseCase,
@@ -38,6 +36,7 @@ class NoteViewModel @Inject constructor(
     val eventResponseNotes = MutableLiveData<Event<NetworkResponse<List<Note>>>>()
     val isLoading = MutableLiveData<Boolean>()
 
+    val notID = MutableLiveData<String>()
     val note_title = MutableLiveData("")
     val note_subTitle = MutableLiveData("")
     val note_description = MutableLiveData("")
@@ -46,9 +45,7 @@ class NoteViewModel @Inject constructor(
     val font_color = MutableLiveData<Int>()
     val note_date_created = MutableLiveData(Calendar.getInstance().time.toString().dateFormat())
     val note_last_update = MutableLiveData(Calendar.getInstance().time.toString().dateFormat())
-
     val date = MutableLiveData<String>()
-    val notID = MutableLiveData<String>()
 
     val user = MutableLiveData<User>()
 
@@ -73,6 +70,18 @@ class NoteViewModel @Inject constructor(
                 isLoading.postValue(it is NetworkResponse.Loading)
             }
         }
+    }
+
+    fun getNoteByTitle(title: String) {
+        if (title.isEmpty()) {
+            getNotes()
+        } else
+            viewModelScope.launch {
+                getNotesByTitleUseCase(title).collectLatest {
+                    eventResponseNotes.postValue(Event(checkNetworkResponseStatus(it)))
+                    isLoading.postValue(it is NetworkResponse.Loading)
+                }
+            }
     }
 
     fun deleteNotes() {

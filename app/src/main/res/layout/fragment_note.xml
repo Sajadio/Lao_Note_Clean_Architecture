@@ -55,14 +55,14 @@
                     android:id="@+id/profile_fragment"
                     android:layout_width="@dimen/_28sdp"
                     android:layout_height="@dimen/_28sdp"
+                    android:layout_gravity="end|center"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
                     android:background="@drawable/shape_of_effect_btn_round"
                     android:clickable="true"
                     android:focusable="true"
                     android:scaleType="fitCenter"
                     app:riv_corner_radius="30dip"
                     app:riv_oval="true"
-                    android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:layout_gravity="end|center"
                     app:riv_tile_mode="clamp"
                     app:setImage="@{viewModel.user.photo}"
                     tools:src="@drawable/ic_launcher_background" />
@@ -73,7 +73,7 @@
 
 
         <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchBox"
+            android:id="@+id/searchView"
             style="@style/SearchBoxStyle"
             android:autofillHints=""
             android:background="@drawable/background_search_box"
@@ -93,9 +93,9 @@
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/_4sdp"
             app:layout_constraintBottom_toTopOf="@+id/layout"
-            app:layout_constraintEnd_toEndOf="@+id/searchBox"
-            app:layout_constraintStart_toStartOf="@+id/searchBox"
-            app:layout_constraintTop_toBottomOf="@+id/searchBox"
+            app:layout_constraintEnd_toEndOf="@+id/searchView"
+            app:layout_constraintStart_toStartOf="@+id/searchView"
+            app:layout_constraintTop_toBottomOf="@+id/searchView"
             app:onRefreshListener="@{() -> viewModel.onRefresh()}"
             app:refreshing="@{viewModel.isLoading}">
 
@@ -107,11 +107,26 @@
                 android:orientation="vertical"
                 app:items="@{viewModel.eventResponseNotes.peekContent().data()}"
                 app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
-                app:layout_constraintTop_toBottomOf="@+id/searchBox"
+                app:layout_constraintTop_toBottomOf="@+id/searchView"
                 app:spanCount="2"
                 tools:listitem="@layout/item_note" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <TextView
+            android:id="@+id/error"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/colorPrimary"
+            android:gravity="center"
+            android:text="@string/result_search_empty"
+            android:textSize="@dimen/_20ssp"
+            android:textStyle="bold"
+            android:visibility="@{viewModel.eventResponseNotes.contentIfHandled.data().empty ? View.VISIBLE :View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/layout"
+            app:layout_constraintEnd_toEndOf="@+id/searchView"
+            app:layout_constraintStart_toStartOf="@+id/searchView"
+            app:layout_constraintTop_toBottomOf="@+id/searchView" />
 
 
         <LinearLayout

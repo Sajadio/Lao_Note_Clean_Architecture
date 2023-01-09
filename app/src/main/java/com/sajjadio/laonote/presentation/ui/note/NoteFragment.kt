@@ -2,6 +2,7 @@ package com.sajjadio.laonote.presentation.ui.note
 
 
 import android.os.Bundle
+import androidx.appcompat.widget.SearchView
 import androidx.navigation.fragment.findNavController
 import com.sajjadio.laonote.R
 import com.sajjadio.laonote.databinding.FragmentNoteBinding
@@ -33,6 +34,17 @@ class NoteFragment : BaseFragment<FragmentNoteBinding, NoteViewModel>(R.layout.f
                     )
                 }
             }
+
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+               override fun onQueryTextSubmit(query: String?): Boolean {
+                    return false
+                }
+
+                override fun onQueryTextChange(s: String?): Boolean {
+                    viewModel?.getNoteByTitle(s.toString())
+                    return true
+                }
+            })
 
             fabBtnAddNote.moveToDestination(
                 NoteFragmentDirections.actionNoteFragmentToAddNoteFragment(null)

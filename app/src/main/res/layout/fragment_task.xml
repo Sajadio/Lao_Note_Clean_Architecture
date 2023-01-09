@@ -37,7 +37,7 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchBox"
+            android:id="@+id/searchView"
             style="@style/SearchBoxStyle"
             android:autofillHints=""
             android:background="@drawable/background_search_box"
@@ -57,9 +57,9 @@
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/_4sdp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/searchBox"
-            app:layout_constraintStart_toStartOf="@+id/searchBox"
-            app:layout_constraintTop_toBottomOf="@+id/searchBox"
+            app:layout_constraintEnd_toEndOf="@+id/searchView"
+            app:layout_constraintStart_toStartOf="@+id/searchView"
+            app:layout_constraintTop_toBottomOf="@+id/searchView"
             app:onRefreshListener="@{() -> viewModel.onRefresh()}"
             app:refreshing="@{viewModel.isLoading}">
 

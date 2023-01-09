@@ -107,131 +107,21 @@
                 app:layout_constraintTop_toBottomOf="@+id/editBtn"
                 tools:text="Mohammed Aziz" />
 
-            <LinearLayout
-                android:id="@+id/linearLayout1"
-                style="@style/ContainerProfile"
-                android:layout_marginHorizontal="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_50sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/userName">
-
-                <TextView
-                    style="@style/FieldsProfile"
-                    android:layout_weight="2"
-                    android:text="@string/note_count"
-                    app:drawableStartCompat="@drawable/ic_notes" />
-
-                <TextView
-                    android:id="@+id/noteCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:gravity="center|end"
-                    android:text="0"
-                    android:textColor="@color/colorHint"
-                    android:textSize="@dimen/_12ssp" />
-
-            </LinearLayout>
-
-            <View
-                android:id="@+id/view4"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_1sdp"
-                android:background="@color/color_border"
-                app:layout_constraintEnd_toEndOf="@+id/linearLayout1"
-                app:layout_constraintStart_toStartOf="@+id/linearLayout1"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout1" />
-
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                style="@style/ContainerProfile"
-                app:layout_constraintEnd_toEndOf="@+id/linearLayout1"
-                app:layout_constraintStart_toStartOf="@+id/linearLayout1"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
-
-                <TextView
-                    style="@style/FieldsProfile"
-                    android:layout_weight="2"
-                    android:text="@string/task_count"
-                    app:drawableStartCompat="@drawable/ic_task" />
-
-                <TextView
-                    android:id="@+id/taskCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:gravity="center|end"
-                    android:text="0"
-                    android:textColor="@color/colorHint"
-                    android:textSize="@dimen/_12ssp"
-                    app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/linearLayout" />
-
-            </LinearLayout>
-
-            <View
-                android:id="@+id/view5"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_1sdp"
-                android:background="@color/color_border"
-                app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
-                app:layout_constraintStart_toStartOf="@+id/linearLayout2"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
-            <LinearLayout
-                android:id="@+id/linearLayout3"
-                style="@style/ContainerProfile"
-                app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
-                app:layout_constraintStart_toStartOf="@+id/linearLayout2"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
-
-                <TextView
-                    style="@style/FieldsProfile"
-                    android:layout_weight="2"
-                    android:text="@string/event_count"
-                    app:drawableStartCompat="@drawable/ic_event" />
-
-                <TextView
-                    android:id="@+id/eventCount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:gravity="center|end"
-                    android:text="0"
-                    android:textColor="@color/colorHint"
-                    android:textSize="@dimen/_12ssp"
-                    app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/linearLayout" />
-
-            </LinearLayout>
-
-            <View
-                android:id="@+id/view6"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_1sdp"
-                android:background="@color/color_border"
-                app:layout_constraintEnd_toEndOf="@+id/linearLayout3"
-                app:layout_constraintStart_toStartOf="@+id/linearLayout3"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
-
 
             <TextView
                 android:id="@+id/settings"
                 style="@style/FieldsProfile"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_30sdp"
                 android:background="@drawable/shape_of_effect_btn"
                 android:clickable="true"
                 android:focusable="true"
                 android:text="@string/settings"
                 app:drawableEndCompat="@drawable/ic_right"
                 app:drawableStartCompat="@drawable/ic_settings"
-                app:layout_constraintEnd_toEndOf="@+id/linearLayout3"
-                app:layout_constraintStart_toStartOf="@+id/linearLayout3"
-                app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/userName"
                 tools:ignore="RtlSymmetry" />
 
 

@@ -56,6 +56,7 @@
     <string name="last_date">Last updated:</string>
     <string name="failed_upolad_message">Failed upolad image</string>
     <string name="userName">User Name</string>
+    <string name="result_search_empty">No result match</string>
 
 
 </resources>

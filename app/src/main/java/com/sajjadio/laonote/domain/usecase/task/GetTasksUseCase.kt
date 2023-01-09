@@ -8,7 +8,7 @@ import javax.inject.Inject
 class GetTasksUseCase @Inject constructor(
     private val taskRepo: TaskRepository
 ) {
-    suspend operator fun invoke() = flow {
+    operator fun invoke() = flow {
         try {
             emit(NetworkResponse.Loading)
             val response = taskRepo.getTasks()

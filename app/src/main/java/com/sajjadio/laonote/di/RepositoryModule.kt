@@ -40,4 +40,5 @@ object RepositoryModule {
     fun provideEventRepository(documentaryFireStore: DocumentaryFireStore): EventRepository =
         EventRepositoryImpl(documentaryFireStore)
 
+
 }

@@ -8,7 +8,7 @@ import javax.inject.Inject
 class GetNotesUseCase @Inject constructor(
     private val noteRepo: NoteRepository
 ) {
-    suspend operator fun invoke() = flow {
+    operator fun invoke() = flow {
         try {
             emit(NetworkResponse.Loading)
             val response = noteRepo.getNotes()
