@@ -1,8 +1,6 @@
 package com.sajjadio.laonote.utils.extension
 
 import android.annotation.SuppressLint
-import android.app.DatePickerDialog
-import android.app.TimePickerDialog
 import android.content.Context
 import android.graphics.Color
 import android.util.Log
@@ -21,7 +19,6 @@ import com.bumptech.glide.load.engine.GlideException
 import com.google.android.material.snackbar.Snackbar
 import com.sajjadio.laonote.R
 import com.sajjadio.laonote.utils.TAG
-import java.text.SimpleDateFormat
 import java.util.*
 
 @SuppressLint("UseCompatLoadingForDrawables")
@@ -90,30 +87,4 @@ fun AppCompatActivity.setToolBar(toolbar: Toolbar, isBack: Boolean = true) {
     this.setSupportActionBar(toolbar)
     supportActionBar!!.setDisplayHomeAsUpEnabled(isBack)
     supportActionBar!!.setDisplayShowHomeEnabled(isBack)
-}
-
-fun Context.pickDateTime(): String {
-    val currentDateTime = Calendar.getInstance()
-    val startYear = currentDateTime.get(Calendar.YEAR)
-    val startMonth = currentDateTime.get(Calendar.MONTH)
-    val startDay = currentDateTime.get(Calendar.DAY_OF_MONTH)
-    val startHour = currentDateTime.get(Calendar.HOUR_OF_DAY)
-    val startMinute = currentDateTime.get(Calendar.MINUTE)
-    val pickedDateTime = Calendar.getInstance()
-
-    DatePickerDialog(this, { _, year, month, day ->
-        TimePickerDialog(this, { _, hour, minute ->
-            pickedDateTime.set(year, month, day, hour, minute)
-        }, startHour, startMinute, false).show()
-    }, startYear, startMonth, startDay).show()
-
-    return pickedDateTime.time.toString().dateFormat()
-}
-
-@SuppressLint("SimpleDateFormat")
-fun String.dateFormat(): String {
-    val sdf = SimpleDateFormat("EE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH)
-    val newDate = SimpleDateFormat("MMM d, yyyy HH:mm:ss")
-    val parsedDate: Date? = sdf.parse(this)
-    return parsedDate?.let { newDate.format(it) }.toString()
 }

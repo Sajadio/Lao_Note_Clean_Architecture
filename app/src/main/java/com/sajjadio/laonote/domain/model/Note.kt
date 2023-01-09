@@ -2,7 +2,6 @@ package com.sajjadio.laonote.domain.model
 
 import android.os.Parcelable
 import com.sajjadio.laonote.utils.ParentListAdapter
-import com.sajjadio.laonote.utils.extension.dateFormat
 import kotlinx.android.parcel.Parcelize
 import java.util.*
 
@@ -16,7 +15,7 @@ data class Note(
     val note_webUrl: String? = null,
     val note_color: Int? = 0,
     val font_color: Int? = 0,
-    val note_date_created: String = Calendar.getInstance().time.toString().dateFormat(),
-    val note_last_update: String? = null,
+    val note_date_created: String? = null,
+    val note_last_update: String = "",
     override val item: String = note_id,
 ) : Parcelable, ParentListAdapter

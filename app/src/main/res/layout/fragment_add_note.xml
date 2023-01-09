@@ -141,7 +141,6 @@
                 <TextView
                     android:id="@+id/tvLastDateTime"
                     android:layout_width="0dp"
-                    android:visibility="gone"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:ellipsize="end"
@@ -150,6 +149,7 @@
                     android:paddingHorizontal="@dimen/_10sdp"
                     android:text="@{@string/last_date+' '+viewModel.note_last_update}"
                     android:textSize="@dimen/_10ssp"
+                    android:visibility="@{viewModel.note_last_update.empty ?View.INVISIBLE:View.VISIBLE}"
                     app:layout_constraintEnd_toEndOf="@+id/tvDateTime"
                     app:layout_constraintStart_toStartOf="@id/tvDateTime"
                     app:layout_constraintTop_toBottomOf="@id/tvDateTime"

@@ -12,12 +12,12 @@ import com.sajjadio.laonote.R
 import com.sajjadio.laonote.databinding.FragmentAddEventBinding
 import com.sajjadio.laonote.domain.model.EventModel
 import com.sajjadio.laonote.presentation.base.BaseFragment
+import com.sajjadio.laonote.utils.FULL_DATE
 import com.sajjadio.laonote.utils.NetworkResponse
-import com.sajjadio.laonote.utils.extension.dateFormat
+import com.sajjadio.laonote.utils.STANDARD_DATE
 import com.sajjadio.laonote.utils.extension.formatDate
 import com.sajjadio.laonote.utils.extension.observeEvent
 import com.sajjadio.laonote.utils.extension.setToolBar
-import com.sajjadio.laonote.utils.formatDate
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_add_note.*
 import kotlinx.android.synthetic.main.fragment_add_task.*
@@ -78,7 +78,8 @@ class AddEventFragment : BaseFragment<FragmentAddEventBinding, EventViewModel>(R
         DatePickerDialog(requireContext(), { _, year, month, day ->
             TimePickerDialog(requireContext(), { _, hour, minute ->
                 pickedDateTime.set(year, month, day, hour, minute)
-                viewModel.date.postValue(pickedDateTime.time.toString().formatDate("MMM dd,yyyy  hh:mm aa"))
+                viewModel.date.postValue(pickedDateTime.time.toString().formatDate(STANDARD_DATE,
+                    FULL_DATE))
             }, startHour, startMinute, false).show()
         }, startYear, startMonth, startDay).show()
     }

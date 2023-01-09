@@ -13,8 +13,10 @@ import com.sajjadio.laonote.R
 import com.sajjadio.laonote.databinding.FragmentAddTaskBinding
 import com.sajjadio.laonote.domain.model.Task
 import com.sajjadio.laonote.presentation.base.BaseFragment
+import com.sajjadio.laonote.utils.FULL_DATE
 import com.sajjadio.laonote.utils.NetworkResponse
-import com.sajjadio.laonote.utils.extension.dateFormat
+import com.sajjadio.laonote.utils.STANDARD_DATE
+import com.sajjadio.laonote.utils.extension.formatDate
 import com.sajjadio.laonote.utils.extension.observeEvent
 import com.sajjadio.laonote.utils.extension.setToolBar
 import dagger.hilt.android.AndroidEntryPoint
@@ -87,7 +89,7 @@ class AddTaskFragment :
             TimePickerDialog(requireContext(), { _, hour, minute ->
                 pickedDateTime.set(year, month, day, hour, minute)
                 viewModel.date.postValue(
-                    pickedDateTime.time.toString().dateFormat()
+                    pickedDateTime.time.toString().formatDate(STANDARD_DATE,FULL_DATE)
                 )
             }, startHour, startMinute, false).show()
         }, startYear, startMonth, startDay).show()

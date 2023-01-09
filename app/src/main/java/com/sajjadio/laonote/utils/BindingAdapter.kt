@@ -70,7 +70,7 @@ fun setFontColor(view: View, color: Int?) {
 @RequiresApi(Build.VERSION_CODES.M)
 @BindingAdapter(value = ["app:formatDate"])
 fun formatDate(view: TextView, date: String?) {
-    view.text = date.formatDate(HOUR_AND_MINT)
+    view.text = date.formatDate(FULL_DATE, HOUR_AND_MINT)
 }
 
 

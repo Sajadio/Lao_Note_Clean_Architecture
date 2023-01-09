@@ -27,7 +27,6 @@ class EventFragment : BaseFragment<FragmentEventBinding, EventViewModel>(R.layou
             fabBtnAddEvent.moveToDestination(
                 EventFragmentDirections.actionEventFragmentToAddEventFragment()
             )
-
             eventAdapter.apply {
                 recyclerView.adapter = this
                 onItemClickListener { event ->
@@ -39,6 +38,21 @@ class EventFragment : BaseFragment<FragmentEventBinding, EventViewModel>(R.layou
                     )
                 }
             }
+            getDateFromCalender()
+        }
+    }
+
+    private fun getDateFromCalender() {
+        binding?.apply {
+            calendarView
+                .setOnDateChangeListener { _, year, month, day ->
+                    val monthOfYear = (month + 1)
+                    val dayOfMonth = if (day > 9) day.toString() else "0$day"
+                    val date = if (monthOfYear > 9) "$monthOfYear/$dayOfMonth/$year"
+                    else
+                        "0${monthOfYear}/$dayOfMonth/$year"
+                    viewModel?.getEventsByDate(date)
+                }
         }
     }
 

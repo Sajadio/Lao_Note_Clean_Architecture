@@ -10,9 +10,11 @@ import com.sajjadio.laonote.domain.usecase.ValidateWebURLUseCase
 import com.sajjadio.laonote.domain.usecase.note.*
 import com.sajjadio.laonote.domain.usecase.profile.GetUserInfoUseCase
 import com.sajjadio.laonote.presentation.base.BaseViewModel
+import com.sajjadio.laonote.utils.FULL_DATE
 import com.sajjadio.laonote.utils.NetworkResponse
+import com.sajjadio.laonote.utils.STANDARD_DATE
 import com.sajjadio.laonote.utils.event.Event
-import com.sajjadio.laonote.utils.extension.dateFormat
+import com.sajjadio.laonote.utils.extension.formatDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -43,9 +45,13 @@ class NoteViewModel @Inject constructor(
     val note_webUrl = MutableLiveData("")
     val note_color = MutableLiveData<Int>()
     val font_color = MutableLiveData<Int>()
-    val note_date_created = MutableLiveData(Calendar.getInstance().time.toString().dateFormat())
-    val note_last_update = MutableLiveData(Calendar.getInstance().time.toString().dateFormat())
-    val date = MutableLiveData<String>()
+    val note_date_created = MutableLiveData(
+        Calendar.getInstance().time.toString().formatDate(
+            STANDARD_DATE, FULL_DATE
+        )
+    )
+    val note_last_update = MutableLiveData<String>()
+
 
     val user = MutableLiveData<User>()
 
@@ -124,6 +130,9 @@ class NoteViewModel @Inject constructor(
                     note_webUrl = note_webUrl.value.toString(),
                     note_color = note_color.value?.toInt(),
                     font_color = font_color.value?.toInt(),
+                    note_last_update = Calendar.getInstance().time.toString().formatDate(
+                        STANDARD_DATE, FULL_DATE
+                    ).toString()
                 )
                 updateNoteByIDUseCase(note).collectLatest { response ->
                     _eventResponse.postValue(Event(checkNetworkResponseStatus(response)))
@@ -155,6 +164,8 @@ class NoteViewModel @Inject constructor(
         note_webUrl.postValue(note.note_webUrl)
         note_color.postValue(note.note_color!!)
         font_color.postValue(note.font_color!!)
+        note_date_created.postValue(note.note_date_created)
+        note_last_update.postValue(note.note_last_update)
     }
 
 }

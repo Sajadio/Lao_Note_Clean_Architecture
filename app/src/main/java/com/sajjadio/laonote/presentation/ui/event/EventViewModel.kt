@@ -5,25 +5,22 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.sajjadio.laonote.domain.model.EventModel
 import com.sajjadio.laonote.domain.usecase.ValidateTitleUseCase
-import com.sajjadio.laonote.domain.usecase.event.DeleteEventUseCase
-import com.sajjadio.laonote.domain.usecase.event.GetEventsUseCase
-import com.sajjadio.laonote.domain.usecase.event.SetEventUseCase
-import com.sajjadio.laonote.domain.usecase.event.UpdateEventByIDUseCase
+import com.sajjadio.laonote.domain.usecase.event.*
 import com.sajjadio.laonote.presentation.base.BaseViewModel
 import com.sajjadio.laonote.utils.NetworkResponse
 import com.sajjadio.laonote.utils.event.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import java.util.Date
 import javax.inject.Inject
 
 @HiltViewModel
 class EventViewModel @Inject constructor(
-    val setEventUseCase: SetEventUseCase,
-    val updateEventByIDUseCase: UpdateEventByIDUseCase,
-    val getEventsUseCase: GetEventsUseCase,
-    val deleteEventUseCase: DeleteEventUseCase,
+    private val setEventUseCase: SetEventUseCase,
+    private val updateEventByIDUseCase: UpdateEventByIDUseCase,
+    private val getEventsUseCase: GetEventsUseCase,
+    private val getEventsByDateUseCase: GetEventsByDateUseCase,
+    private val deleteEventUseCase: DeleteEventUseCase,
     private val validateTitleUseCase: ValidateTitleUseCase,
 ) : BaseViewModel() {
 
@@ -54,6 +51,15 @@ class EventViewModel @Inject constructor(
         }
     }
 
+    fun getEventsByDate(date: String) {
+        viewModelScope.launch {
+            getEventsByDateUseCase(date).collectLatest {
+                eventResponseEvent.postValue(Event(checkNetworkResponseStatus(it)))
+                isLoading.postValue(it is NetworkResponse.Loading)
+            }
+        }
+    }
+
     fun deleteEvent() {
         viewModelScope.launch {
             deleteEventUseCase(eventID.value.toString()).collectLatest {
@@ -69,7 +75,7 @@ class EventViewModel @Inject constructor(
                 val event = EventModel(
                     event_title = event_title.value.toString(),
                     event_description = event_description.value.toString(),
-                    event_date_created = date.value
+                    event_date_created = date.value.toString()
                 )
                 setEventUseCase(event).collectLatest { response ->
                     _eventResponse.postValue(Event(checkNetworkResponseStatus(response)))
@@ -86,7 +92,7 @@ class EventViewModel @Inject constructor(
                     event_id = eventID.value.toString(),
                     event_title = event_title.value.toString(),
                     event_description = event_description.value.toString(),
-                    event_date_created = date.value
+                    event_date_created = date.value.toString()
                 )
                 updateEventByIDUseCase(event).collectLatest { response ->
                     _eventResponse.postValue(Event(checkNetworkResponseStatus(response)))

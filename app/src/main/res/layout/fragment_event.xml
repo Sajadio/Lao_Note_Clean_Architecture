@@ -34,7 +34,7 @@
                 app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
                 <CalendarView
-                    android:id="@+id/backgroundPath"
+                    android:id="@+id/calendarView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="@dimen/_40sdp"

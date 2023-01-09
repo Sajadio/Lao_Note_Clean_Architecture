@@ -35,11 +35,10 @@
                 android:maxLines="1"
                 android:textAlignment="center"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                app:formatDate="@{event.event_date_created}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="10:00AM" />
+                tools:text="10:00 AM" />
 
             <LinearLayout
                 android:id="@+id/detailsLayout"
@@ -62,9 +61,10 @@
                     android:fontFamily="@font/cabin_medium"
                     android:gravity="start|center"
                     android:lines="1"
+                    android:textStyle="bold"
                     android:text="@{event.event_title}"
                     android:textColor="@color/colorHint"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_14ssp"
                     tools:text="Academic Seminar" />
 
                 <TextView
@@ -78,8 +78,8 @@
                     android:lines="1"
                     android:text="@{event.event_description}"
                     android:textColor="@color/colorHint"
-                    android:textSize="@dimen/_10ssp"
-                    tools:text="Intech 11wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww00" />
+                    android:textSize="@dimen/_12ssp"
+                    tools:text="Description" />
 
             </LinearLayout>
 

@@ -4,7 +4,6 @@ package com.sajjadio.laonote.utils
 const val TAG = "TestingApp"
 const val TAG_NOTE_BOTTOM_SHEET = "Note Bottom Sheet"
 const val TAG_PICKER_COLOR = "Picker Color"
-const val LAO_NOTE_DB = "lao_note_db"
 const val SESSION_MANAGER = "session_manager"
 const val UI_THEME_STORAGE = "ui_theme_storage_manager "
 const val NOTES = "notes"
@@ -44,3 +43,6 @@ const val EVENT_DATE_CREATED = "event_date_created"
 
 // format Date
 const val HOUR_AND_MINT = "hh:mm aa"
+const val FULL_DATE = "MMM dd,yyyy  hh:mm aa"
+const val STANDARD_DATE = "EE MMM dd HH:mm:ss z yyyy"
+const val MONTH_DAY_YEAR = "MM/dd/yyyy"

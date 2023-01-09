@@ -12,7 +12,6 @@ import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import com.sajjadio.laonote.utils.event.Event
 import com.sajjadio.laonote.utils.event.EventObserver
-import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -57,18 +56,12 @@ fun getFileExtension(context: Context,uri: Uri?) = MimeTypeMap.getSingleton().ge
 
 
 @SuppressLint("SimpleDateFormat")
-fun String?.formatDate(pattern:String): String? {
+fun String?.formatDate(from:String,to:String): String? {
     this?.let {
-        try {
-            val formatterFrom = SimpleDateFormat("MMM dd,yyyy  hh:mm aa")
-            val formatterTo = SimpleDateFormat(pattern)
-            val dateResult: Date? = formatterFrom.parse(this.toString())
-           return dateResult?.let { it1 -> formatterTo.format(it1) }
-        } catch (e: ParseException) {
-            e.printStackTrace()
-        }
+            val formatterFrom = SimpleDateFormat(from, Locale.ENGLISH)
+            val formatterTo = SimpleDateFormat(to)
+            val parsedDate: Date? = formatterFrom.parse(this)
+            return parsedDate?.let { formatterTo.format(it) }.toString()
     }
     return null
 }
-
-// "hh:mm aa"
