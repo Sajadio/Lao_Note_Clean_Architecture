@@ -9,7 +9,6 @@
             name="viewModel"
             type="com.sajjadio.laonote.presentation.ui.note.NoteViewModel" />
 
-        <import type="android.view.View" />
 
     </data>
 
@@ -75,17 +74,10 @@
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchView"
             style="@style/SearchBoxStyle"
-            android:autofillHints=""
-            android:background="@drawable/background_search_box"
-            android:gravity="center|start"
-            android:importantForAutofill="no"
-            app:closeIcon="@drawable/ic_close"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-            app:queryHint="@string/search"
-            app:searchHintIcon="@drawable/ic_search"
-            app:searchIcon="@drawable/ic_search"
+            app:queryHint="@string/search_note"
             tools:ignore="LabelFor" />
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -113,16 +105,12 @@
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-        <TextView
-            android:id="@+id/error"
+
+        <include
+            layout="@layout/empty_result"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@color/colorPrimary"
-            android:gravity="center"
-            android:text="@string/result_search_empty"
-            android:textSize="@dimen/_20ssp"
-            android:textStyle="bold"
-            android:visibility="@{viewModel.eventResponseNotes.contentIfHandled.data().empty ? View.VISIBLE :View.GONE}"
+            app:hasData="@{viewModel.eventResponseNotes.peekContent().data().empty}"
             app:layout_constraintBottom_toTopOf="@+id/layout"
             app:layout_constraintEnd_toEndOf="@+id/searchView"
             app:layout_constraintStart_toStartOf="@+id/searchView"

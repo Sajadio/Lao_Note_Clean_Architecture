@@ -41,7 +41,7 @@ class NoteFragment : BaseFragment<FragmentNoteBinding, NoteViewModel>(R.layout.f
                 }
 
                 override fun onQueryTextChange(s: String?): Boolean {
-                    viewModel?.getNoteByTitle(s.toString())
+                    viewModel?.getNotesByTitle(s.toString())
                     return true
                 }
             })

@@ -19,6 +19,7 @@ import javax.inject.Inject
 class TaskViewModel @Inject constructor(
     private val setTaskUseCase: SetTaskUseCase,
     private val getTasksUseCase: GetTasksUseCase,
+    private val getTasksByTitleUseCase: GetTasksByTitleUseCase,
     private val updateTaskByIDUseCase: UpdateTaskByIDUseCase,
     private val deleteTaskUseCase: DeleteTaskUseCase,
     private val isTaskDoneUseCase: TaskDoneUseCase,
@@ -73,6 +74,19 @@ class TaskViewModel @Inject constructor(
             }
         }
     }
+
+    fun getTasksByTitle(title: String) {
+        if (title.isEmpty()) {
+            getTasks()
+        } else
+            viewModelScope.launch {
+                getTasksByTitleUseCase(title).collectLatest {
+                    eventResponseTask.postValue(Event(checkNetworkResponseStatus(it)))
+                    isLoading.postValue(it is NetworkResponse.Loading)
+                }
+            }
+    }
+
 
     fun updateTaskByID() {
         viewModelScope.launch {

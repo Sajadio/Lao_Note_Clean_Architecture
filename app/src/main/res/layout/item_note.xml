@@ -95,6 +95,7 @@
                 android:fontFamily="@font/cabin_medium"
                 android:paddingHorizontal="@dimen/_10sdp"
                 android:paddingTop="@dimen/_4sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
                 android:text="@{note.note_date_created}"
                 android:textSize="@dimen/_10ssp"
                 app:setFontColor="@{note.font_color}"

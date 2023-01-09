@@ -7,7 +7,6 @@
     <string name="web_url">أدخل رابط</string>
     <string name="ok">موافق</string>
     <string name="cancel">ألغاء</string>
-    <string name="search">أبحث عن ملاحظاتك</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="note_color">لون الملاحظة</string>
     <string name="font_color">لون خط الملاحظة</string>
@@ -57,5 +56,7 @@
     <string name="failed_upolad_message">فشل رفع الصورة</string>
     <string name="userName">أسم المستخدم</string>
     <string name="result_search_empty">لا توجد نتيجة مطابقة</string>
+    <string name="search_note">أبحث عن ملاحظاتك</string>
+    <string name="search_task">أبحث عن مهامك</string>
 
 </resources>

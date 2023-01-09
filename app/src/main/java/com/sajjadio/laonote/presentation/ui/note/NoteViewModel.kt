@@ -72,7 +72,7 @@ class NoteViewModel @Inject constructor(
         }
     }
 
-    fun getNoteByTitle(title: String) {
+    fun getNotesByTitle(title: String) {
         if (title.isEmpty()) {
             getNotes()
         } else

@@ -1,6 +1,7 @@
 package com.sajjadio.laonote.presentation.ui.task
 
 import android.os.Bundle
+import androidx.appcompat.widget.SearchView
 import androidx.navigation.fragment.findNavController
 import com.sajjadio.laonote.R
 import com.sajjadio.laonote.databinding.FragmentTaskBinding
@@ -14,6 +15,7 @@ import javax.inject.Inject
 class TaskFragment : BaseFragment<FragmentTaskBinding, TaskViewModel>(R.layout.fragment_task) {
 
     override val viewModelClass = TaskViewModel::class.java
+
     @Inject
     lateinit var taskAdapter: TaskAdapter
 
@@ -25,6 +27,17 @@ class TaskFragment : BaseFragment<FragmentTaskBinding, TaskViewModel>(R.layout.f
                 TaskFragmentDirections.actionTaskFragmentToAddTaskFragment()
             )
 
+            searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    return false
+                }
+
+                override fun onQueryTextChange(s: String?): Boolean {
+                    viewModel?.getTasksByTitle(s.toString())
+                    return true
+                }
+            })
+
             taskAdapter.apply {
                 recyclerView.adapter = this
                 onItemClickListener { task ->
@@ -35,8 +48,8 @@ class TaskFragment : BaseFragment<FragmentTaskBinding, TaskViewModel>(R.layout.f
                         bundle
                     )
                 }
-                checkBoxListener {task_id,isDone ->
-                    viewModel?.isTaskDoneUseCase(task_id,isDone)
+                checkBoxListener { task_id, isDone ->
+                    viewModel?.isTaskDoneUseCase(task_id, isDone)
                 }
             }
         }

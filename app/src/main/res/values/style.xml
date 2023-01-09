@@ -4,15 +4,23 @@
     <style name="SearchBoxStyle" parent="Theme.LaoNote">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">@dimen/_40sdp</item>
-        <item name="android:hint">@string/search</item>
         <item name="android:textColorHint">@color/colorHint</item>
         <item name="android:drawablePadding">@dimen/_6sdp</item>
         <item name="android:paddingStart">@dimen/_6sdp</item>
+        <item name="android:gravity">center|start</item>
+        <item name="android:autofillHints" tools:targetApi="o" />
+        <item name="android:background">@drawable/background_search_box</item>
         <item name="fontFamily">@font/cabin_medium</item>
         <item name="android:inputType">text</item>
         <item name="android:layout_margin">@dimen/_8sdp</item>
         <item name="android:textSize">@dimen/_14ssp</item>
         <item name="android:textColor">@color/colorText</item>
+        <item name="android:queryHint">@string/search_note</item>
+        <item name="android:searchIcon">@drawable/ic_search</item>
+        <item name="android:closeIcon">@drawable/ic_close</item>
+        <item name="android:importantForAutofill" tools:targetApi="o">no</item>
+        <item name="android:searchHintIcon" tools:targetApi="lollipop_mr1">@drawable/ic_search
+        </item>
     </style>
 
     <style name="StylePickColor">
@@ -74,6 +82,7 @@
         <item name="android:orientation">horizontal</item>
         <item name="android:background">@drawable/shape_of_effect_btn</item>
     </style>
+
     <style name="Theme_Dialog" parent="android:Theme.DeviceDefault.Dialog">
         <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
         <item name="DialogTitleText">@string/loading</item>
