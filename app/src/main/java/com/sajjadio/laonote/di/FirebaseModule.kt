@@ -10,6 +10,8 @@ import com.sajjadio.laonote.data.remote.auth.Authentication
 import com.sajjadio.laonote.data.remote.auth.AuthenticationImpl
 import com.sajjadio.laonote.data.remote.firestore.DocumentaryFireStore
 import com.sajjadio.laonote.data.remote.firestore.DocumentaryFireStoreImpl
+import com.sajjadio.laonote.data.remote.firestore.FireStorage
+import com.sajjadio.laonote.data.remote.firestore.FireStorageImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -33,7 +35,7 @@ object FirebaseModule {
 
     @Singleton
     @Provides
-    fun provideFirebaseFirestore(): FirebaseFirestore {
+    fun provideFirebaseFireStore(): FirebaseFirestore {
         return FirebaseFirestore.getInstance()
     }
 
@@ -43,6 +45,13 @@ object FirebaseModule {
     fun provideFireStoreDocumentary(fireStore: FirebaseFirestore): DocumentaryFireStore {
         return DocumentaryFireStoreImpl(fireStore)
     }
+
+    @Singleton
+    @Provides
+    fun provideFireStorage(fireStorage: FirebaseStorage,@ApplicationContext context: Context): FireStorage {
+        return FireStorageImpl(fireStorage,context)
+    }
+
 
     @Singleton
     @Provides

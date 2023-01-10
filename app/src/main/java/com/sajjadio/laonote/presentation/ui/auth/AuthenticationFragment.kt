@@ -61,7 +61,7 @@ class AuthenticationFragment :
         launchOnLifecycleScope {
             noteActivity.sessionManager.accessToken.collectLatest { token ->
                 if (token?.isNotEmpty() == true) {
-                    findNavController().navigate(R.id.action_authenticationFragment_to_noteFragment)
+                    AuthenticationFragmentDirections.actionAuthenticationFragmentToNoteFragment()
                 }
             }
         }

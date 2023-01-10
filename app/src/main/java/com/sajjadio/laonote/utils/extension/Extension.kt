@@ -44,7 +44,7 @@ fun Context.getPathFromUri(contentUri: Uri): String? {
         filePath = contentUri.path
     } else {
         cursor.moveToFirst()
-        var index = cursor.getColumnIndex("_data")
+        val index = cursor.getColumnIndex("_data")
         filePath = cursor.getString(index)
         cursor.close()
     }

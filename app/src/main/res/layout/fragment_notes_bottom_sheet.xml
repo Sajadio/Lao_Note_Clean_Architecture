@@ -209,6 +209,12 @@
 
         </HorizontalScrollView>
 
+        <TextView
+            android:id="@+id/addImage"
+            style="@style/FieldBottomSheet"
+            android:drawableStart="@drawable/ic_add_image"
+            android:text="@string/add_image" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_1sdp"

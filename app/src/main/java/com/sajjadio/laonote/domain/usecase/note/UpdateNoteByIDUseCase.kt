@@ -18,6 +18,7 @@ class UpdateNoteByIDUseCase @Inject constructor(
             updateNote[NOTE_TITLE] = note.note_title
             updateNote[NOTE_SUB_TITLE] = note.note_subTitle
             updateNote[NOTE_DESCRIPTION] = note.note_description
+            updateNote[NOTE_IMAGE] = note.note_image
             updateNote[NOTE_WEB_URL] = note.note_webUrl
             updateNote[NOTE_COLOR] = note.note_color
             updateNote[FONT_COLOR] = note.font_color

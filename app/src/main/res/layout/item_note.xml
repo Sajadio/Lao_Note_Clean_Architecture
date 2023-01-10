@@ -9,11 +9,7 @@
             name="note"
             type="com.sajjadio.laonote.domain.model.Note" />
 
-
-        <variable
-            name="viewModel"
-            type="com.sajjadio.laonote.presentation.ui.note.NoteViewModel" />
-
+        <import type="android.view.View" />
 
     </data>
 
@@ -35,6 +31,16 @@
             android:orientation="vertical"
             android:padding="@dimen/_5sdp"
             app:setBackgroundColor="@{note.note_color}">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/imgNote"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                app:setImage="@{note.note_image}"
+                android:visibility="@{note.note_image.empty ?View.GONE:View.VISIBLE}"
+                app:riv_corner_radius_top_left="@dimen/_10sdp"
+                app:riv_corner_radius_top_right="@dimen/_10sdp" />
 
             <TextView
                 android:id="@+id/tvTitle"
@@ -92,10 +98,10 @@
                 android:id="@+id/tvDateTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_5sdp"
                 android:fontFamily="@font/cabin_medium"
                 android:paddingHorizontal="@dimen/_10sdp"
                 android:paddingTop="@dimen/_4sdp"
-                android:layout_marginBottom="@dimen/_5sdp"
                 android:text="@{note.note_date_created}"
                 android:textSize="@dimen/_10ssp"
                 app:setFontColor="@{note.font_color}"

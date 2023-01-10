@@ -242,6 +242,46 @@
 
                 </LinearLayout>
 
+                <RelativeLayout
+                    android:id="@+id/layout_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginVertical="@dimen/_10sdp"
+                    android:padding="@dimen/_10sdp"
+                    android:visibility="@{viewModel.note_image.empty ?View.GONE:View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/layout_Web_url">
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/imgNote"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_alignParentBottom="true"
+                        android:adjustViewBounds="true"
+                        app:riv_corner_radius_top_left="@dimen/_10sdp"
+                        app:riv_corner_radius_top_right="@dimen/_10sdp"
+                        app:setImage="@{viewModel.note_image}"
+                        tools:ignore="ContentDescription" />
+
+                    <ImageButton
+                        android:id="@+id/imgDelete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/imgNote"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/shape_of_effect_btn"
+                        android:padding="@dimen/_6sdp"
+                        android:src="@drawable/ic_close"
+                        tools:ignore="ContentDescription"
+                        app:tint="@color/colorRedNote" />
+
+                </RelativeLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 

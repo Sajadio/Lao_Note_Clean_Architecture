@@ -12,6 +12,7 @@ const val EVENTS = "events"
 const val THEME_APP = "theme_app"
 const val LIGHT = "light"
 const val DARK = "dark"
+const val NOTES_IMAGES = "notes_images"
 
 const val REQUEST_CODE_PICK_PHOTO = 124
 
@@ -21,6 +22,7 @@ const val NOTE_ID = "note_id"
 const val NOTE_TITLE = "note_title"
 const val NOTE_SUB_TITLE = "note_subTitle"
 const val NOTE_DESCRIPTION = "note_description"
+const val NOTE_IMAGE = "note_image"
 const val NOTE_WEB_URL = "note_webUrl"
 const val NOTE_COLOR = "note_color"
 const val FONT_COLOR = "font_color"

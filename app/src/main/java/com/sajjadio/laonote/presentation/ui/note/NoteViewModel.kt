@@ -1,10 +1,13 @@
 package com.sajjadio.laonote.presentation.ui.note
 
+import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.sajjadio.laonote.domain.model.Note
 import com.sajjadio.laonote.domain.model.User
+import com.sajjadio.laonote.domain.repository.NoteRepository
 import com.sajjadio.laonote.domain.usecase.ValidateTitleUseCase
 import com.sajjadio.laonote.domain.usecase.ValidateWebURLUseCase
 import com.sajjadio.laonote.domain.usecase.note.*
@@ -13,6 +16,7 @@ import com.sajjadio.laonote.presentation.base.BaseViewModel
 import com.sajjadio.laonote.utils.FULL_DATE
 import com.sajjadio.laonote.utils.NetworkResponse
 import com.sajjadio.laonote.utils.STANDARD_DATE
+import com.sajjadio.laonote.utils.TAG
 import com.sajjadio.laonote.utils.event.Event
 import com.sajjadio.laonote.utils.extension.formatDate
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -31,10 +35,12 @@ class NoteViewModel @Inject constructor(
     private val validateTitleUseCase: ValidateTitleUseCase,
     private val validateWebURLUseCase: ValidateWebURLUseCase,
     private val getUserInfoUseCase: GetUserInfoUseCase,
+    private val noteRepo: NoteRepository
 ) : BaseViewModel() {
 
     private val _eventResponse = MutableLiveData<Event<NetworkResponse<Any>>>()
     val eventResponse: LiveData<Event<NetworkResponse<Any>>> = _eventResponse
+    val eventManageImageStorage = MutableLiveData<Event<NetworkResponse<Any>>>()
     val eventResponseNotes = MutableLiveData<Event<NetworkResponse<List<Note>>>>()
     val isLoading = MutableLiveData<Boolean>()
 
@@ -42,6 +48,7 @@ class NoteViewModel @Inject constructor(
     val note_title = MutableLiveData("")
     val note_subTitle = MutableLiveData("")
     val note_description = MutableLiveData("")
+    val note_image = MutableLiveData("")
     val note_webUrl = MutableLiveData("")
     val note_color = MutableLiveData<Int>()
     val font_color = MutableLiveData<Int>()
@@ -68,6 +75,36 @@ class NoteViewModel @Inject constructor(
     fun onRefresh() {
         getNotes()
     }
+
+    fun manageImageStorageUseCase(imgUri: Uri) {
+        viewModelScope.launch {
+            _eventResponse.postValue(Event(checkNetworkResponseStatus(NetworkResponse.Loading)))
+            noteRepo.manageImageStorage(imgUri).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    eventManageImageStorage.postValue(
+                        Event(
+                            checkNetworkResponseStatus(
+                                NetworkResponse.Success(null)
+                            )
+                        )
+                    )
+                    it.result.storage.downloadUrl.addOnSuccessListener { uri ->
+                        note_image.postValue(uri.toString())
+                    }
+                } else
+                    _eventResponse.postValue(
+                        Event(
+                            checkNetworkResponseStatus(
+                                NetworkResponse.Error(
+                                    it.exception.toString()
+                                )
+                            )
+                        )
+                    )
+            }
+        }
+    }
+
 
     private fun getNotes() {
         viewModelScope.launch {
@@ -106,6 +143,7 @@ class NoteViewModel @Inject constructor(
                     note_title = note_title.value.toString(),
                     note_subTitle = note_subTitle.value.toString(),
                     note_description = note_description.value.toString(),
+                    note_image = note_image.value.toString(),
                     note_webUrl = note_webUrl.value.toString(),
                     note_color = note_color.value?.toInt(),
                     font_color = font_color.value?.toInt(),
@@ -127,6 +165,7 @@ class NoteViewModel @Inject constructor(
                     note_title = note_title.value.toString(),
                     note_subTitle = note_subTitle.value.toString(),
                     note_description = note_description.value.toString(),
+                    note_image = note_image.value.toString(),
                     note_webUrl = note_webUrl.value.toString(),
                     note_color = note_color.value?.toInt(),
                     font_color = font_color.value?.toInt(),
@@ -157,10 +196,12 @@ class NoteViewModel @Inject constructor(
     }
 
     fun showNoteDetails(note: Note) {
+        Log.d(TAG, "showNoteDetails: ${note.note_image}")
         notID.postValue(note.note_id)
         note_title.postValue(note.note_title)
         note_subTitle.postValue(note.note_subTitle)
         note_description.postValue(note.note_description)
+        note_image.postValue(note.note_image.toString())
         note_webUrl.postValue(note.note_webUrl)
         note_color.postValue(note.note_color!!)
         font_color.postValue(note.font_color!!)
