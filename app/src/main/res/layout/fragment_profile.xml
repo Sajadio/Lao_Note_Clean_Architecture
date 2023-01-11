@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.sajjadio.laonote.presentation.ui.profile.ProfileViewModel" />
+            type="com.sajjadio.laonote.presentation.ui.fragments.profile.ProfileViewModel" />
     </data>
 
     <ScrollView

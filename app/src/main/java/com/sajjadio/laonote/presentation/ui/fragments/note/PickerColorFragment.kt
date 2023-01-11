@@ -1,4 +1,4 @@
-package com.sajjadio.laonote.presentation.ui.note
+package com.sajjadio.laonote.presentation.ui.fragments.note
 
 import android.annotation.SuppressLint
 import android.content.Intent

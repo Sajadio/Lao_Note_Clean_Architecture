@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.sajjadio.laonote.presentation.ui.auth.viewModel.AuthViewModel" />
+            type="com.sajjadio.laonote.presentation.ui.fragments.auth.AuthViewModel" />
 
     </data>
 
@@ -22,33 +22,17 @@
 
             <TextView
                 android:id="@+id/tv1"
-                android:layout_width="@dimen/_200sdp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_40sdp"
-                android:fontFamily="@font/oxygen_bold"
+                android:layout_marginVertical="@dimen/_30sdp"
+                android:fontFamily="@font/bungee_regular"
                 android:gravity="center"
                 android:text="@string/main_welcome"
                 android:textColor="@color/colorText"
-                android:textSize="@dimen/_18ssp"
+                android:textSize="@dimen/_24ssp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.45"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tv2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:fontFamily="@font/cabin_medium"
-                android:gravity="center"
-                android:text="@string/sub_welcome"
-                android:textColor="@color/colorHint"
-                android:textSize="@dimen/_14ssp"
-                app:layout_constraintEnd_toEndOf="@+id/tv1"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toStartOf="@+id/tv1"
-                app:layout_constraintTop_toBottomOf="@+id/tv1" />
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -56,23 +40,22 @@
                 style="@style/TextInputLayout"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_16sdp"
-                android:gravity="start|center"
+                android:layout_marginTop="@dimen/_30sdp"
                 android:hint="@string/email"
                 app:endIconMode="clear_text"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv2">
+                app:layout_constraintTop_toBottomOf="@+id/tv1">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textEmailAddress"
-                    android:text="@={viewModel.email}"
                     android:paddingHorizontal="@dimen/_40sdp"
+                    android:text="@={viewModel.email}"
                     android:textColor="@color/colorText"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_16ssp"
                     tools:ignore="RtlSymmetry" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -84,7 +67,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="0dp"
                 android:layout_marginTop="@dimen/_16sdp"
-                android:gravity="start|center"
                 android:hint="@string/password"
                 app:endIconMode="password_toggle"
                 app:layout_constraintEnd_toEndOf="@+id/layout_email"
@@ -96,10 +78,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:inputType="textPassword"
-                    android:text="@={viewModel.password}"
                     android:paddingHorizontal="@dimen/_40sdp"
+                    android:text="@={viewModel.password}"
                     android:textColor="@color/colorText"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_16ssp"
                     tools:ignore="RtlSymmetry" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -108,7 +90,7 @@
             <TextView
                 android:id="@+id/forgotPass"
                 style="@style/FieldsProfile"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:fontFamily="@font/cabin_medium"
                 android:padding="@dimen/_6sdp"
                 android:text="@string/recovery_password"
@@ -117,18 +99,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/layout_phoneNumber" />
 
             <TextView
-                android:id="@+id/userName"
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:id="@+id/logIn"
+                style="@style/LoginButtons"
                 android:background="@drawable/background_sing_in"
-                android:clickable="true"
-                android:focusable="true"
-                android:fontFamily="@font/cabin_medium"
-                android:gravity="center"
                 android:onClick="@{() -> viewModel.logIn()}"
                 android:text="@string/log_in"
-                android:textColor="@color/colorBlackNote"
                 app:layout_constraintEnd_toEndOf="@+id/forgotPass"
                 app:layout_constraintStart_toStartOf="@+id/layout_phoneNumber"
                 app:layout_constraintTop_toBottomOf="@+id/forgotPass" />
@@ -142,7 +117,7 @@
                 android:background="@color/colorHint"
                 app:layout_constraintBottom_toBottomOf="@+id/textView2"
                 app:layout_constraintEnd_toStartOf="@+id/textView2"
-                app:layout_constraintStart_toStartOf="@+id/userName"
+                app:layout_constraintStart_toStartOf="@+id/logIn"
                 app:layout_constraintTop_toTopOf="@+id/textView2" />
 
             <TextView
@@ -150,15 +125,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:fontFamily="@font/cabin_medium"
                 android:gravity="center"
                 android:text="@string/or_continue"
                 android:textColor="@color/colorHint"
                 android:textSize="@dimen/_12ssp"
-                app:layout_constraintEnd_toEndOf="@+id/userName"
-                app:layout_constraintStart_toStartOf="@+id/userName"
-                app:layout_constraintTop_toBottomOf="@+id/userName" />
+                app:layout_constraintEnd_toEndOf="@+id/logIn"
+                app:layout_constraintStart_toStartOf="@+id/logIn"
+                app:layout_constraintTop_toBottomOf="@+id/logIn" />
 
             <View
                 android:id="@+id/view3"
@@ -167,52 +142,33 @@
                 android:layout_marginStart="@dimen/_12sdp"
                 android:background="@color/colorHint"
                 app:layout_constraintBottom_toBottomOf="@+id/textView2"
-                app:layout_constraintEnd_toEndOf="@+id/userName"
+                app:layout_constraintEnd_toEndOf="@+id/logIn"
                 app:layout_constraintStart_toEndOf="@+id/textView2"
                 app:layout_constraintTop_toTopOf="@+id/textView2" />
 
-            <ImageView
-                android:id="@+id/google"
-                android:layout_width="@dimen/_55sdp"
-                android:layout_height="@dimen/_35sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:background="@drawable/boarder"
-                android:clickable="true"
-                android:focusable="true"
-                android:padding="@dimen/_6sdp"
-                android:src="@drawable/ic_google"
-                app:layout_constraintStart_toStartOf="@+id/view"
-                app:layout_constraintTop_toBottomOf="@+id/textView2"
-                tools:ignore="ContentDescription" />
 
-            <ImageView
-                android:id="@+id/facebook"
-                android:layout_width="@dimen/_55sdp"
-                android:layout_height="@dimen/_35sdp"
-                android:background="@drawable/boarder"
-                android:clickable="true"
-                android:focusable="true"
-                android:padding="@dimen/_6sdp"
-                android:src="@drawable/facebook"
-                app:layout_constraintBottom_toBottomOf="@+id/google"
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/google"
+                style="@style/LoginButtons"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginTop="@dimen/_15sdp"
                 app:layout_constraintEnd_toEndOf="@+id/view3"
-                app:layout_constraintTop_toTopOf="@+id/google"
-                tools:ignore="ContentDescription" />
+                app:layout_constraintStart_toStartOf="@+id/view"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 
             <TextView
                 android:id="@+id/skip"
                 style="@style/FieldsProfile"
                 android:layout_width="wrap_content"
+                android:layout_marginTop="@dimen/_30sdp"
                 android:background="@drawable/shape_of_effect_btn"
-                android:clickable="true"
-                android:focusable="true"
                 android:gravity="center"
                 android:padding="@dimen/_6sdp"
                 android:text="@string/skip"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/facebook"
-                app:layout_constraintStart_toEndOf="@+id/google"
+                app:layout_constraintEnd_toEndOf="@+id/google"
+                app:layout_constraintStart_toStartOf="@+id/google"
                 app:layout_constraintTop_toBottomOf="@+id/google" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,7 +1,9 @@
 package com.sajjadio.laonote.utils.extension
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.view.View
 import android.webkit.MimeTypeMap
@@ -36,32 +38,24 @@ fun LifecycleOwner.launchOnLifecycleScope(execute: suspend () -> Unit) {
     }
 }
 
-
-fun Context.getPathFromUri(contentUri: Uri): String? {
-    var filePath: String? = null
-    val cursor = this.contentResolver.query(contentUri, null, null, null, null)
-    if (cursor == null) {
-        filePath = contentUri.path
-    } else {
-        cursor.moveToFirst()
-        val index = cursor.getColumnIndex("_data")
-        filePath = cursor.getString(index)
-        cursor.close()
-    }
-    return filePath
-}
-
-
-fun getFileExtension(context: Context,uri: Uri?) = MimeTypeMap.getSingleton().getExtensionFromMimeType(context.contentResolver.getType(uri!!))
+fun getFileExtension(context: Context, uri: Uri?) =
+    MimeTypeMap.getSingleton().getExtensionFromMimeType(context.contentResolver.getType(uri!!))
 
 
 @SuppressLint("SimpleDateFormat")
-fun String?.formatDate(from:String,to:String): String? {
+fun String?.formatDate(from: String, to: String): String? {
     this?.let {
-            val formatterFrom = SimpleDateFormat(from, Locale.ENGLISH)
-            val formatterTo = SimpleDateFormat(to)
-            val parsedDate: Date? = formatterFrom.parse(this)
-            return parsedDate?.let { formatterTo.format(it) }.toString()
+        val formatterFrom = SimpleDateFormat(from, Locale.ENGLISH)
+        val formatterTo = SimpleDateFormat(to)
+        val parsedDate: Date? = formatterFrom.parse(this)
+        return parsedDate?.let { formatterTo.format(it) }.toString()
     }
     return null
 }
+
+inline fun <reified A : Activity> Activity.navigateActivity(isFinish: Boolean = false) {
+    startActivity(Intent(this, A::class.java))
+    if (isFinish)
+        this.finish()
+}
+

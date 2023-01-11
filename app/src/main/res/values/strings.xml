@@ -16,8 +16,7 @@
     <string name="save">Save</string>
     <string name="add_note">Add note</string>
     <string name="permission_storage_rationale_message">This app must be allowed to access images and media</string>
-    <string name="main_welcome">Hello Again!</string>
-    <string name="sub_welcome">Welcome back you\'ve been missed!</string>
+    <string name="main_welcome">Welcome back!</string>
     <string name="email">Enter email</string>
     <string name="password">Password</string>
     <string name="recovery_password">Recovery Password</string>
@@ -58,5 +57,6 @@
     <string name="result_search_empty">No result match</string>
     <string name="search_note">Search your notes</string>
     <string name="search_task">Search your tasks</string>
+    <string name="log_in_with_google">Login with Google</string>
 
 </resources>

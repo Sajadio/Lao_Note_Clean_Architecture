@@ -1,6 +1,5 @@
 package com.sajjadio.laonote.presentation.base
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,27 +8,24 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.*
 import com.google.android.material.transition.MaterialFadeThrough
 import com.sajjadio.laonote.BR
 import com.sajjadio.laonote.R
-import com.sajjadio.laonote.presentation.ui.NoteActivity
+import com.sajjadio.laonote.presentation.ui.activities.AuthenticationActivity
+import com.sajjadio.laonote.presentation.ui.activities.NoteActivity
 import com.sajjadio.laonote.utils.NetworkResponse
 import com.sajjadio.laonote.utils.extension.makeToast
 import dmax.dialog.SpotsDialog
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlin.coroutines.CoroutineContext
 
-abstract class BaseFragment<VDB : ViewDataBinding,VM : BaseViewModel>(@LayoutRes private val layoutId: Int) :
+abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel>(@LayoutRes private val layoutId: Int) :
     Fragment() {
 
     abstract val viewModelClass: Class<VM>
     private var _binding: VDB? = null
     val binding: VDB? get() = _binding
     lateinit var noteActivity: NoteActivity
+    lateinit var authActivity: AuthenticationActivity
     lateinit var viewModel: VM
     lateinit var progressDialog: SpotsDialog
 
@@ -55,7 +51,7 @@ abstract class BaseFragment<VDB : ViewDataBinding,VM : BaseViewModel>(@LayoutRes
         _binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         _binding?.apply {
             lifecycleOwner = viewLifecycleOwner
-            setVariable(BR.viewModel,viewModel)
+            setVariable(BR.viewModel, viewModel)
             return root
         }
         return null
@@ -70,10 +66,14 @@ abstract class BaseFragment<VDB : ViewDataBinding,VM : BaseViewModel>(@LayoutRes
     private fun initViewModel() {
         viewModel = ViewModelProvider(this)[viewModelClass]
     }
+
     abstract fun launchView()
 
     private fun initCastingActivity() {
-        noteActivity = (activity as NoteActivity)
+        if (activity is NoteActivity)
+            noteActivity = (activity as NoteActivity)
+        else
+            authActivity = (activity as AuthenticationActivity)
     }
 
     fun launchOnLifecycleScope(execute: suspend () -> Unit) {

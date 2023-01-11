@@ -1,4 +1,4 @@
-package com.sajjadio.laonote.presentation.ui.note
+package com.sajjadio.laonote.presentation.ui.fragments.note
 
 import com.sajjadio.laonote.R
 import com.sajjadio.laonote.databinding.ItemNoteBinding

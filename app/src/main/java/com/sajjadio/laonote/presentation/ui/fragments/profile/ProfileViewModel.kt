@@ -1,4 +1,4 @@
-package com.sajjadio.laonote.presentation.ui.profile
+package com.sajjadio.laonote.presentation.ui.fragments.profile
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope

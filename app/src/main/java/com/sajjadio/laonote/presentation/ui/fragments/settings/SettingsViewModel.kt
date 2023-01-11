@@ -1,4 +1,4 @@
-package com.sajjadio.laonote.presentation.ui.settings
+package com.sajjadio.laonote.presentation.ui.fragments.settings
 
 import android.widget.CompoundButton
 import androidx.lifecycle.asLiveData

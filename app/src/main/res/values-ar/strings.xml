@@ -16,8 +16,7 @@
     <string name="save">حفظ</string>
     <string name="add_note">اضف ملاحظة</string>
     <string name="permission_storage_rationale_message">يجب السماح لهذا التطبيق بالوصول إلى الصور والوسائط</string>
-    <string name="main_welcome">مرحبا مجددا!</string>
-    <string name="sub_welcome">مرحبا بعودتك</string>
+    <string name="main_welcome">مرحبا بعودتك</string>
     <string name="email">ادخل البريد ألألكتروني</string>
     <string name="password">كلمة المرور</string>
     <string name="recovery_password">استعادة كلمة المرور</string>
@@ -58,5 +57,6 @@
     <string name="result_search_empty">لا توجد نتيجة مطابقة</string>
     <string name="search_note">أبحث عن ملاحظاتك</string>
     <string name="search_task">أبحث عن مهامك</string>
+    <string name="log_in_with_google">تسجيل الدخول عبر جوجل</string>
 
 </resources>

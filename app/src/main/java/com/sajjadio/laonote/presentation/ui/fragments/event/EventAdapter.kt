@@ -1,4 +1,4 @@
-package com.sajjadio.laonote.presentation.ui.event
+package com.sajjadio.laonote.presentation.ui.fragments.event
 
 import android.annotation.SuppressLint
 import com.sajjadio.laonote.R

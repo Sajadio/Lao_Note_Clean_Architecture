@@ -14,7 +14,7 @@
 
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/navHostNote"
+            android:id="@+id/authNavHostNote"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -24,7 +24,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:navGraph="@navigation/app_nav" />
+            app:navGraph="@navigation/authentication_nav" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -113,9 +113,8 @@ dependencies {
     // DataStore
     implementation "androidx.datastore:datastore-preferences:1.0.0"
 
-    // Scalable size unit
-    implementation 'com.intuit.sdp:sdp-android:1.1.0'
-    implementation 'com.intuit.ssp:ssp-android:1.1.0'
+
+    
     // Rounded image view
     implementation 'com.makeramen:roundedimageview:2.3.0'
     // Picker color

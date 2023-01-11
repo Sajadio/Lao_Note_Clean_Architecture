@@ -1,4 +1,4 @@
-package com.sajjadio.laonote.presentation.ui.task
+package com.sajjadio.laonote.presentation.ui.fragments.task
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

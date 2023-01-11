@@ -12,7 +12,7 @@
 
         <variable
             name="viewModel"
-            type="com.sajjadio.laonote.presentation.ui.task.TaskViewModel" />
+            type="com.sajjadio.laonote.presentation.ui.fragments.task.TaskViewModel" />
 
     </data>
 

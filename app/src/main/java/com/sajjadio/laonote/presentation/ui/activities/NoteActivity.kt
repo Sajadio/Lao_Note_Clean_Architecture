@@ -1,4 +1,4 @@
-package com.sajjadio.laonote.presentation.ui
+package com.sajjadio.laonote.presentation.ui.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,7 +8,7 @@ import androidx.navigation.findNavController
 import com.sajjadio.laonote.R
 import com.sajjadio.laonote.data.local.data_storage.SessionManager
 import com.sajjadio.laonote.databinding.ActivityNoteBinding
-import com.sajjadio.laonote.presentation.ui.settings.SettingsViewModel
+import com.sajjadio.laonote.presentation.ui.fragments.settings.SettingsViewModel
 import com.sajjadio.laonote.utils.ThemeHelper
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject

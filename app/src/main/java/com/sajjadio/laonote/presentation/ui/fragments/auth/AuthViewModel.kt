@@ -1,4 +1,4 @@
-package com.sajjadio.laonote.presentation.ui.auth.viewModel
+package com.sajjadio.laonote.presentation.ui.fragments.auth
 
 import androidx.activity.result.ActivityResult
 import androidx.lifecycle.LiveData

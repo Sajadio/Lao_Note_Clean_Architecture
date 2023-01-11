@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.sajjadio.laonote.presentation.ui.event.EventViewModel" />
+            type="com.sajjadio.laonote.presentation.ui.fragments.event.EventViewModel" />
 
     </data>
 

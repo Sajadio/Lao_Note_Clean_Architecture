@@ -1,4 +1,4 @@
-package com.sajjadio.laonote.presentation.ui.event
+package com.sajjadio.laonote.presentation.ui.fragments.event
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
