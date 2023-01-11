@@ -3,7 +3,7 @@
 
     <style name="SearchBoxStyle" parent="Theme.LaoNote">
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">@dimen/_40sdp</item>
+        <item name="android:layout_height">@dimen/_45sdp</item>
         <item name="android:textColorHint">@color/colorHint</item>
         <item name="android:drawablePadding">@dimen/_6sdp</item>
         <item name="android:paddingStart">@dimen/_6sdp</item>
@@ -105,4 +105,22 @@
         <item name="DialogSpotColor">@color/colorYellow</item>
         <item name="DialogSpotCount">8</item>
     </style>
+
+    <style name="FloatingButton">
+        <item name="android:layout_width">@dimen/_50sdp</item>
+        <item name="android:layout_height">@dimen/_50sdp</item>
+        <item name="android:layout_margin">@dimen/_30sdp</item>
+        <item name="android:background">@drawable/background_add_btn</item>
+        <item name="android:src">@drawable/ic_add</item>
+        <item name="android:layout_gravity">bottom|end</item>
+    </style>
+
+    <style name="IconsBottomBar">
+        <item name="android:layout_width">@dimen/_45sdp</item>
+        <item name="android:layout_height">@dimen/_45sdp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginStart">@dimen/_12sdp</item>
+        <item name="android:background">@drawable/shape_of_effect_btn_round</item>
+    </style>
+
 </resources>

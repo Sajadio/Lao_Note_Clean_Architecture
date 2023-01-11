@@ -18,7 +18,7 @@ class NoteAdapter @Inject constructor() : BaseAdapter<ItemNoteBinding, Note>() {
     override fun binder(binding: ItemNoteBinding, item: Note) {
         binding.apply {
             note = item
-            parent.setOnClickListener {
+            cardView.setOnClickListener {
                 onItemClickListener?.let { it(item) }
             }
             executePendingBindings()

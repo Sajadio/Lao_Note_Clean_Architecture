@@ -9,6 +9,7 @@
             name="viewModel"
             type="com.sajjadio.laonote.presentation.ui.fragments.note.NoteViewModel" />
 
+        <import type="android.view.View" />
 
     </data>
 
@@ -17,59 +18,13 @@
         android:layout_height="match_parent"
         android:background="@color/colorPrimary">
 
-        <com.google.android.material.appbar.AppBarLayout
+        <include
             android:id="@+id/appBarLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimary"
-            android:gravity="start"
-            app:elevation="0dp"
+            layout="@layout/app_bar_layout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/materialToolbar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="start"
-                app:title="@{null}">
-
-                <TextView
-                    android:id="@+id/tv1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="start|center"
-                    android:gravity="center"
-                    android:fontFamily="@font/bungee_regular"
-                    android:text="@string/app_name"
-                    android:textColor="@color/colorText"
-                    android:textSize="@dimen/_16ssp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="RtlSymmetry" />
-
-                <com.makeramen.roundedimageview.RoundedImageView
-                    android:id="@+id/profile_fragment"
-                    android:layout_width="@dimen/_28sdp"
-                    android:layout_height="@dimen/_28sdp"
-                    android:layout_gravity="end|center"
-                    android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:background="@drawable/shape_of_effect_btn_round"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:scaleType="fitCenter"
-                    app:riv_corner_radius="30dip"
-                    app:riv_oval="true"
-                    app:riv_tile_mode="clamp"
-                    app:setImage="@{viewModel.user.photo}"
-                    tools:src="@drawable/ic_launcher_background" />
-
-            </com.google.android.material.appbar.MaterialToolbar>
-
-        </com.google.android.material.appbar.AppBarLayout>
-
+            app:layout_constraintTop_toTopOf="parent"
+            app:photo="@{viewModel.user.photo}" />
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchView"
@@ -105,22 +60,26 @@
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-
-        <include
-            layout="@layout/empty_result"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:hasData="@{viewModel.eventResponseNotes.peekContent().data().empty}"
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/img"
+            android:layout_width="@dimen/_200sdp"
+            android:layout_height="@dimen/_200sdp"
+            android:layout_gravity="center"
+            android:visibility="@{viewModel.eventResponseNotes.peekContent().data().empty? View.VISIBLE :View.GONE}"
             app:layout_constraintBottom_toTopOf="@+id/layout"
             app:layout_constraintEnd_toEndOf="@+id/searchView"
             app:layout_constraintStart_toStartOf="@+id/searchView"
-            app:layout_constraintTop_toBottomOf="@+id/searchView" />
+            app:layout_constraintTop_toBottomOf="@+id/searchView"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="false"
+            app:lottie_rawRes="@raw/notes"
+            app:lottie_speed="0.9" />
 
 
         <LinearLayout
             android:id="@+id/layout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_height="@dimen/_60sdp"
             android:background="@color/colorSecond"
             android:gravity="center|start"
             android:orientation="horizontal"
@@ -130,34 +89,21 @@
 
             <ImageButton
                 android:id="@+id/taskFragment"
-                android:layout_width="@dimen/_35sdp"
-                android:layout_height="@dimen/_35sdp"
-                android:layout_gravity="center"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:background="@drawable/shape_of_effect_btn_round"
+                style="@style/IconsBottomBar"
                 android:src="@drawable/ic_task"
                 tools:ignore="ContentDescription" />
 
             <ImageButton
                 android:id="@+id/eventFragment"
-                android:layout_width="@dimen/_35sdp"
-                android:layout_height="@dimen/_35sdp"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:background="@drawable/shape_of_effect_btn_round"
+                style="@style/IconsBottomBar"
                 android:src="@drawable/ic_event"
                 tools:ignore="ContentDescription" />
-
 
         </LinearLayout>
 
         <ImageButton
             android:id="@+id/fabBtnAddNote"
-            android:layout_width="@dimen/_40sdp"
-            android:layout_height="@dimen/_40sdp"
-            android:layout_marginHorizontal="@dimen/_30sdp"
-            android:layout_marginVertical="@dimen/_30sdp"
-            android:background="@drawable/background_add_btn"
-            android:src="@drawable/ic_add"
+            style="@style/FloatingButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             tools:ignore="ContentDescription" />

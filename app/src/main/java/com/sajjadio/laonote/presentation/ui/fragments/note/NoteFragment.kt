@@ -49,7 +49,7 @@ class NoteFragment : BaseFragment<FragmentNoteBinding, NoteViewModel>(R.layout.f
             fabBtnAddNote.moveToDestination(
                 NoteFragmentDirections.actionNoteFragmentToAddNoteFragment(null)
             )
-            profileFragment.moveToDestination(
+            appBarLayout.profile.moveToDestination(
                 NoteFragmentDirections.actionNoteFragmentToProfileFragment()
             )
             taskFragment.moveToDestination(

@@ -12,7 +12,6 @@
     <color name="colorDarkBlack">#10141C</color>
     <color name="colorYellow">@color/colorYellowNote</color>
     <color name="colorBlue">@color/colorBlueNote</color>
-
     <color name="colorDefaultNote">#606570</color>
     <color name="colorBlueNote">#3D5AFE</color>
     <color name="colorYellowNote">#FFC400</color>
