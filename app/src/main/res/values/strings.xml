@@ -20,7 +20,7 @@
     <string name="email">Enter email</string>
     <string name="password">Password</string>
     <string name="recovery_password">Recovery Password</string>
-    <string name="log_in">Log In</string>
+    <string name="log_in">LogIn</string>
     <string name="or_continue">Or continue with</string>
     <string name="skip">Skip</string>
     <string name="settings">Settings</string>
@@ -57,6 +57,6 @@
     <string name="result_search_empty">No result match</string>
     <string name="search_note">Search your notes</string>
     <string name="search_task">Search your tasks</string>
-    <string name="log_in_with_google">Login with Google</string>
+    <string name="log_in_with_google">LogIn with Google</string>
 
 </resources>

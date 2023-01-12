@@ -115,7 +115,7 @@
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/etTaskTitle"
+                    android:id="@+id/etEventTitle"
                     style="@style/FieldAddData"
                     android:hint="@string/title"
                     android:layout_marginTop="@dimen/_24sdp"
@@ -140,9 +140,9 @@
                     android:text="@{@string/date_created+' '+viewModel.date}"
                     android:textSize="@dimen/_12ssp"
                     app:drawableEndCompat="@drawable/ic_add"
-                    app:layout_constraintEnd_toEndOf="@+id/etTaskTitle"
-                    app:layout_constraintStart_toStartOf="@+id/etTaskTitle"
-                    app:layout_constraintTop_toBottomOf="@+id/etTaskTitle"
+                    app:layout_constraintEnd_toEndOf="@+id/etEventTitle"
+                    app:layout_constraintStart_toStartOf="@+id/etEventTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/etEventTitle"
                     tools:ignore="RtlSymmetry"
                     tools:text="Jan 11,2023 10:00 PM" />
 

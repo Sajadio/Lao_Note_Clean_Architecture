@@ -27,8 +27,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:paddingVertical="@dimen/_10sdp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/_10sdp">
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:id="@+id/checkBox"
@@ -43,7 +43,7 @@
 
 
             <TextView
-                android:id="@+id/taskTitle"
+                android:id="@+id/eventTitle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="@dimen/_6sdp"
@@ -67,10 +67,10 @@
                 android:text="@{task.task_date_created}"
                 android:textSize="@dimen/_14ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/taskTitle"
-                app:layout_constraintStart_toStartOf="@+id/taskTitle"
-                app:layout_constraintTop_toBottomOf="@+id/taskTitle"
-                tools:text="Jan 11,2023 10:00 PM" />
+                app:layout_constraintEnd_toEndOf="@+id/eventTitle"
+                app:layout_constraintStart_toStartOf="@+id/eventTitle"
+                app:layout_constraintTop_toBottomOf="@+id/eventTitle"
+                tools:text="Description" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

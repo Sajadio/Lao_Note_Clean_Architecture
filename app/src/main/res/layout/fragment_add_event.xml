@@ -9,149 +9,147 @@
             name="viewModel"
             type="com.sajjadio.laonote.presentation.ui.fragments.event.EventViewModel" />
 
+        <import type="android.view.View" />
+
+
     </data>
 
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:ignore="ScrollViewCount">
+        android:background="@color/colorSecond">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary">
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/appBarLayout"
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/materialToolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                app:elevation="0dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_height="match_parent"
+                android:gravity="start"
+                app:navigationIcon="@drawable/ic_back"
+                app:title="@string/add_event">
 
-                <com.google.android.material.appbar.MaterialToolbar
-                    android:id="@+id/materialToolbar"
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:gravity="start"
-                    app:navigationIcon="@drawable/ic_back"
-                    app:title="@string/add_event">
+                    android:layout_gravity="end"
+                    android:gravity="end|center"
+                    android:orientation="horizontal">
 
-                    <LinearLayout
+                    <ImageButton
+                        android:id="@+id/deleteTask"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="end"
-                        android:gravity="end"
-                        android:orientation="horizontal">
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:background="@drawable/shape_of_effect_btn_round"
+                        android:onClick="@{() -> viewModel.deleteEvent()}"
+                        android:padding="@dimen/_6sdp"
+                        android:src="@drawable/ic_delete"
+                        android:visibility="gone"
+                        tools:ignore="ContentDescription" />
 
-                        <ImageButton
-                            android:id="@+id/deleteTask"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/_12sdp"
-                            android:background="@drawable/shape_of_effect_btn_round"
-                            android:onClick="@{() -> viewModel.deleteEvent()}"
-                            android:padding="@dimen/_6sdp"
-                            android:src="@drawable/ic_delete"
-                            android:visibility="gone"
-                            tools:ignore="ContentDescription" />
+                    <ImageButton
+                        android:id="@+id/save"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:background="@drawable/shape_of_effect_btn_round"
+                        android:onClick="@{() -> viewModel.setEvent()}"
+                        android:padding="@dimen/_6sdp"
+                        android:src="@drawable/ic_check_circle"
+                        tools:ignore="ContentDescription" />
 
-                        <ImageButton
-                            android:id="@+id/save"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/_12sdp"
-                            android:padding="@dimen/_6sdp"
-                            android:background="@drawable/shape_of_effect_btn_round"
-                            android:src="@drawable/ic_check_circle"
-                            android:onClick="@{() -> viewModel.setEvent()}"
-                            tools:ignore="ContentDescription" />
-
-                        <ImageButton
-                            android:id="@+id/update"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/_12sdp"
-                            android:background="@drawable/shape_of_effect_btn_round"
-                            android:onClick="@{() -> viewModel.updateEventByID()}"
-                            android:padding="@dimen/_6sdp"
-                            android:src="@drawable/ic_check_circle"
-                            android:visibility="gone"
-                            tools:ignore="ContentDescription" />
+                    <ImageButton
+                        android:id="@+id/update"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:background="@drawable/shape_of_effect_btn_round"
+                        android:onClick="@{() -> viewModel.updateEventByID()}"
+                        android:padding="@dimen/_6sdp"
+                        android:src="@drawable/ic_check_circle"
+                        android:visibility="gone"
+                        tools:ignore="ContentDescription" />
 
 
-                    </LinearLayout>
+                </LinearLayout>
 
 
-                </com.google.android.material.appbar.MaterialToolbar>
+            </com.google.android.material.appbar.MaterialToolbar>
 
-            </com.google.android.material.appbar.AppBarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
 
-            <EditText
-                android:id="@+id/etTaskTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_16sdp"
-                android:autofillHints=""
-                android:background="@null"
-                android:textColorHint="@color/colorHint"
-                android:textColor="@color/colorText"
-                android:ellipsize="end"
-                android:fontFamily="@font/oxygen_bold"
-                android:hint="@string/title"
-                android:inputType="text"
-                android:maxLines="1"
-                android:padding="@dimen/_10sdp"
-                android:text="@={viewModel.event_title}"
-                android:textSize="@dimen/_15ssp"
-                app:layout_constraintEnd_toEndOf="@+id/tvDateTime"
-                app:layout_constraintStart_toStartOf="@+id/tvDateTime"
-                app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@null"
+            android:scrollbarSize="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tvDateTime"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:padding="@dimen/_10sdp"
-                android:background="@drawable/shape_of_effect_btn"
-                android:ellipsize="end"
-                android:fontFamily="@font/oxygen_bold"
-                android:maxLines="1"
-                android:textColorHint="@color/colorHint"
-                android:text="@{@string/date_created+' '+viewModel.date}"
-                android:textSize="@dimen/_10ssp"
-                app:drawableEndCompat="@drawable/ic_add_small"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etTaskTitle"
-                tools:ignore="RtlSymmetry"
-                tools:text="2022/11/1, 10:00 PM" />
+                <EditText
+                    android:id="@+id/etEventTitle"
+                    style="@style/FieldAddData"
+                    android:layout_marginTop="@dimen/_24sdp"
+                    android:hint="@string/title"
+                    android:importantForAutofill="no"
+                    android:maxLength="50"
+                    android:maxLines="1"
+                    android:text="@={viewModel.event_title}"
+                    android:textSize="@dimen/_24ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/etEventDesc"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:textColorHint="@color/colorHint"
-                android:textColor="@color/colorText"
-                android:fontFamily="@font/cabin_medium"
-                android:hint="@string/desc"
-                android:importantForAutofill="no"
-                android:inputType="textMultiLine"
-                android:padding="@dimen/_10sdp"
-                android:text="@={viewModel.event_description}"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintEnd_toEndOf="@+id/tvDateTime"
-                app:layout_constraintStart_toStartOf="@+id/etTaskTitle"
-                app:layout_constraintTop_toBottomOf="@id/tvDateTime" />
+                <TextView
+                    android:id="@+id/tvDateTime"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_6sdp"
+                    android:background="@drawable/shape_of_effect_btn"
+                    android:fontFamily="@font/cabin_medium"
+                    android:padding="@dimen/_10sdp"
+                    android:text="@{@string/date_created+' '+viewModel.date}"
+                    android:textSize="@dimen/_12ssp"
+                    app:drawableEndCompat="@drawable/ic_add"
+                    app:layout_constraintEnd_toEndOf="@+id/etEventTitle"
+                    app:layout_constraintStart_toStartOf="@+id/etEventTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/etEventTitle"
+                    tools:ignore="RtlSymmetry"
+                    tools:text="Jan 11,2023 10:00 PM" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <EditText
+                    android:id="@+id/etTaskDesc"
+                    style="@style/FieldAddData"
+                    android:fontFamily="@font/cabin_medium"
+                    android:hint="@string/desc"
+                    android:importantForAutofill="no"
+                    android:inputType="textMultiLine"
+                    android:text="@={viewModel.event_description}"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintEnd_toEndOf="@+id/tvDateTime"
+                    app:layout_constraintStart_toStartOf="@+id/tvDateTime"
+                    app:layout_constraintTop_toBottomOf="@id/tvDateTime" />
 
-    </ScrollView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

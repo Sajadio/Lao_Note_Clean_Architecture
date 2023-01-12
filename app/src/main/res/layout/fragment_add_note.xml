@@ -112,7 +112,7 @@
                     app:layout_constraintTop_toTopOf="parent">
 
                     <EditText
-                        android:id="@+id/etTaskTitle"
+                        android:id="@+id/etEventTitle"
                         style="@style/FieldAddData"
                         android:hint="@string/title"
                         android:importantForAutofill="no"
