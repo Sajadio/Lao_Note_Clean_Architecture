@@ -123,4 +123,13 @@
         <item name="android:background">@drawable/shape_of_effect_btn_round</item>
     </style>
 
+    <style name="FieldAddData">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@null</item>
+        <item name="android:fontFamily">@font/oxygen_bold</item>
+        <item name="android:inputType">text</item>
+        <item name="android:padding">@dimen/_10sdp</item>
+    </style>
+
 </resources>

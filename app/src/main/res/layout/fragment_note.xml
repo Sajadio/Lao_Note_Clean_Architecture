@@ -16,15 +16,61 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary">
+        android:background="@color/colorSecond">
 
-        <include
+        <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
-            layout="@layout/app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:gravity="start"
+            app:elevation="0dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:photo="@{viewModel.user.photo}" />
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/materialToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="start"
+                app:title="@{null}">
+
+                <TextView
+                    android:id="@+id/tv1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start|center"
+                    android:fontFamily="@font/bungee_regular"
+                    android:gravity="center"
+                    android:text="@string/app_name"
+                    android:textColor="@color/colorText"
+                    android:textSize="@dimen/_24ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="RtlSymmetry" />
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/profile"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_gravity="end|center"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:background="@drawable/shape_of_effect_btn_round"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:scaleType="fitCenter"
+                    app:riv_corner_radius="30dip"
+                    app:riv_oval="true"
+                    app:riv_tile_mode="clamp"
+                    app:setImage="@{viewModel.user.photo}"
+                    tools:src="@drawable/ic_launcher_background" />
+
+            </com.google.android.material.appbar.MaterialToolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchView"
@@ -50,7 +96,7 @@
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/colorPrimary"
+                android:background="@color/colorSecond"
                 android:orientation="vertical"
                 app:items="@{viewModel.eventResponseNotes.peekContent().data()}"
                 app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
@@ -80,7 +126,7 @@
             android:id="@+id/layout"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_60sdp"
-            android:background="@color/colorSecond"
+            android:background="@color/colorPrimary"
             android:gravity="center|start"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"

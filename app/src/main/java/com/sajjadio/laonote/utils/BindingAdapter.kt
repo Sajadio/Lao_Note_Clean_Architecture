@@ -58,10 +58,9 @@ fun setFontColor(view: View, color: Int?) {
     color?.let {
         if (view is MaterialTextView)
             view.setTextColor(view.context.getColor(color))
-        else {
+        else
             (view as AppCompatEditText).setTextColor(view.context.getColor(color))
-            view.setHintTextColor(view.context.getColor(color))
-        }
+
     }
 }
 

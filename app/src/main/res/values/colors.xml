@@ -24,7 +24,7 @@
 
     <color name="btn_effect">#E5E5E5</color>
     <color name="color_border">#E3E3E3</color>
-    <color name="colorIcon">#6B6B6B</color>
+    <color name="colorIcon">@color/colorText</color>
 
     <color name="dark_yellow">#DBA900</color>
 

@@ -3,7 +3,7 @@
     <string name="notes">الملاحظات</string>
     <string name="title">العنوان</string>
     <string name="desc">الوصف</string>
-    <string name="notes_sub_title">العنوان الفرعي</string>
+    <string name="sub_title">العنوان الفرعي</string>
     <string name="web_url">أدخل رابط</string>
     <string name="ok">موافق</string>
     <string name="cancel">ألغاء</string>

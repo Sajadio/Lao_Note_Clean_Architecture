@@ -43,7 +43,7 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding, NoteViewModel>(
     @Inject
     lateinit var helper: PermissionsHelper
     override val viewModelClass = NoteViewModel::class.java
-    var selectedNoteColor = R.color.colorBlackNote
+    var selectedNoteColor = R.color.colorSecond
     var selectedFontColor = R.color.colorHint
     private val args: AddNoteFragmentArgs by navArgs()
 

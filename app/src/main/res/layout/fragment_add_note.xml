@@ -52,7 +52,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_gravity="end"
-                            android:gravity="end"
+                            android:gravity="end|center"
                             android:orientation="horizontal">
 
                             <ImageButton
@@ -99,81 +99,66 @@
 
 
                 <EditText
-                    android:id="@+id/etEventTitle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/etNoteTitle"
+                    style="@style/FieldAddData"
                     android:layout_marginHorizontal="@dimen/_6sdp"
-                    android:layout_marginVertical="@dimen/_16sdp"
-                    android:autofillHints=""
-                    android:background="@null"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/oxygen_bold"
+                    android:layout_marginTop="@dimen/_24sdp"
                     android:hint="@string/title"
-                    android:inputType="text"
+                    android:importantForAutofill="no"
+                    android:maxLength="50"
                     android:maxLines="1"
-                    android:padding="@dimen/_10sdp"
                     android:text="@={viewModel.note_title}"
-                    android:textSize="@dimen/_15ssp"
+                    android:textSize="@dimen/_24ssp"
+                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/appBarLayout"
                     app:setFontColor="@{viewModel.font_color}" />
 
-
                 <TextView
                     android:id="@+id/tvDateTime"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/oxygen_bold"
-                    android:maxLines="1"
+                    android:fontFamily="@font/cabin_medium"
                     android:paddingHorizontal="@dimen/_10sdp"
+                    android:paddingVertical="@dimen/_4sdp"
                     android:text="@{@string/date_created+' '+viewModel.note_date_created}"
-                    android:textSize="@dimen/_10ssp"
-                    app:layout_constraintEnd_toEndOf="@+id/etEventTitle"
-                    app:layout_constraintStart_toStartOf="@id/etEventTitle"
-                    app:layout_constraintTop_toBottomOf="@id/etEventTitle"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintEnd_toEndOf="@+id/etNoteTitle"
+                    app:layout_constraintStart_toStartOf="@id/etNoteTitle"
+                    app:layout_constraintTop_toBottomOf="@id/etNoteTitle"
                     app:setFontColor="@{viewModel.font_color}"
                     tools:ignore="RtlSymmetry"
-                    tools:text="2022/11/1, 10:00 PM" />
+                    tools:text="Jan 11,2023 10:00 PM" />
 
                 <TextView
                     android:id="@+id/tvLastDateTime"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/oxygen_bold"
-                    android:maxLines="1"
+                    android:fontFamily="@font/cabin_medium"
                     android:paddingHorizontal="@dimen/_10sdp"
+                    android:paddingVertical="@dimen/_4sdp"
                     android:text="@{@string/last_date+' '+viewModel.note_last_update}"
-                    android:textSize="@dimen/_10ssp"
+                    android:textSize="@dimen/_12ssp"
                     android:visibility="@{viewModel.note_last_update.empty ?View.INVISIBLE:View.VISIBLE}"
                     app:layout_constraintEnd_toEndOf="@+id/tvDateTime"
                     app:layout_constraintStart_toStartOf="@id/tvDateTime"
                     app:layout_constraintTop_toBottomOf="@id/tvDateTime"
                     app:setFontColor="@{viewModel.font_color}"
                     tools:ignore="RtlSymmetry"
-                    tools:text="2022/11/1, 10:00 PM" />
-
+                    tools:text="Jan 11,2023 10:00 PM" />
 
                 <EditText
                     android:id="@+id/etNoteSubTitle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/_10sdp"
-                    android:background="@null"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/cabin_medium"
-                    android:hint="@string/notes_sub_title"
+                    style="@style/FieldAddData"
+                    android:fontFamily="@font/oxygen_bold"
+                    android:hint="@string/sub_title"
                     android:importantForAutofill="no"
-                    android:inputType="text"
+                    android:maxLength="50"
                     android:maxLines="1"
-                    android:orientation="horizontal"
-                    android:padding="@dimen/_10sdp"
                     android:text="@={viewModel.note_subTitle}"
-                    android:textSize="@dimen/_12ssp"
+                    android:textColorHint="@color/colorHint"
+                    android:textSize="@dimen/_16ssp"
                     app:layout_constraintEnd_toEndOf="@+id/tvDateTime"
                     app:layout_constraintStart_toStartOf="@+id/tvDateTime"
                     app:layout_constraintTop_toBottomOf="@id/tvLastDateTime"
@@ -181,16 +166,13 @@
 
                 <EditText
                     android:id="@+id/etNoteDesc"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:background="@null"
+                    style="@style/FieldAddData"
                     android:fontFamily="@font/cabin_medium"
                     android:hint="@string/desc"
                     android:importantForAutofill="no"
                     android:inputType="textMultiLine"
-                    android:padding="@dimen/_10sdp"
                     android:text="@={viewModel.note_description}"
-                    android:textSize="@dimen/_12ssp"
+                    android:textSize="@dimen/_14ssp"
                     app:layout_constraintEnd_toEndOf="@+id/etNoteSubTitle"
                     app:layout_constraintStart_toStartOf="@+id/etNoteSubTitle"
                     app:layout_constraintTop_toBottomOf="@id/etNoteSubTitle"
@@ -200,13 +182,13 @@
                     android:id="@+id/layout_Web_url"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginVertical="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     android:orientation="horizontal"
-                    android:padding="@dimen/_10sdp"
+                    android:paddingHorizontal="@dimen/_10sdp"
                     android:visibility="gone"
                     android:weightSum="2"
                     app:layout_constraintEnd_toEndOf="@+id/etNoteDesc"
-                    app:layout_constraintStart_toStartOf="@+id/etNoteDesc"
+                    app:layout_constraintStart_toStartOf="@id/etNoteDesc"
                     app:layout_constraintTop_toBottomOf="@id/etNoteDesc">
 
                     <EditText
@@ -216,15 +198,14 @@
                         android:layout_weight="1"
                         android:autoLink="web"
                         android:background="@null"
-                        android:ellipsize="end"
                         android:fontFamily="@font/cabin_medium"
                         android:hint="@string/web_url"
                         android:importantForAutofill="no"
-                        android:inputType="textMultiLine"
+                        android:inputType="textWebEditText"
                         android:text="@={viewModel.note_webUrl}"
                         android:textColorLink="@color/colorBlue"
-                        android:textSize="@dimen/_12ssp"
-                        app:setFontColor="@{viewModel.font_color}" />
+                        android:textColor="@color/colorBlue"
+                        android:textSize="@dimen/_14ssp" />
 
                     <ImageButton
                         android:id="@+id/clearWebURL"
@@ -277,8 +258,8 @@
                         android:background="@drawable/shape_of_effect_btn"
                         android:padding="@dimen/_6sdp"
                         android:src="@drawable/ic_close"
-                        tools:ignore="ContentDescription"
-                        app:tint="@color/colorRedNote" />
+                        app:tint="@color/colorRedNote"
+                        tools:ignore="ContentDescription" />
 
                 </RelativeLayout>
 
@@ -290,7 +271,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
             android:layout_gravity="bottom|center"
-            android:background="@color/colorSecond"
+            android:background="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">

@@ -23,8 +23,8 @@ import kotlinx.android.synthetic.main.fragment_notes_bottom_sheet.*
 class BottomSheetFragment : BottomSheetDialogFragment() {
 
     private var binding: FragmentNotesBottomSheetBinding? = null
-    private var selectNoteColors = R.color.colorBlackNote
-    private var selectFontColors = R.color.colorBlackNote
+    private var selectNoteColors = R.color.colorSecond
+    private var selectFontColors = R.color.colorHint
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,7 +58,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
 
     private fun handelSelectedNoteColor(view: ImageButton, color: Int) {
         selectNoteColors = color
-       val noteColors = mutableListOf(
+        val noteColors = mutableListOf(
             noteColor1,
             noteColor2,
             noteColor3,
@@ -90,7 +90,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         }
     }
 
-    private fun ImageButton.setListenerNoteColorBtn(color:Int, action:String){
+    private fun ImageButton.setListenerNoteColorBtn(color: Int, action: String) {
         this.setOnClickListener {
             handelSelectedNoteColor(this, color)
             handelSelectedFontColor(this, color)
@@ -99,26 +99,26 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
     }
 
 
-    private fun setListenerNoteColor(){
-        noteColor1.setListenerNoteColorBtn(R.color.colorBlue,"Blue")
-        noteColor2.setListenerNoteColorBtn(R.color.colorYellowNote,"Yellow")
-        noteColor3.setListenerNoteColorBtn(R.color.colorPurpleNote,"Purple")
-        noteColor4.setListenerNoteColorBtn(R.color.colorGreenNote,"Green")
-        noteColor5.setListenerNoteColorBtn(R.color.colorOrangeNote,"Orange")
-        noteColor6.setListenerNoteColorBtn(R.color.colorBlackNote,"Black")
-        noteColor7.setListenerNoteColorBtn(R.color.colorWhiteNote,"White")
-        noteColor8.setListenerNoteColorBtn(R.color.colorRedNote,"Red")
+    private fun setListenerNoteColor() {
+        noteColor1.setListenerNoteColorBtn(R.color.colorBlue, "Blue")
+        noteColor2.setListenerNoteColorBtn(R.color.colorYellowNote, "Yellow")
+        noteColor3.setListenerNoteColorBtn(R.color.colorPurpleNote, "Purple")
+        noteColor4.setListenerNoteColorBtn(R.color.colorGreenNote, "Green")
+        noteColor5.setListenerNoteColorBtn(R.color.colorOrangeNote, "Orange")
+        noteColor6.setListenerNoteColorBtn(R.color.colorBlackNote, "Black")
+        noteColor7.setListenerNoteColorBtn(R.color.colorSecond, "White")
+        noteColor8.setListenerNoteColorBtn(R.color.colorRedNote, "Red")
     }
 
-    private fun setListenerFontColor(){
-        fontColor1.setListenerNoteColorBtn(R.color.colorBlue,"FontBlue")
-        fontColor2.setListenerNoteColorBtn(R.color.colorYellowNote,"FontYellow")
-        fontColor3.setListenerNoteColorBtn(R.color.colorPurpleNote,"FontPurple")
-        fontColor4.setListenerNoteColorBtn(R.color.colorGreenNote,"FontGreen")
-        fontColor5.setListenerNoteColorBtn(R.color.colorOrangeNote,"FontOrange")
-        fontColor6.setListenerNoteColorBtn(R.color.colorBlackNote,"FontBlack")
-        fontColor7.setListenerNoteColorBtn(R.color.colorWhiteNote,"FontWhite")
-        fontColor8.setListenerNoteColorBtn(R.color.colorRedNote,"FontRed")
+    private fun setListenerFontColor() {
+        fontColor1.setListenerNoteColorBtn(R.color.colorBlue, "FontBlue")
+        fontColor2.setListenerNoteColorBtn(R.color.colorYellowNote, "FontYellow")
+        fontColor3.setListenerNoteColorBtn(R.color.colorPurpleNote, "FontPurple")
+        fontColor4.setListenerNoteColorBtn(R.color.colorGreenNote, "FontGreen")
+        fontColor5.setListenerNoteColorBtn(R.color.colorOrangeNote, "FontOrange")
+        fontColor6.setListenerNoteColorBtn(R.color.colorText, "FontBlack")
+        fontColor7.setListenerNoteColorBtn(R.color.colorWhite, "FontWhite")
+        fontColor8.setListenerNoteColorBtn(R.color.colorRedNote, "FontRed")
     }
 
     private fun setListener() {

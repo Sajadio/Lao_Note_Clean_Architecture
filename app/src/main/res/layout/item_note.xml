@@ -68,7 +68,7 @@
                 app:setFontColor="@{note.font_color}"
                 app:setText="@{note.note_subTitle}"
                 tools:ignore="RtlSymmetry"
-                tools:text="@string/notes_sub_title" />
+                tools:text="@string/sub_title" />
 
             <TextView
                 android:id="@+id/tvDesc"

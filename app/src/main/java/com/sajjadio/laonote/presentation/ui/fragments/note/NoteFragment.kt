@@ -36,7 +36,7 @@ class NoteFragment : BaseFragment<FragmentNoteBinding, NoteViewModel>(R.layout.f
             }
 
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-               override fun onQueryTextSubmit(query: String?): Boolean {
+                override fun onQueryTextSubmit(query: String?): Boolean {
                     return false
                 }
 
@@ -49,7 +49,7 @@ class NoteFragment : BaseFragment<FragmentNoteBinding, NoteViewModel>(R.layout.f
             fabBtnAddNote.moveToDestination(
                 NoteFragmentDirections.actionNoteFragmentToAddNoteFragment(null)
             )
-            appBarLayout.profile.moveToDestination(
+            profile.moveToDestination(
                 NoteFragmentDirections.actionNoteFragmentToProfileFragment()
             )
             taskFragment.moveToDestination(

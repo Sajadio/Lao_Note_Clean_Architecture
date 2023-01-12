@@ -57,7 +57,7 @@ class NoteViewModel @Inject constructor(
             STANDARD_DATE, FULL_DATE
         )
     )
-    val note_last_update = MutableLiveData<String>()
+    val note_last_update = MutableLiveData("")
 
 
     val user = MutableLiveData<User>()

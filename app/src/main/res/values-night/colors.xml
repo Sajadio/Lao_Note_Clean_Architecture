@@ -4,7 +4,7 @@
     <color name="colorSecond">#292929</color>
     <color name="colorText">#EAEAEA</color>
     <color name="colorHint">#BCBCBC</color>
-    <color name="colorIcon">@color/colorHint</color>
+    <color name="colorIcon">@color/colorText</color>
     <color name="colorSearchIcon">@color/colorHint</color>
     <color name="btn_effect">#804C4C4C</color>
     <color name="color_border">#804C4C4C</color>

@@ -3,7 +3,7 @@
     <string name="notes">Notes</string>
     <string name="title">Title</string>
     <string name="desc">Description</string>
-    <string name="notes_sub_title">Notes Sub Title</string>
+    <string name="sub_title">Sub Title</string>
     <string name="web_url">Enter Web Url</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
