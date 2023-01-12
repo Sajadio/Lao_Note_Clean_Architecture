@@ -66,13 +66,29 @@
     <style name="FieldsProfile">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textSize">@dimen/_16ssp</item>
+        <item name="android:fontFamily">@font/oxygen_bold</item>
+        <item name="android:layout_marginTop" tools:targetApi="o">@dimen/_6sdp</item>
+        <item name="android:focusable">true</item>
+        <item name="android:gravity">start|center</item>
+        <item name="android:background">@drawable/shape_of_primary_color</item>
+        <item name="android:clickable">true</item>
+        <item name="android:paddingStart">@dimen/_12sdp</item>
+        <item name="android:paddingVertical" tools:targetApi="o">@dimen/_12ssp</item>
+        <item name="android:drawablePadding">@dimen/_12sdp</item>
+    </style>
+
+    <style name="BtnAuthentication">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textColor">@color/colorHint</item>
         <item name="android:textSize">@dimen/_14ssp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:fontFamily">@font/oxygen_bold</item>
         <item name="android:focusable">true</item>
         <item name="android:clickable">true</item>
-        <item name="android:paddingStart">@dimen/_10ssp</item>
-        <item name="android:paddingVertical" tools:targetApi="o">@dimen/_12sdp</item>
+        <item name="android:background">@drawable/shape_of_effect_btn</item>
+        <item name="android:padding">@dimen/_12ssp</item>
         <item name="android:drawablePadding">@dimen/_6sdp</item>
     </style>
 

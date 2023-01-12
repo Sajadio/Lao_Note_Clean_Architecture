@@ -12,168 +12,136 @@
             type="com.sajjadio.laonote.presentation.ui.fragments.profile.ProfileViewModel" />
     </data>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorSecond">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary">
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/appBarLayout"
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/materialToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="start"
+                app:navigationIcon="@drawable/ic_back"
+                app:title="@string/profile">
+
+            </com.google.android.material.appbar.MaterialToolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scrollbarSize="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                app:elevation="0dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_marginTop="@dimen/_50sdp">
 
-                <com.google.android.material.appbar.MaterialToolbar
-                    android:id="@+id/materialToolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="start"
-                    app:navigationIcon="@drawable/ic_back"
-                    app:title="@string/profile">
-
-                </com.google.android.material.appbar.MaterialToolbar>
-
-            </com.google.android.material.appbar.AppBarLayout>
-
-
-            <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/profileImage"
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_100sdp"
-                android:layout_marginTop="@dimen/_50sdp"
-                android:scaleType="centerCrop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-                app:riv_border_color="@color/colorSecond"
-                app:riv_border_width="@dimen/_2sdp"
-                app:riv_corner_radius="@dimen/_50sdp"
-                app:riv_oval="true"
-                app:riv_tile_mode="clamp"
-                app:setImage="@{viewModel.user.photo}"
-                tools:src="@drawable/person" />
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/profileImage"
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="@dimen/_150sdp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:riv_border_color="@color/colorSecond"
+                    app:riv_border_width="@dimen/_2sdp"
+                    app:riv_corner_radius="@dimen/_50sdp"
+                    app:riv_oval="true"
+                    app:riv_tile_mode="clamp"
+                    app:setImage="@{viewModel.user.photo}"
+                    tools:src="@drawable/person" />
 
 
-            <TextView
-                android:id="@+id/userName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:fontFamily="@font/oxygen_bold"
-                android:text="@{viewModel.user.userName}"
-                android:textColor="@color/colorText"
-                android:textSize="@dimen/_18sdp"
-                android:visibility="@{viewModel.isLogIn() ?View.VISIBLE: View.INVISIBLE}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profileImage"
-                tools:text="Mohammed Aziz" />
+                <TextView
+                    android:id="@+id/userName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/_20sdp"
+                    android:fontFamily="@font/oxygen_bold"
+                    android:text="@{viewModel.user.userName}"
+                    android:textColor="@color/colorText"
+                    android:textSize="@dimen/_20ssp"
+                    android:visibility="@{viewModel.isLogIn() ?View.VISIBLE: View.INVISIBLE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/profileImage"
+                    tools:ignore="SpUsage"
+                    tools:text="Mohammed Aziz" />
 
-            <TextView
-                android:id="@+id/logIn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/shape_of_effect_btn"
-                android:clickable="true"
-                android:focusable="true"
-                android:fontFamily="@font/oxygen_bold"
-                android:padding="@dimen/_6sdp"
-                android:text="@string/log_in"
-                android:textColor="@color/colorText"
-                android:textSize="@dimen/_18sdp"
-                android:visibility="@{viewModel.isLogIn() ?View.GONE: View.VISIBLE}"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/profileImage"
-                tools:text="Mohammed Aziz" />
+                <TextView
+                    android:id="@+id/logIn"
+                    style="@style/BtnAuthentication"
+                    android:layout_marginVertical="@dimen/_10sdp"
+                    android:text="@string/log_in"
+                    android:textColor="@color/colorText"
+                    android:textSize="@dimen/_20ssp"
+                    android:visibility="@{viewModel.isLogIn() ?View.GONE: View.VISIBLE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/profileImage"
+                    tools:text="Log In" />
 
 
-            <TextView
-                android:id="@+id/settings"
-                style="@style/FieldsProfile"
-                android:layout_marginHorizontal="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_30sdp"
-                android:background="@drawable/shape_of_effect_btn"
-                android:clickable="true"
-                android:focusable="true"
-                android:text="@string/settings"
-                app:drawableEndCompat="@drawable/ic_right"
-                app:drawableStartCompat="@drawable/ic_settings"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/userName"
-                tools:ignore="RtlSymmetry" />
+                <TextView
+                    android:id="@+id/settings"
+                    style="@style/FieldsProfile"
+                    android:layout_marginHorizontal="@dimen/_6sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:text="@string/settings"
+                    app:drawableEndCompat="@drawable/ic_right"
+                    app:drawableStartCompat="@drawable/ic_settings"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/userName"
+                    tools:ignore="RtlSymmetry" />
+
+                <TextView
+                    android:id="@+id/about"
+                    style="@style/FieldsProfile"
+                    android:text="@string/about"
+                    app:drawableEndCompat="@drawable/ic_right"
+                    app:drawableStartCompat="@drawable/ic_about"
+                    app:layout_constraintEnd_toEndOf="@+id/settings"
+                    app:layout_constraintStart_toStartOf="@+id/settings"
+                    app:layout_constraintTop_toBottomOf="@+id/settings"
+                    tools:ignore="RtlSymmetry" />
 
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_1sdp"
-                android:background="@color/color_border"
-                app:layout_constraintEnd_toEndOf="@+id/settings"
-                app:layout_constraintStart_toStartOf="@+id/settings"
-                app:layout_constraintTop_toBottomOf="@+id/settings" />
+                <TextView
+                    android:id="@+id/logout"
+                    style="@style/FieldsProfile"
+                    android:text="@string/logout"
+                    android:visibility="@{viewModel.isLogIn() ?View.VISIBLE: View.GONE}"
+                    app:drawableEndCompat="@drawable/ic_right"
+                    app:drawableStartCompat="@drawable/ic_logout"
+                    app:layout_constraintEnd_toEndOf="@+id/about"
+                    app:layout_constraintStart_toStartOf="@+id/about"
+                    app:layout_constraintTop_toBottomOf="@+id/about"
+                    tools:ignore="RtlSymmetry" />
 
-            <TextView
-                android:id="@+id/about"
-                style="@style/FieldsProfile"
-                android:background="@drawable/shape_of_effect_btn"
-                android:clickable="true"
-                android:focusable="true"
-                android:text="@string/about"
-                app:drawableEndCompat="@drawable/ic_right"
-                app:drawableStartCompat="@drawable/ic_about"
-                app:layout_constraintEnd_toEndOf="@+id/settings"
-                app:layout_constraintStart_toStartOf="@+id/settings"
-                app:layout_constraintTop_toBottomOf="@+id/settings"
-                tools:ignore="RtlSymmetry" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_1sdp"
-                android:background="@color/color_border"
-                app:layout_constraintEnd_toEndOf="@+id/about"
-                app:layout_constraintStart_toStartOf="@+id/about"
-                app:layout_constraintTop_toBottomOf="@+id/about" />
+        </ScrollView>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/logout"
-                style="@style/FieldsProfile"
-                android:background="@drawable/shape_of_effect_btn"
-                android:clickable="true"
-                android:focusable="true"
-                android:text="@string/logout"
-                android:visibility="@{viewModel.isLogIn() ?View.VISIBLE: View.GONE}"
-                app:drawableEndCompat="@drawable/ic_right"
-                app:drawableStartCompat="@drawable/ic_logout"
-                app:layout_constraintEnd_toEndOf="@+id/about"
-                app:layout_constraintStart_toStartOf="@+id/about"
-                app:layout_constraintTop_toBottomOf="@+id/about"
-                tools:ignore="RtlSymmetry" />
-
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="@dimen/_1sdp"
-                android:background="@color/color_border"
-                android:visibility="@{viewModel.isLogIn() ?View.VISIBLE: View.GONE}"
-                app:layout_constraintEnd_toEndOf="@+id/logout"
-                app:layout_constraintStart_toStartOf="@+id/logout"
-                app:layout_constraintTop_toBottomOf="@+id/logout" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </ScrollView>
 
 </layout>
