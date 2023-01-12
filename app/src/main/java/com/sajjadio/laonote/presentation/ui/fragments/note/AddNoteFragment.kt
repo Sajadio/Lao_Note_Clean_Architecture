@@ -116,7 +116,7 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding, NoteViewModel>(
                         }
                     }
                     "WebUrl" -> {
-                        layout_Web_url.visibility = View.VISIBLE
+                        layoutWebUrl.visibility = View.VISIBLE
                     }
                     "DeleteNote" -> {
                         //

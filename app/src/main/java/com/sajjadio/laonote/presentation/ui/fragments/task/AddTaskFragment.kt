@@ -52,10 +52,10 @@ class AddTaskFragment :
                 pickDateTime()
             }
             addURL.setOnClickListener {
-                layoutWebUrlTask.visibility = View.VISIBLE
+                layoutWebUrl.visibility = View.VISIBLE
             }
             clearWebURL.setOnClickListener {
-                layoutWebUrlTask.visibility = View.GONE
+                layoutWebUrl.visibility = View.GONE
                 viewModel?.task_webUrl?.postValue(null)
             }
         }
@@ -67,7 +67,7 @@ class AddTaskFragment :
                 showTaskDetails(it)
                 binding?.apply {
                     materialToolbar.title = resources.getString(R.string.edit)
-                    layoutWebUrlTask.isVisible = task.task_webUrl?.isNotEmpty() == true
+                    layoutWebUrl.isVisible = task.task_webUrl?.isNotEmpty() == true
                     deleteTask.isVisible = true
                     update.isVisible = true
                     save.isVisible = false

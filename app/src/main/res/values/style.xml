@@ -3,7 +3,7 @@
 
     <style name="SearchBoxStyle" parent="Theme.LaoNote">
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">@dimen/_45sdp</item>
+        <item name="android:layout_height">@dimen/_55sdp</item>
         <item name="android:textColorHint">@color/colorHint</item>
         <item name="android:drawablePadding">@dimen/_6sdp</item>
         <item name="android:paddingStart">@dimen/_6sdp</item>
@@ -124,12 +124,36 @@
     </style>
 
     <style name="FieldAddData">
-        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginHorizontal" tools:targetApi="o">@dimen/_6sdp</item>
         <item name="android:background">@null</item>
         <item name="android:fontFamily">@font/oxygen_bold</item>
         <item name="android:inputType">text</item>
         <item name="android:padding">@dimen/_10sdp</item>
+    </style>
+
+    <style name="EditTextWebUrl">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:autoLink">web</item>
+        <item name="android:background">@null</item>
+        <item name="android:fontFamily">@font/cabin_medium</item>
+        <item name="android:hint">@string/web_url</item>
+        <item name="android:inputType">textWebEditText</item>
+        <item name="android:textColor">@color/colorBlue</item>
+        <item name="android:textColorLink">@color/colorBlue</item>
+        <item name="android:textSize">@dimen/_14ssp</item>
+    </style>
+
+    <style name="BtnClose">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:padding">@dimen/_6sdp</item>
+        <item name="android:gravity">end|center</item>
+        <item name="android:background">@drawable/shape_of_effect_btn_round</item>
     </style>
 
 </resources>

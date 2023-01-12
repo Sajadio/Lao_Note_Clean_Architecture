@@ -9,207 +9,186 @@
             name="viewModel"
             type="com.sajjadio.laonote.presentation.ui.fragments.task.TaskViewModel" />
 
+        <import type="android.view.View" />
+
+
     </data>
 
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:ignore="ScrollViewCount">
+        android:background="@color/colorSecond"
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/colorPrimary">
+            android:background="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/appBarLayout"
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/materialToolbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/colorPrimary"
-                app:elevation="0dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <com.google.android.material.appbar.MaterialToolbar
-                    android:id="@+id/materialToolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="start"
-                    app:navigationIcon="@drawable/ic_back"
-                    app:title="@string/add_task">
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="end"
-                        android:gravity="end"
-                        android:orientation="horizontal">
-
-                        <ImageButton
-                            android:id="@+id/addURL"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/_12sdp"
-                            android:padding="@dimen/_6sdp"
-                            android:layout_marginHorizontal="@dimen/_12sdp"
-                            android:background="@drawable/shape_of_effect_btn_round"
-                            android:src="@drawable/ic_language"
-                            tools:ignore="ContentDescription" />
-
-                        <ImageButton
-                            android:id="@+id/deleteTask"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/_12sdp"
-                            android:background="@drawable/shape_of_effect_btn_round"
-                            android:onClick="@{() -> viewModel.deleteTask()}"
-                            android:padding="@dimen/_6sdp"
-                            android:src="@drawable/ic_delete"
-                            android:visibility="gone"
-                            tools:ignore="ContentDescription" />
-
-                        <ImageButton
-                            android:id="@+id/save"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/_12sdp"
-                            android:padding="@dimen/_6sdp"
-                            android:background="@drawable/shape_of_effect_btn_round"
-                            android:src="@drawable/ic_check_circle"
-                            android:onClick="@{() -> viewModel.setTask()}"
-                            tools:ignore="ContentDescription" />
-
-                        <ImageButton
-                            android:id="@+id/update"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="@dimen/_12sdp"
-                            android:background="@drawable/shape_of_effect_btn_round"
-                            android:onClick="@{() -> viewModel.updateTaskByID()}"
-                            android:padding="@dimen/_6sdp"
-                            android:src="@drawable/ic_check_circle"
-                            android:visibility="gone"
-                            tools:ignore="ContentDescription" />
-
-
-                    </LinearLayout>
-
-
-                </com.google.android.material.appbar.MaterialToolbar>
-
-            </com.google.android.material.appbar.AppBarLayout>
-
-            <EditText
-                android:id="@+id/etNoteTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_16sdp"
-                android:textColorHint="@color/colorHint"
-                android:textColor="@color/colorText"
-                android:autofillHints=""
-                android:background="@null"
-                android:ellipsize="end"
-                android:fontFamily="@font/oxygen_bold"
-                android:hint="@string/title"
-                android:inputType="text"
-                android:maxLines="1"
-                android:padding="@dimen/_10sdp"
-                android:text="@={viewModel.task_title}"
-                android:textSize="@dimen/_15ssp"
-                app:layout_constraintEnd_toEndOf="@+id/tvDateTime"
-                app:layout_constraintStart_toStartOf="@+id/tvDateTime"
-                app:layout_constraintTop_toBottomOf="@id/appBarLayout" />
-
-
-            <TextView
-                android:id="@+id/tvDateTime"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:padding="@dimen/_10sdp"
-                android:textColorHint="@color/colorHint"
-                android:background="@drawable/shape_of_effect_btn"
-                android:ellipsize="end"
-                android:fontFamily="@font/oxygen_bold"
-                android:maxLines="1"
-                android:text="@{@string/date_created+' '+viewModel.date}"
-                android:textSize="@dimen/_10ssp"
-                app:drawableEndCompat="@drawable/ic_add_small"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/etNoteTitle"
-                tools:ignore="RtlSymmetry"
-                tools:text="2022/11/1, 10:00 PM" />
-
-            <EditText
-                android:id="@+id/etEventDesc"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:textColor="@color/colorText"
-                android:fontFamily="@font/cabin_medium"
-                android:hint="@string/desc"
-                android:importantForAutofill="no"
-                android:inputType="textMultiLine"
-                android:padding="@dimen/_10sdp"
-                android:text="@={viewModel.task_description}"
-                android:textColorHint="@color/colorHint"
-                android:textSize="@dimen/_12ssp"
-                app:layout_constraintEnd_toEndOf="@+id/tvDateTime"
-                app:layout_constraintStart_toStartOf="@+id/etNoteTitle"
-                app:layout_constraintTop_toBottomOf="@id/tvDateTime" />
-
-            <LinearLayout
-                android:id="@+id/layout_Web_url_task"
-                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:padding="@dimen/_10sdp"
-                android:visibility="gone"
-                android:weightSum="2"
-                app:layout_constraintEnd_toEndOf="@+id/etEventDesc"
-                app:layout_constraintStart_toStartOf="@+id/etEventDesc"
-                app:layout_constraintTop_toBottomOf="@id/etEventDesc">
+                android:gravity="start"
+                app:navigationIcon="@drawable/ic_back"
+                app:title="@string/add_task">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:gravity="end|center"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/addURL"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:background="@drawable/shape_of_effect_btn_round"
+                        android:padding="@dimen/_6sdp"
+                        android:src="@drawable/ic_language"
+                        android:visibility="@{viewModel.task_webUrl.empty ?View.VISIBLE:View.GONE}"
+                        tools:ignore="ContentDescription" />
+
+                    <ImageButton
+                        android:id="@+id/deleteTask"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:background="@drawable/shape_of_effect_btn_round"
+                        android:onClick="@{() -> viewModel.deleteTask()}"
+                        android:padding="@dimen/_6sdp"
+                        android:src="@drawable/ic_delete"
+                        android:visibility="gone"
+                        tools:ignore="ContentDescription" />
+
+                    <ImageButton
+                        android:id="@+id/save"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:background="@drawable/shape_of_effect_btn_round"
+                        android:onClick="@{() -> viewModel.setTask()}"
+                        android:padding="@dimen/_6sdp"
+                        android:src="@drawable/ic_check_circle"
+                        tools:ignore="ContentDescription" />
+
+                    <ImageButton
+                        android:id="@+id/update"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_12sdp"
+                        android:background="@drawable/shape_of_effect_btn_round"
+                        android:onClick="@{() -> viewModel.updateTaskByID()}"
+                        android:padding="@dimen/_6sdp"
+                        android:src="@drawable/ic_check_circle"
+                        android:visibility="gone"
+                        tools:ignore="ContentDescription" />
+
+
+                </LinearLayout>
+
+
+            </com.google.android.material.appbar.MaterialToolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@null"
+            android:scrollbarSize="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/etWebLink"
+                    android:id="@+id/etTaskTitle"
+                    style="@style/FieldAddData"
+                    android:hint="@string/title"
+                    android:layout_marginTop="@dimen/_24sdp"
+                    android:importantForAutofill="no"
+                    android:maxLength="50"
+                    android:maxLines="1"
+                    android:text="@={viewModel.task_title}"
+                    android:textSize="@dimen/_24ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvDateTime"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:autoLink="web"
-                    android:background="@null"
-                    android:ellipsize="end"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_6sdp"
+                    android:background="@drawable/shape_of_effect_btn"
                     android:fontFamily="@font/cabin_medium"
-                    android:hint="@string/web_url"
+                    android:padding="@dimen/_10sdp"
+                    android:text="@{@string/date_created+' '+viewModel.date}"
+                    android:textSize="@dimen/_12ssp"
+                    app:drawableEndCompat="@drawable/ic_add"
+                    app:layout_constraintEnd_toEndOf="@+id/etTaskTitle"
+                    app:layout_constraintStart_toStartOf="@+id/etTaskTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/etTaskTitle"
+                    tools:ignore="RtlSymmetry"
+                    tools:text="Jan 11,2023 10:00 PM" />
+
+                <EditText
+                    android:id="@+id/etTaskDesc"
+                    style="@style/FieldAddData"
+                    android:fontFamily="@font/cabin_medium"
+                    android:hint="@string/desc"
                     android:importantForAutofill="no"
                     android:inputType="textMultiLine"
-                    android:text="@={viewModel.task_webUrl}"
-                    android:textColor="@color/colorHint"
-                    android:textColorHint="@color/colorHint"
-                    android:textColorLink="@color/colorBlackNote"
-                    android:textSize="@dimen/_12ssp" />
+                    android:text="@={viewModel.task_description}"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintEnd_toEndOf="@+id/tvDateTime"
+                    app:layout_constraintStart_toStartOf="@+id/tvDateTime"
+                    app:layout_constraintTop_toBottomOf="@id/tvDateTime" />
 
-                <ImageButton
-                    android:id="@+id/clearWebURL"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end|center"
-                    android:layout_weight="1"
-                    android:background="@drawable/shape_of_effect_btn_round"
-                    android:padding="@dimen/_6sdp"
-                    android:src="@drawable/ic_close"
-                    app:layout_constraintBottom_toBottomOf="@+id/imgBack"
+                <LinearLayout
+                    android:id="@+id/layout_Web_url"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="@dimen/_6sdp"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:visibility="gone"
+                    android:weightSum="2"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/imgBack"
-                    tools:ignore="ContentDescription" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/etTaskDesc">
 
+                    <EditText
+                        android:id="@+id/etWebLink"
+                        style="@style/EditTextWebUrl"
+                        android:importantForAutofill="no"
+                        android:text="@={viewModel.task_webUrl}" />
 
-            </LinearLayout>
+                    <ImageButton
+                        android:id="@+id/clearWebURL"
+                        style="@style/BtnClose"
+                        android:src="@drawable/ic_close"
+                        tools:ignore="ContentDescription" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
 
-    </ScrollView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

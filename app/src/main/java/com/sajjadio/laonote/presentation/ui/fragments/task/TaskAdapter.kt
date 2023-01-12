@@ -24,7 +24,7 @@ class TaskAdapter @Inject constructor() : BaseAdapter<ItemTaskBinding, Task>() {
     override fun binder(binding: ItemTaskBinding, item: Task) {
         binding.apply {
             task = item
-            detailsLayout.setOnClickListener {
+            cardView.setOnClickListener {
                 onItemClickListener?.let { it(item) }
             }
             checkBox.setOnClickListener {
