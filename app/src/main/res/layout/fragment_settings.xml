@@ -50,7 +50,8 @@
             android:checked="@{viewModel.selectedTheme == uiMode.LIGHT ? false: true}"
             android:onCheckedChanged="@{viewModel::changeSelectedTheme}"
             android:text="@string/Theme"
-            android:textSize="@dimen/_14ssp"
+            android:fontFamily="@font/oxygen_bold"
+            android:textSize="@dimen/_18ssp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
@@ -61,7 +62,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/cabin_medium"
             android:text="@string/light_dark"
-            android:textSize="@dimen/_10ssp"
+            android:textSize="@dimen/_14ssp"
             app:layout_constraintEnd_toEndOf="@+id/switchTheme"
             app:layout_constraintStart_toStartOf="@+id/switchTheme"
             app:layout_constraintTop_toBottomOf="@+id/switchTheme" />

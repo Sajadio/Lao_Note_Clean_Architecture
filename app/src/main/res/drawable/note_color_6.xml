@@ -6,7 +6,7 @@
         <shape android:shape="oval">
             <stroke
                 android:width="@dimen/_2sdp"
-                android:color="@color/colorBlackNote" />
+                android:color="@color/colorText" />
         </shape>
     </item>
 

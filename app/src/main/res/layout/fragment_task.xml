@@ -87,7 +87,7 @@
             app:lottie_autoPlay="true"
             app:lottie_loop="false"
             app:lottie_rawRes="@raw/task"
-            app:lottie_speed="0.9" />
+            app:lottie_speed="0.8" />
 
 
         <ImageButton

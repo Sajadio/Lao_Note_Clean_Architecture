@@ -19,6 +19,7 @@ import com.sajjadio.laonote.utils.STANDARD_DATE
 import com.sajjadio.laonote.utils.extension.formatDate
 import com.sajjadio.laonote.utils.extension.observeEvent
 import com.sajjadio.laonote.utils.extension.setToolBar
+import com.sajjadio.laonote.utils.extension.showKeyboard
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_add_note.*
 import kotlinx.android.synthetic.main.fragment_add_task.*
@@ -53,6 +54,7 @@ class AddTaskFragment :
             }
             addURL.setOnClickListener {
                 layoutWebUrl.visibility = View.VISIBLE
+                etTaskeWebLink.showKeyboard()
             }
             clearWebURL.setOnClickListener {
                 layoutWebUrl.visibility = View.GONE

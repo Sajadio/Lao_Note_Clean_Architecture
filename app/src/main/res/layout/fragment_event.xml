@@ -9,6 +9,8 @@
             name="viewModel"
             type="com.sajjadio.laonote.presentation.ui.fragments.event.EventViewModel" />
 
+        <import type="android.view.View" />
+
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -21,7 +23,7 @@
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/app_bar_layout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_350sdp"
+            android:layout_height="@dimen/_410sdp"
             android:background="@color/colorPrimary"
             android:fitsSystemWindows="true">
 
@@ -53,12 +55,12 @@
             </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
-
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="@dimen/_5sdp"
             android:layout_marginTop="@dimen/_4sdp"
+            android:background="@color/colorSecond"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -73,19 +75,39 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_view"
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorPrimary"
-                    android:orientation="vertical"
-                    app:items="@{viewModel.eventResponseEvent.peekContent().data()}"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-                    tools:listitem="@layout/item_event" />
+                    android:layout_height="match_parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorPrimary"
+                        android:orientation="vertical"
+                        app:items="@{viewModel.eventResponseEvent.peekContent().data()}"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+                        tools:listitem="@layout/item_event" />
+
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/img"
+                        android:layout_width="@dimen/_250sdp"
+                        android:layout_height="@dimen/_250sdp"
+                        android:layout_gravity="center"
+                        android:visibility="@{viewModel.eventResponseEvent.peekContent().data().empty? View.VISIBLE :View.GONE}"
+                        app:layout_constraintBottom_toTopOf="@+id/layout"
+                        app:layout_constraintEnd_toEndOf="@+id/searchView"
+                        app:layout_constraintStart_toStartOf="@+id/searchView"
+                        app:layout_constraintTop_toBottomOf="@+id/searchView"
+                        app:lottie_autoPlay="true"
+                        app:lottie_loop="false"
+                        app:lottie_rawRes="@raw/event"
+                        app:lottie_speed="0.9" />
+                </FrameLayout>
 
             </androidx.core.widget.NestedScrollView>
 

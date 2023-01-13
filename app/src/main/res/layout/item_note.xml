@@ -88,7 +88,7 @@
                 tools:text="@string/desc" />
 
             <TextView
-                android:id="@+id/etWebLink"
+                android:id="@+id/etNoteWebLink"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_10sdp"

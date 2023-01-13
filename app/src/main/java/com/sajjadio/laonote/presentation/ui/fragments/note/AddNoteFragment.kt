@@ -71,7 +71,7 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding, NoteViewModel>(
             }
             clearWebURL.setOnClickListener {
                 layoutWebUrl.visibility = View.GONE
-                etWebLink.text.clear()
+                etNoteWebLink.text.clear()
             }
             imgDelete.setOnClickListener {
                 layoutImage.visibility = View.GONE
@@ -117,9 +117,7 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding, NoteViewModel>(
                     }
                     "WebUrl" -> {
                         layoutWebUrl.visibility = View.VISIBLE
-                    }
-                    "DeleteNote" -> {
-                        //
+                        etNoteWebLink.showKeyboard()
                     }
                     "FontYellow", "FontBlue", "FontPurple", "FontGreen", "FontOrange", "FontBlack", "FontWhite", "FontRed" -> {
                         selectedFontColor = p1.getIntExtra("selectedFontColors", 0)

@@ -93,6 +93,12 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
     private fun ImageButton.setListenerNoteColorBtn(color: Int, action: String) {
         this.setOnClickListener {
             handelSelectedNoteColor(this, color)
+            broadcastSender(TAG_NOTE_BOTTOM_SHEET, action)
+        }
+    }
+
+    private fun ImageButton.setListenerFontColorBtn(color: Int, action: String) {
+        this.setOnClickListener {
             handelSelectedFontColor(this, color)
             broadcastSender(TAG_NOTE_BOTTOM_SHEET, action)
         }
@@ -111,14 +117,14 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
     }
 
     private fun setListenerFontColor() {
-        fontColor1.setListenerNoteColorBtn(R.color.colorBlue, "FontBlue")
-        fontColor2.setListenerNoteColorBtn(R.color.colorYellowNote, "FontYellow")
-        fontColor3.setListenerNoteColorBtn(R.color.colorPurpleNote, "FontPurple")
-        fontColor4.setListenerNoteColorBtn(R.color.colorGreenNote, "FontGreen")
-        fontColor5.setListenerNoteColorBtn(R.color.colorOrangeNote, "FontOrange")
-        fontColor6.setListenerNoteColorBtn(R.color.colorText, "FontBlack")
-        fontColor7.setListenerNoteColorBtn(R.color.colorWhite, "FontWhite")
-        fontColor8.setListenerNoteColorBtn(R.color.colorRedNote, "FontRed")
+        fontColor1.setListenerFontColorBtn(R.color.colorBlue, "FontBlue")
+        fontColor2.setListenerFontColorBtn(R.color.colorYellowNote, "FontYellow")
+        fontColor3.setListenerFontColorBtn(R.color.colorPurpleNote, "FontPurple")
+        fontColor4.setListenerFontColorBtn(R.color.colorGreenNote, "FontGreen")
+        fontColor5.setListenerFontColorBtn(R.color.colorOrangeNote, "FontOrange")
+        fontColor6.setListenerFontColorBtn(R.color.colorText, "FontBlack")
+        fontColor7.setListenerFontColorBtn(R.color.colorWhite, "FontWhite")
+        fontColor8.setListenerFontColorBtn(R.color.colorRedNote, "FontRed")
     }
 
     private fun setListener() {

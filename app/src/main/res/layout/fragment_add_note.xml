@@ -194,7 +194,7 @@
                     app:layout_constraintTop_toBottomOf="@id/container1">
 
                     <EditText
-                        android:id="@+id/etWebLink"
+                        android:id="@+id/etNoteWebLink"
                         style="@style/EditTextWebUrl"
                         android:importantForAutofill="no"
                         android:text="@={viewModel.note_webUrl}" />
