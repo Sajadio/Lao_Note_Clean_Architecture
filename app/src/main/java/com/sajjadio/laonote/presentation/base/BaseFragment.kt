@@ -88,7 +88,7 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel>(@LayoutRe
 
     fun <T> checkResponseStatus(
         observer: LiveData<Event<NetworkResponse<T>>>,
-        navigator: Int = 0,
+        navigator: Int,
     ) {
         observer.observeEvent(viewLifecycleOwner) { status ->
             when (status) {

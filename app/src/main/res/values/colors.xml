@@ -19,7 +19,7 @@
     <color name="colorPurpleNote">#D500F9</color>
     <color name="colorGreenNote">#00E676</color>
     <color name="colorOrangeNote">#FF9100</color>
-    <color name="colorBlackNote">#202734</color>
+    <color name="colorBlackNote">#1F1F1F</color>
     <color name="colorRedNote">@android:color/holo_red_light</color>
 
     <color name="btn_effect">#E5E5E5</color>

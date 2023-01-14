@@ -112,7 +112,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         noteColor4.setListenerNoteColorBtn(R.color.colorGreenNote, "Green")
         noteColor5.setListenerNoteColorBtn(R.color.colorOrangeNote, "Orange")
         noteColor6.setListenerNoteColorBtn(R.color.colorBlackNote, "Black")
-        noteColor7.setListenerNoteColorBtn(R.color.colorPrimary, "White")
+        noteColor7.setListenerNoteColorBtn(R.color.colorWhite, "White")
         noteColor8.setListenerNoteColorBtn(R.color.colorRedNote, "Red")
     }
 
@@ -122,7 +122,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         fontColor3.setListenerFontColorBtn(R.color.colorPurpleNote, "FontPurple")
         fontColor4.setListenerFontColorBtn(R.color.colorGreenNote, "FontGreen")
         fontColor5.setListenerFontColorBtn(R.color.colorOrangeNote, "FontOrange")
-        fontColor6.setListenerFontColorBtn(R.color.colorText, "FontBlack")
+        fontColor6.setListenerFontColorBtn(R.color.colorBlackNote, "FontBlack")
         fontColor7.setListenerFontColorBtn(R.color.colorWhite, "FontWhite")
         fontColor8.setListenerFontColorBtn(R.color.colorRedNote, "FontRed")
     }

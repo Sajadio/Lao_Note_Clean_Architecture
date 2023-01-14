@@ -10,7 +10,10 @@ import com.sajjadio.laonote.R
 import com.sajjadio.laonote.databinding.FragmentAuthenticationBinding
 import com.sajjadio.laonote.presentation.base.BaseFragment
 import com.sajjadio.laonote.presentation.ui.activities.NoteActivity
+import com.sajjadio.laonote.utils.NetworkResponse
+import com.sajjadio.laonote.utils.extension.makeToast
 import com.sajjadio.laonote.utils.extension.navigateActivity
+import com.sajjadio.laonote.utils.extension.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.item_event.*
 import kotlinx.coroutines.flow.collectLatest
@@ -25,7 +28,9 @@ class AuthenticationFragment :
     override fun launchView() {
         binding?.apply {
             viewModel?.apply {
-                checkResponseStatus(eventResponse)
+                eventResponse.observeEvent(viewLifecycleOwner){
+                    checkResponseStatus(it)
+                }
             }
             skip.setOnClickListener {
                 authActivity.navigateActivity<NoteActivity>(isFinish = true)
@@ -39,6 +44,20 @@ class AuthenticationFragment :
             }
         }
     }
+
+    private fun checkResponseStatus(status: NetworkResponse<Any?>) = when (status) {
+        is NetworkResponse.Loading -> {
+            progressDialog.show()
+        }
+        is NetworkResponse.Success -> {
+            progressDialog.dismiss()
+        }
+        is NetworkResponse.Error -> {
+            progressDialog.dismiss()
+            requireContext().makeToast(status.errorMessage.toString())
+        }
+    }
+
 
     @RequiresApi(Build.VERSION_CODES.P)
     private fun getSigInGoogleResultIntent(result: ActivityResult) {
