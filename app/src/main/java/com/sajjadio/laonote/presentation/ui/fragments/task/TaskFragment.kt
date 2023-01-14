@@ -1,6 +1,9 @@
 package com.sajjadio.laonote.presentation.ui.fragments.task
 
 import android.os.Bundle
+import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import androidx.appcompat.widget.SearchView
 import androidx.navigation.fragment.findNavController
 import com.sajjadio.laonote.R
@@ -19,14 +22,30 @@ class TaskFragment : BaseFragment<FragmentTaskBinding, TaskViewModel>(R.layout.f
     @Inject
     lateinit var taskAdapter: TaskAdapter
 
+    private val fromTop: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            noteActivity,
+            R.anim.from_top_anim
+        )
+    }
+    private val toTop: Animation by lazy {
+        AnimationUtils.loadAnimation(
+            noteActivity,
+            R.anim.to_top_anim
+        )
+    }
+
+    private var clicked = false
+
     override fun launchView() {
         binding?.apply {
-            root.transitionName = TRANSITION_ELEMENT_ROOT
             noteActivity.setToolBar(materialToolbar)
             fabBtnAddTask.moveToDestination(
                 TaskFragmentDirections.actionTaskFragmentToAddTaskFragment()
             )
-
+            filter.setOnClickListener {
+                onAddButtonClicked()
+            }
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
                     return false
@@ -51,6 +70,33 @@ class TaskFragment : BaseFragment<FragmentTaskBinding, TaskViewModel>(R.layout.f
                 checkBoxListener { task_id, isDone ->
                     viewModel?.isTaskDoneUseCase(task_id, isDone)
                 }
+            }
+        }
+    }
+
+    private fun onAddButtonClicked() {
+        setVisibility(clicked)
+        setAnimation(clicked)
+        clicked = !clicked
+    }
+
+    private fun setVisibility(clicked: Boolean) {
+        binding?.apply {
+            if (!clicked) {
+                filterLayout.root.visibility = View.VISIBLE
+            } else {
+                filterLayout.root.visibility = View.INVISIBLE
+
+            }
+        }
+    }
+
+    private fun setAnimation(clicked: Boolean) {
+        binding?.apply {
+            if (!clicked) {
+                filterLayout.root.startAnimation(fromTop)
+            } else {
+                filterLayout.root.startAnimation(toTop)
             }
         }
     }

@@ -1,4 +1,4 @@
-package com.sajjadio.laonote.data.remote.firestore
+package com.sajjadio.laonote.data.remote.firestore.storage
 
 import android.content.Context
 import android.net.Uri

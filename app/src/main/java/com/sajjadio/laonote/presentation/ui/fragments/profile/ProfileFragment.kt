@@ -20,7 +20,6 @@ class ProfileFragment :
     @RequiresApi(Build.VERSION_CODES.P)
     override fun launchView() {
         binding?.apply {
-            root.transitionName = TRANSITION_ELEMENT_ROOT
             noteActivity.setToolBar(materialToolbar)
             settings.moveToDestination(
                 ProfileFragmentDirections.actionProfileFragmentToSettingsFragment()

@@ -16,7 +16,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.sajjadio.laonote.R
 import com.sajjadio.laonote.databinding.FragmentAddNoteBinding
@@ -43,7 +42,7 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding, NoteViewModel>(
     @Inject
     lateinit var helper: PermissionsHelper
     override val viewModelClass = NoteViewModel::class.java
-    var selectedNoteColor = R.color.colorSecond
+    var selectedNoteColor = R.color.colorPrimary
     var selectedFontColor = R.color.colorHint
     private val args: AddNoteFragmentArgs by navArgs()
 
@@ -55,17 +54,16 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding, NoteViewModel>(
             setNoteColor(selectedNoteColor)
             setFontColor(selectedFontColor)
             noteDetails(args.note)
-            viewModel?.apply {
-                eventResponse.observeEvent(viewLifecycleOwner) { status ->
-                    checkResponseStatus(status)
-                    if (status is NetworkResponse.Success) {
-                        findNavController().navigate(R.id.action_addNoteFragment_to_noteFragment)
-                    }
-                }
-//                eventManageImageStorage.observeEvent(viewLifecycleOwner) { status ->
-//                    checkResponseStatus(status)
-//                }
-            }
+            observeNetworkResponse()
+            setUpClickListener()
+        }
+        LocalBroadcastManager.getInstance(requireContext()).registerReceiver(
+            broadcastReceiver, IntentFilter(TAG_NOTE_BOTTOM_SHEET)
+        )
+    }
+
+    private fun setUpClickListener() {
+        binding?.apply {
             miscrollaneous.setOnClickListener {
                 openBottomSheet()
             }
@@ -78,9 +76,15 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding, NoteViewModel>(
                 viewModel?.note_image?.postValue("")
             }
         }
-        LocalBroadcastManager.getInstance(requireContext()).registerReceiver(
-            broadcastReceiver, IntentFilter(TAG_NOTE_BOTTOM_SHEET)
-        )
+    }
+
+    private fun observeNetworkResponse() {
+        viewModel.apply {
+            checkResponseStatus(
+                eventResponse,
+                R.id.action_addNoteFragment_to_noteFragment
+            )
+        }
     }
 
     private fun noteDetails(note: Note?) {

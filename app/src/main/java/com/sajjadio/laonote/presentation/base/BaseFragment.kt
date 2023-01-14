@@ -9,13 +9,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.transition.MaterialFadeThrough
 import com.sajjadio.laonote.BR
 import com.sajjadio.laonote.R
 import com.sajjadio.laonote.presentation.ui.activities.AuthenticationActivity
 import com.sajjadio.laonote.presentation.ui.activities.NoteActivity
 import com.sajjadio.laonote.utils.NetworkResponse
+import com.sajjadio.laonote.utils.event.Event
 import com.sajjadio.laonote.utils.extension.makeToast
+import com.sajjadio.laonote.utils.extension.observeEvent
 import dmax.dialog.SpotsDialog
 
 abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel>(@LayoutRes private val layoutId: Int) :
@@ -32,7 +35,7 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel>(@LayoutRe
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        binding?.root?.transitionName = TRANSITION_ELEMENT_ROOT
         exitTransition = MaterialFadeThrough().apply {
             duration = TRANSITION_DURATION
         }
@@ -40,6 +43,7 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel>(@LayoutRe
             duration = TRANSITION_DURATION
         }
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -82,20 +86,29 @@ abstract class BaseFragment<VDB : ViewDataBinding, VM : BaseViewModel>(@LayoutRe
         }
     }
 
-    fun <T> checkResponseStatus(status: NetworkResponse<T>) = when (status) {
-        is NetworkResponse.Loading -> {
-            progressDialog.show()
-            false
+    fun <T> checkResponseStatus(
+        observer: LiveData<Event<NetworkResponse<T>>>,
+        navigator: Int = 0,
+    ) {
+        observer.observeEvent(viewLifecycleOwner) { status ->
+            when (status) {
+                is NetworkResponse.Loading -> {
+                    progressDialog.show()
+                }
+                is NetworkResponse.Success -> {
+                    progressDialog.dismiss()
+                    moveToDestination(navigator)
+                }
+                is NetworkResponse.Error -> {
+                    progressDialog.dismiss()
+                    requireContext().makeToast(status.errorMessage.toString())
+                }
+            }
         }
-        is NetworkResponse.Success -> {
-            progressDialog.dismiss()
-            true
-        }
-        is NetworkResponse.Error -> {
-            progressDialog.dismiss()
-            requireContext().makeToast(status.errorMessage.toString())
-            false
-        }
+    }
+
+    private fun moveToDestination(navigator: Int) {
+        findNavController().navigate(navigator)
     }
 
     override fun onDestroyView() {

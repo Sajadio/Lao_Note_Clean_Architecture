@@ -6,17 +6,14 @@ import android.app.TimePickerDialog
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.sajjadio.laonote.R
 import com.sajjadio.laonote.databinding.FragmentAddEventBinding
 import com.sajjadio.laonote.domain.model.EventModel
 import com.sajjadio.laonote.presentation.base.BaseFragment
 import com.sajjadio.laonote.utils.FULL_DATE
-import com.sajjadio.laonote.utils.NetworkResponse
 import com.sajjadio.laonote.utils.STANDARD_DATE
 import com.sajjadio.laonote.utils.extension.formatDate
-import com.sajjadio.laonote.utils.extension.observeEvent
 import com.sajjadio.laonote.utils.extension.setToolBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_add_note.*
@@ -25,7 +22,8 @@ import kotlinx.android.synthetic.main.fragment_task.*
 import java.util.*
 
 @AndroidEntryPoint
-class AddEventFragment : BaseFragment<FragmentAddEventBinding, EventViewModel>(R.layout.fragment_add_event) {
+class AddEventFragment :
+    BaseFragment<FragmentAddEventBinding, EventViewModel>(R.layout.fragment_add_event) {
 
     override val viewModelClass = EventViewModel::class.java
     private val args: AddEventFragmentArgs by navArgs()
@@ -34,20 +32,18 @@ class AddEventFragment : BaseFragment<FragmentAddEventBinding, EventViewModel>(R
     @SuppressLint("SimpleDateFormat", "NewApi")
     override fun launchView() {
         binding?.apply {
-            root.transitionName = TRANSITION_ELEMENT_ROOT
             noteActivity.setToolBar(materialToolbar)
             eventDetails(args.event)
-            viewModel?.apply {
-                eventResponse.observeEvent(viewLifecycleOwner) { status ->
-                    checkResponseStatus(status)
-                    if (status is NetworkResponse.Success) {
-                        findNavController().navigate(R.id.action_addEventFragment_to_eventFragment)
-                    }
-                }
-            }
+            observeNetworkResponse()
             tvDateTime.setOnClickListener {
                 pickDateTime()
             }
+        }
+    }
+
+    private fun observeNetworkResponse() {
+        viewModel.apply {
+            checkResponseStatus(eventResponse, R.id.action_addEventFragment_to_eventFragment)
         }
     }
 
@@ -78,8 +74,12 @@ class AddEventFragment : BaseFragment<FragmentAddEventBinding, EventViewModel>(R
         DatePickerDialog(requireContext(), { _, year, month, day ->
             TimePickerDialog(requireContext(), { _, hour, minute ->
                 pickedDateTime.set(year, month, day, hour, minute)
-                viewModel.date.postValue(pickedDateTime.time.toString().formatDate(STANDARD_DATE,
-                    FULL_DATE))
+                viewModel.date.postValue(
+                    pickedDateTime.time.toString().formatDate(
+                        STANDARD_DATE,
+                        FULL_DATE
+                    )
+                )
             }, startHour, startMinute, false).show()
         }, startYear, startMonth, startDay).show()
     }

@@ -21,8 +21,6 @@ class NoteFragment : BaseFragment<FragmentNoteBinding, NoteViewModel>(R.layout.f
 
     override fun launchView() {
         binding?.apply {
-            root.transitionName = TRANSITION_ELEMENT_ROOT
-
             noteAdapter.apply {
                 recyclerView.adapter = this
                 onItemClickListener { note ->

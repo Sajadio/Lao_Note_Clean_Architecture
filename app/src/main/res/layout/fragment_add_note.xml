@@ -72,7 +72,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_12sdp"
                         android:background="@drawable/shape_of_effect_btn_round"
-                        android:onClick="@{() -> viewModel.updateNoteByID()}"
+                        android:onClick="@{() -> viewModel.updateNote()}"
                         android:padding="@dimen/_6sdp"
                         android:src="@drawable/ic_check_circle"
                         android:visibility="gone"

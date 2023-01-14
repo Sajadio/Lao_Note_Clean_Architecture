@@ -1,7 +1,6 @@
 package com.sajjadio.laonote.presentation.ui.fragments.note
 
 import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -16,7 +15,6 @@ import com.sajjadio.laonote.presentation.base.BaseViewModel
 import com.sajjadio.laonote.utils.FULL_DATE
 import com.sajjadio.laonote.utils.NetworkResponse
 import com.sajjadio.laonote.utils.STANDARD_DATE
-import com.sajjadio.laonote.utils.TAG
 import com.sajjadio.laonote.utils.event.Event
 import com.sajjadio.laonote.utils.extension.formatDate
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -30,12 +28,12 @@ class NoteViewModel @Inject constructor(
     private val setNoteUseCase: SetNoteUseCase,
     private val getNotesUseCase: GetNotesUseCase,
     private val getNotesByTitleUseCase: GetNotesByTitleUseCase,
-    private val updateNoteByIDUseCase: UpdateNoteByIDUseCase,
+    private val updateNoteUseCase: UpdateNoteUseCase,
     private val deleteNotesUseCase: DeleteNotesUseCase,
     private val validateTitleUseCase: ValidateTitleUseCase,
     private val validateWebURLUseCase: ValidateWebURLUseCase,
     private val getUserInfoUseCase: GetUserInfoUseCase,
-    private val noteRepo: NoteRepository
+    private val noteRepo: NoteRepository,
 ) : BaseViewModel() {
 
     private val _eventResponse = MutableLiveData<Event<NetworkResponse<Any>>>()
@@ -57,8 +55,6 @@ class NoteViewModel @Inject constructor(
         )
     )
     val note_last_update = MutableLiveData("")
-
-
     val user = MutableLiveData<User>()
 
     init {
@@ -98,15 +94,12 @@ class NoteViewModel @Inject constructor(
     }
 
     fun getNotesByTitle(title: String) {
-        if (title.isEmpty()) {
-            getNotes()
-        } else
-            viewModelScope.launch {
-                getNotesByTitleUseCase(title).collectLatest {
-                    eventResponseNotes.postValue(Event(checkNetworkResponseStatus(it)))
-                    isLoading.postValue(it is NetworkResponse.Loading)
-                }
+        viewModelScope.launch {
+            getNotesByTitleUseCase(title).collectLatest {
+                eventResponseNotes.postValue(Event(checkNetworkResponseStatus(it)))
+                isLoading.postValue(it is NetworkResponse.Loading)
             }
+        }
     }
 
     fun deleteNotes() {
@@ -139,7 +132,7 @@ class NoteViewModel @Inject constructor(
         }
     }
 
-    fun updateNoteByID() {
+    fun updateNote() {
         viewModelScope.launch {
             if (validateNoteFiled()) {
                 val note = Note(
@@ -155,7 +148,7 @@ class NoteViewModel @Inject constructor(
                         STANDARD_DATE, FULL_DATE
                     ).toString()
                 )
-                updateNoteByIDUseCase(note).collectLatest { response ->
+                updateNoteUseCase(note).collectLatest { response ->
                     _eventResponse.postValue(Event(checkNetworkResponseStatus(response)))
                 }
             } else
@@ -178,7 +171,6 @@ class NoteViewModel @Inject constructor(
     }
 
     fun showNoteDetails(note: Note) {
-        Log.d(TAG, "showNoteDetails: ${note.note_image}")
         notID.postValue(note.note_id)
         note_title.postValue(note.note_title)
         note_subTitle.postValue(note.note_subTitle)

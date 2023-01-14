@@ -85,7 +85,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_12sdp"
                         android:background="@drawable/shape_of_effect_btn_round"
-                        android:onClick="@{() -> viewModel.updateTaskByID()}"
+                        android:onClick="@{() -> viewModel.updateTask()}"
                         android:padding="@dimen/_6sdp"
                         android:src="@drawable/ic_check_circle"
                         android:visibility="gone"

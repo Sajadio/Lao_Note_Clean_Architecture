@@ -1,6 +1,5 @@
 package com.sajjadio.laonote.utils
 
-import android.annotation.SuppressLint
 import android.os.Build
 import android.view.View
 import android.widget.EditText
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textview.MaterialTextView
 import com.makeramen.roundedimageview.RoundedImageView
 import com.sajjadio.laonote.presentation.base.BaseAdapter
-import com.sajjadio.laonote.utils.extension.formatDate
 import com.sajjadio.laonote.utils.extension.loadImage
 import kotlinx.android.synthetic.main.color_picker_dialog.view.*
 import java.util.*
@@ -63,13 +61,4 @@ fun setFontColor(view: View, color: Int?) {
 
     }
 }
-
-
-@SuppressLint("SimpleDateFormat")
-@RequiresApi(Build.VERSION_CODES.M)
-@BindingAdapter(value = ["app:formatDate"])
-fun formatDate(view: TextView, date: String?) {
-    view.text = date.formatDate(FULL_DATE, HOUR_AND_MINT)
-}
-
 

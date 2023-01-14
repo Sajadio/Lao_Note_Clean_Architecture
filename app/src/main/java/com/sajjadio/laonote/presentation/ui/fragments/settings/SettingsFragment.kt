@@ -13,7 +13,6 @@ class SettingsFragment :
 
     override fun launchView() {
         binding?.apply {
-            root.transitionName = TRANSITION_ELEMENT_ROOT
             noteActivity.setToolBar(materialToolbar)
         }
     }

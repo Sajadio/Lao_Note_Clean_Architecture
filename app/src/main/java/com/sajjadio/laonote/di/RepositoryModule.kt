@@ -2,8 +2,10 @@ package com.sajjadio.laonote.di
 
 
 import com.sajjadio.laonote.data.remote.auth.Authentication
-import com.sajjadio.laonote.data.remote.firestore.DocumentaryFireStore
-import com.sajjadio.laonote.data.remote.firestore.FireStorage
+import com.sajjadio.laonote.data.remote.firestore.EventsDocFireStore
+import com.sajjadio.laonote.data.remote.firestore.NotesDocFireStore
+import com.sajjadio.laonote.data.remote.firestore.TasksDocFireStore
+import com.sajjadio.laonote.data.remote.firestore.storage.FireStorage
 import com.sajjadio.laonote.data.repository.*
 import com.sajjadio.laonote.domain.repository.*
 import dagger.Module
@@ -29,19 +31,19 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideNoteRepository(
-        documentaryFireStore: DocumentaryFireStore,
+        documentaryFireStore: NotesDocFireStore,
         fireStorage: FireStorage
     ): NoteRepository =
         NoteRepositoryImpl(documentaryFireStore, fireStorage)
 
     @Singleton
     @Provides
-    fun provideTaskRepository(documentaryFireStore: DocumentaryFireStore): TaskRepository =
+    fun provideTaskRepository(documentaryFireStore: TasksDocFireStore): TaskRepository =
         TaskRepositoryImpl(documentaryFireStore)
 
     @Singleton
     @Provides
-    fun provideEventRepository(documentaryFireStore: DocumentaryFireStore): EventRepository =
+    fun provideEventRepository(documentaryFireStore: EventsDocFireStore): EventRepository =
         EventRepositoryImpl(documentaryFireStore)
 
 

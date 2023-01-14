@@ -8,10 +8,12 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.sajjadio.laonote.data.remote.auth.Authentication
 import com.sajjadio.laonote.data.remote.auth.AuthenticationImpl
-import com.sajjadio.laonote.data.remote.firestore.DocumentaryFireStore
-import com.sajjadio.laonote.data.remote.firestore.DocumentaryFireStoreImpl
-import com.sajjadio.laonote.data.remote.firestore.FireStorage
-import com.sajjadio.laonote.data.remote.firestore.FireStorageImpl
+import com.sajjadio.laonote.data.remote.firestore.*
+import com.sajjadio.laonote.data.remote.firestore.implementation.EventsDocFireStoreImpl
+import com.sajjadio.laonote.data.remote.firestore.implementation.NotesDocFireStoreImpl
+import com.sajjadio.laonote.data.remote.firestore.implementation.TasksDocFireStoreImpl
+import com.sajjadio.laonote.data.remote.firestore.storage.FireStorage
+import com.sajjadio.laonote.data.remote.firestore.storage.FireStorageImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -42,9 +44,15 @@ object FirebaseModule {
 
     @Singleton
     @Provides
-    fun provideFireStoreDocumentary(fireStore: FirebaseFirestore): DocumentaryFireStore {
-        return DocumentaryFireStoreImpl(fireStore)
-    }
+    fun provideNotesDocFireStore(fireStore: FirebaseFirestore): NotesDocFireStore  = NotesDocFireStoreImpl(fireStore)
+
+    @Singleton
+    @Provides
+    fun provideTasksDocFireStore(fireStore: FirebaseFirestore): TasksDocFireStore = TasksDocFireStoreImpl(fireStore)
+
+    @Singleton
+    @Provides
+    fun provideEventsDocFireStore(fireStore: FirebaseFirestore): EventsDocFireStore = EventsDocFireStoreImpl(fireStore)
 
     @Singleton
     @Provides

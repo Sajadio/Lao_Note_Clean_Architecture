@@ -7,17 +7,14 @@ import android.os.Build
 import android.view.View
 import androidx.annotation.RequiresApi
 import androidx.core.view.isVisible
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.sajjadio.laonote.R
 import com.sajjadio.laonote.databinding.FragmentAddTaskBinding
 import com.sajjadio.laonote.domain.model.Task
 import com.sajjadio.laonote.presentation.base.BaseFragment
 import com.sajjadio.laonote.utils.FULL_DATE
-import com.sajjadio.laonote.utils.NetworkResponse
 import com.sajjadio.laonote.utils.STANDARD_DATE
 import com.sajjadio.laonote.utils.extension.formatDate
-import com.sajjadio.laonote.utils.extension.observeEvent
 import com.sajjadio.laonote.utils.extension.setToolBar
 import com.sajjadio.laonote.utils.extension.showKeyboard
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,18 +34,15 @@ class AddTaskFragment :
     @SuppressLint("SimpleDateFormat", "NewApi")
     override fun launchView() {
         binding?.apply {
-            root.transitionName = TRANSITION_ELEMENT_ROOT
             noteActivity.setToolBar(materialToolbar)
             taskDetails(args.task)
-            viewModel?.apply {
-                eventResponse.observeEvent(viewLifecycleOwner) { status ->
-                    checkResponseStatus(status)
-                    if (status is NetworkResponse.Success) {
-                        findNavController().navigate(R.id.action_addTaskFragment_to_taskFragment)
-                    }
-                }
-            }
-//
+            observeNetworkResponse()
+            setUpClickListener()
+        }
+    }
+
+    private fun setUpClickListener() {
+        binding?.apply {
             tvDateTime.setOnClickListener {
                 pickDateTime()
             }
@@ -60,6 +54,15 @@ class AddTaskFragment :
                 layoutWebUrl.visibility = View.GONE
                 viewModel?.task_webUrl?.postValue(null)
             }
+        }
+    }
+
+    private fun observeNetworkResponse() {
+        viewModel.apply {
+            checkResponseStatus(
+                eventResponse,
+                R.id.action_addTaskFragment_to_taskFragment
+            )
         }
     }
 
@@ -91,7 +94,7 @@ class AddTaskFragment :
             TimePickerDialog(requireContext(), { _, hour, minute ->
                 pickedDateTime.set(year, month, day, hour, minute)
                 viewModel.date.postValue(
-                    pickedDateTime.time.toString().formatDate(STANDARD_DATE,FULL_DATE)
+                    pickedDateTime.time.toString().formatDate(STANDARD_DATE, FULL_DATE)
                 )
             }, startHour, startMinute, false).show()
         }, startYear, startMonth, startDay).show()

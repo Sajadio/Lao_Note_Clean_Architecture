@@ -9,7 +9,6 @@ import android.view.View
 import android.webkit.MimeTypeMap
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.Navigation
 import com.sajjadio.laonote.utils.event.Event
@@ -30,12 +29,6 @@ fun <T> LiveData<Event<T>>.observeEvent(owner: LifecycleOwner, function: (T) -> 
     this.observe(owner, EventObserver { it ->
         function(it)
     })
-}
-
-fun LifecycleOwner.launchOnLifecycleScope(execute: suspend () -> Unit) {
-    this.lifecycleScope.launchWhenCreated {
-        execute()
-    }
 }
 
 fun getFileExtension(context: Context, uri: Uri?) =

@@ -22,7 +22,6 @@ class EventFragment : BaseFragment<FragmentEventBinding, EventViewModel>(R.layou
     @SuppressLint("NewApi", "SimpleDateFormat")
     override fun launchView() {
         binding?.apply {
-            root.transitionName = TRANSITION_ELEMENT_ROOT
             noteActivity.setToolBar(materialToolbar)
             fabBtnAddEvent.moveToDestination(
                 EventFragmentDirections.actionEventFragmentToAddEventFragment()

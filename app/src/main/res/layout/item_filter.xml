@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+   >
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.sajjadio.laonote.presentation.ui.fragments.task.TaskViewModel" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/border_filter"
+        android:gravity="start|center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/all"
+            style="@style/FieldsProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:onClick="@{() -> viewModel.getTasks()}"
+            android:text="@string/all_task" />
+
+        <TextView
+            android:id="@+id/completed_task"
+            style="@style/FieldsProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:onClick="@{() -> viewModel.getCompleteTasks()}"
+            android:text="@string/completed_task" />
+
+        <TextView
+            android:id="@+id/inCompleted_task"
+            style="@style/FieldsProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0dp"
+            android:onClick="@{() -> viewModel.getInCompleteTasks()}"
+            android:text="@string/incomplete_task" />
+
+    </LinearLayout>
+</layout>

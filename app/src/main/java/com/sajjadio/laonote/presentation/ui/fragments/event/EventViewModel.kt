@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.sajjadio.laonote.domain.model.EventModel
+import com.sajjadio.laonote.domain.usecase.ValidateDateUseCase
 import com.sajjadio.laonote.domain.usecase.ValidateTitleUseCase
 import com.sajjadio.laonote.domain.usecase.event.*
 import com.sajjadio.laonote.presentation.base.BaseViewModel
@@ -17,12 +18,13 @@ import javax.inject.Inject
 @HiltViewModel
 class EventViewModel @Inject constructor(
     private val setEventUseCase: SetEventUseCase,
-    private val updateEventByIDUseCase: UpdateEventByIDUseCase,
+    private val updateEventUseCase: UpdateEventUseCase,
     private val getEventsUseCase: GetEventsUseCase,
     private val getEventsByDateUseCase: GetEventsByDateUseCase,
     private val deleteEventUseCase: DeleteEventUseCase,
     private val validateTitleUseCase: ValidateTitleUseCase,
-) : BaseViewModel() {
+    private val validateDateUseCase: ValidateDateUseCase,
+    ) : BaseViewModel() {
 
     private val _eventResponse = MutableLiveData<Event<NetworkResponse<Any>>>()
     val eventResponse: LiveData<Event<NetworkResponse<Any>>> = _eventResponse
@@ -85,7 +87,7 @@ class EventViewModel @Inject constructor(
         }
     }
 
-    fun updateEventByID() {
+    fun updateEvent() {
         viewModelScope.launch {
             if (validateEventFiled()) {
                 val event = EventModel(
@@ -94,7 +96,7 @@ class EventViewModel @Inject constructor(
                     event_description = event_description.value.toString(),
                     event_date_created = date.value.toString()
                 )
-                updateEventByIDUseCase(event).collectLatest { response ->
+                updateEventUseCase(event).collectLatest { response ->
                     _eventResponse.postValue(Event(checkNetworkResponseStatus(response)))
                 }
             } else
@@ -104,8 +106,13 @@ class EventViewModel @Inject constructor(
 
     private fun validateEventFiled(): Boolean {
         val validEventTitle = validateTitleUseCase(event_title.value.toString())
+        val validEventDate = validateDateUseCase(date.value.toString())
         if (!validEventTitle.successful) {
             _eventResponse.postValue(Event(NetworkResponse.Error(validEventTitle.errorMessage)))
+            return false
+        }
+        if (!validEventDate.successful) {
+            _eventResponse.postValue(Event(NetworkResponse.Error(validEventDate.errorMessage)))
             return false
         }
         return true

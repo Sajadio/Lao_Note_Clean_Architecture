@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.fragment_notes_bottom_sheet.*
 class BottomSheetFragment : BottomSheetDialogFragment() {
 
     private var binding: FragmentNotesBottomSheetBinding? = null
-    private var selectNoteColors = R.color.colorSecond
+    private var selectNoteColors = R.color.colorPrimary
     private var selectFontColors = R.color.colorHint
 
     override fun onCreateView(
@@ -112,7 +112,7 @@ class BottomSheetFragment : BottomSheetDialogFragment() {
         noteColor4.setListenerNoteColorBtn(R.color.colorGreenNote, "Green")
         noteColor5.setListenerNoteColorBtn(R.color.colorOrangeNote, "Orange")
         noteColor6.setListenerNoteColorBtn(R.color.colorBlackNote, "Black")
-        noteColor7.setListenerNoteColorBtn(R.color.colorSecond, "White")
+        noteColor7.setListenerNoteColorBtn(R.color.colorPrimary, "White")
         noteColor8.setListenerNoteColorBtn(R.color.colorRedNote, "Red")
     }
 

@@ -11,7 +11,6 @@ import com.sajjadio.laonote.databinding.FragmentAuthenticationBinding
 import com.sajjadio.laonote.presentation.base.BaseFragment
 import com.sajjadio.laonote.presentation.ui.activities.NoteActivity
 import com.sajjadio.laonote.utils.extension.navigateActivity
-import com.sajjadio.laonote.utils.extension.observeEvent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.item_event.*
 import kotlinx.coroutines.flow.collectLatest
@@ -25,8 +24,8 @@ class AuthenticationFragment :
     @SuppressLint("NewApi")
     override fun launchView() {
         binding?.apply {
-            viewModel?.eventResponse?.observeEvent(viewLifecycleOwner) { status ->
-                checkResponseStatus(status)
+            viewModel?.apply {
+                checkResponseStatus(eventResponse)
             }
             skip.setOnClickListener {
                 authActivity.navigateActivity<NoteActivity>(isFinish = true)
