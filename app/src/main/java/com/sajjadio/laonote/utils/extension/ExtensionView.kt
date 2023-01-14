@@ -6,6 +6,8 @@ import android.graphics.Color
 import android.util.Log
 import android.view.View
 import android.view.Window
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -21,6 +23,7 @@ import com.sajjadio.laonote.R
 import com.sajjadio.laonote.utils.TAG
 import java.util.*
 
+
 @SuppressLint("UseCompatLoadingForDrawables")
 fun ImageView.loadImage(url: String?) {
 
@@ -28,7 +31,7 @@ fun ImageView.loadImage(url: String?) {
         url?.let {
             Glide.with(this)
                 .load(url)
-                .error(this.context.getDrawable(R.drawable.ic_outline_image_24))
+                .error(this.context.getDrawable(R.drawable.ic_outline_broken_image_24))
                 .placeholder(this.context.getDrawable(R.drawable.ic_outline_image_24))
                 .into(this)
         }
@@ -37,6 +40,7 @@ fun ImageView.loadImage(url: String?) {
     }
 
 }
+
 
 fun Window.hideSystemUI(view: View) {
     WindowCompat.setDecorFitsSystemWindows(this, false)
@@ -87,4 +91,10 @@ fun AppCompatActivity.setToolBar(toolbar: Toolbar, isBack: Boolean = true) {
     this.setSupportActionBar(toolbar)
     supportActionBar!!.setDisplayHomeAsUpEnabled(isBack)
     supportActionBar!!.setDisplayShowHomeEnabled(isBack)
+}
+
+fun EditText.showKeyboard() {
+    this.requestFocus()
+    (this.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager)
+        .showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
 }

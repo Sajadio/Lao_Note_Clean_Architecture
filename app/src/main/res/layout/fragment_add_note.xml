@@ -64,7 +64,7 @@
                         android:onClick="@{() -> viewModel.setNote()}"
                         android:padding="@dimen/_6sdp"
                         android:src="@drawable/ic_check_circle"
-                        tools:ignore="ContentDescription" />
+                        tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                     <ImageButton
                         android:id="@+id/update"
@@ -104,8 +104,8 @@
                     android:id="@+id/container1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:gravity="start"
                     android:layout_marginTop="@dimen/_24sdp"
+                    android:gravity="start"
                     android:orientation="vertical"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -160,6 +160,7 @@
                         android:importantForAutofill="no"
                         android:maxLength="50"
                         android:maxLines="1"
+                        android:minHeight="48dp"
                         android:text="@={viewModel.note_subTitle}"
                         android:textColorHint="@color/colorHint"
                         android:textSize="@dimen/_16ssp"
@@ -172,6 +173,7 @@
                         android:hint="@string/desc"
                         android:importantForAutofill="no"
                         android:inputType="textMultiLine"
+                        android:minHeight="48dp"
                         android:text="@={viewModel.note_description}"
                         android:textSize="@dimen/_14ssp"
                         app:setFontColor="@{viewModel.font_color}" />
@@ -240,16 +242,17 @@
                         android:layout_alignTop="@+id/imgNote"
                         android:layout_alignParentEnd="true"
                         android:background="@drawable/shape_of_effect_btn"
+                        android:minWidth="@dimen/_48sdp"
+                        android:minHeight="@dimen/_48sdp"
                         android:padding="@dimen/_6sdp"
                         android:src="@drawable/ic_close"
                         app:tint="@color/colorRedNote"
-                        tools:ignore="ContentDescription" />
+                        tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
                 </RelativeLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
-
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -262,12 +265,14 @@
 
             <ImageButton
                 android:id="@+id/miscrollaneous"
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@drawable/shape_of_effect_btn"
+                android:minWidth="@dimen/_48sdp"
+                android:minHeight="@dimen/_48sdp"
                 android:src="@drawable/ic_bar"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
         </FrameLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

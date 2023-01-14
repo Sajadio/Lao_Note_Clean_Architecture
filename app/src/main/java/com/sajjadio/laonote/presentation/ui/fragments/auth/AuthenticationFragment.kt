@@ -58,7 +58,7 @@ class AuthenticationFragment :
         super.onStart()
         launchOnLifecycleScope {
             authActivity.sessionManager.accessToken.collectLatest { token ->
-                if (token?.isNotEmpty() == true) {
+                token?.let {
                     authActivity.navigateActivity<NoteActivity>(isFinish = true)
                 }
             }

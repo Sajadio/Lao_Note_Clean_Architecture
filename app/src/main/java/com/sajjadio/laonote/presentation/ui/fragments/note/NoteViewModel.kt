@@ -40,7 +40,6 @@ class NoteViewModel @Inject constructor(
 
     private val _eventResponse = MutableLiveData<Event<NetworkResponse<Any>>>()
     val eventResponse: LiveData<Event<NetworkResponse<Any>>> = _eventResponse
-    val eventManageImageStorage = MutableLiveData<Event<NetworkResponse<Any>>>()
     val eventResponseNotes = MutableLiveData<Event<NetworkResponse<List<Note>>>>()
     val isLoading = MutableLiveData<Boolean>()
 
@@ -78,29 +77,12 @@ class NoteViewModel @Inject constructor(
 
     fun manageImageStorageUseCase(imgUri: Uri) {
         viewModelScope.launch {
-            _eventResponse.postValue(Event(checkNetworkResponseStatus(NetworkResponse.Loading)))
             noteRepo.manageImageStorage(imgUri).addOnCompleteListener {
                 if (it.isSuccessful) {
-                    eventManageImageStorage.postValue(
-                        Event(
-                            checkNetworkResponseStatus(
-                                NetworkResponse.Success(null)
-                            )
-                        )
-                    )
                     it.result.storage.downloadUrl.addOnSuccessListener { uri ->
                         note_image.postValue(uri.toString())
                     }
-                } else
-                    _eventResponse.postValue(
-                        Event(
-                            checkNetworkResponseStatus(
-                                NetworkResponse.Error(
-                                    it.exception.toString()
-                                )
-                            )
-                        )
-                    )
+                }
             }
         }
     }

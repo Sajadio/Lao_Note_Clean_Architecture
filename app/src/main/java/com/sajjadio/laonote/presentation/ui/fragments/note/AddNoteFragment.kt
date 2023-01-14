@@ -62,9 +62,9 @@ class AddNoteFragment : BaseFragment<FragmentAddNoteBinding, NoteViewModel>(
                         findNavController().navigate(R.id.action_addNoteFragment_to_noteFragment)
                     }
                 }
-                eventManageImageStorage.observeEvent(viewLifecycleOwner) { status ->
-                    checkResponseStatus(status)
-                }
+//                eventManageImageStorage.observeEvent(viewLifecycleOwner) { status ->
+//                    checkResponseStatus(status)
+//                }
             }
             miscrollaneous.setOnClickListener {
                 openBottomSheet()
