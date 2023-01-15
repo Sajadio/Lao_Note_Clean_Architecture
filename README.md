@@ -18,11 +18,11 @@ The purpose of this project is to learn how to use clean architecture, features 
 
 <img src="/screens/10.png" vspace="5" align= "left" height="280" width="150">
 <img src="/screens/11.png" vspace="5" align= "left" height="280" width="150">
-<img src="/screens/12.png" vspace="5" height="280" width="150">
+<img src="/screens/12.png" vspace="5"  align= "left" height="280" width="150">
 
 <img src="/screens/13.png" vspace="5" align= "left" height="280" width="150">
 <img src="/screens/14.png" vspace="5" align= "left" height="280" width="150">
-<img src="" vspace="5" height="1" width="1">
+<img src="" vspace="5" height="280" width="150">
 
 
 
