@@ -1,34 +1,33 @@
 ## Lao Note
-<<<<<<< HEAD
-..
-
-=======
-
 The purpose of this project is to learn how to use clean architecture, features and libraries like (Coroutines, Retrofit, Firebase and more) in a real project.
->>>>>>> ec91184 (add README.md file)
+
+
 # Screens
 
-<img src="/img/1.png" vspace="5" align= "left" height="400" width="200">
-<img src="/img/2.png" vspace="5" align= "left"  height="400" width="200">
-<img src="/img/3.png" vspace="5" height="400" width="200" >
+<img src="/screens/1.png" vspace="5" align= "left" height="400" width="200">
+<img src="/screens/2.png" vspace="5" align= "left"  height="400" width="200">
+<img src="/screens/3.png" vspace="5" height="400" width="200" >
 
-<img src="/img/4.png" vspace="5" align= "left" height="400" width="200" >
-<img src="/img/5.png" vspace="5" align= "left" height="400" width="200">
-<img src="/img/6.png" vspace="5" height="400" width="200">
+<img src="/screens/4.png" vspace="5" align= "left" height="400" width="200" >
+<img src="/screens/5.png" vspace="5" align= "left" height="400" width="200">
+<img src="/screens/6.png" vspace="5" height="400" width="200">
 
-<img src="/img/7.png" vspace="5" align= "left" height="400" width="200">
-<img src="/img/8.png" vspace="5" align= "left" height="400" width="200">
-<img src="/img/9.png" vspace="5" height="400" width="200">
+<img src="/screens/7.png" vspace="5" align= "left" height="400" width="200">
+<img src="/screens/8.png" vspace="5" align= "left" height="400" width="200">
+<img src="/screens/9.png" vspace="5" height="400" width="200">
 
-<img src="/img/10.png" vspace="5" align= "left" height="400" width="200">
-<img src="/img/11.png" vspace="5" align= "left" height="400" width="200">
-<img src="/img/12.png" vspace="5" height="400" width="200">
+<img src="/screens/10.png" vspace="5" align= "left" height="400" width="200">
+<img src="/screens/11.png" vspace="5" align= "left" height="400" width="200">
+<img src="/screens/12.png" vspace="5" height="400" width="200">
 
-<img src="/img/13.png" vspace="5" align= "left" height="400" width="200">
-<img src="/img/14.png" vspace="5" align= "left" height="400" width="200">
+<img src="/screens/13.png" vspace="5" align= "left" height="400" width="200">
+<img src="/screens/14.png" vspace="5" align= "left" height="400" width="200">
 
-<<<<<<< HEAD
-=======
+<img src="/screens/12.png" vspace="5" height="400" width="200">
+
+
+
+
 ## Features 🛠:
 
 - <a href="https://developer.android.com/kotlin/coroutines">Coroutines.</a>
@@ -49,6 +48,4 @@ The purpose of this project is to learn how to use clean architecture, features 
 
 You can change or improve the app feel free to do.
 Support me with a star.😊
-
->>>>>>> ec91184 (add README.md file)
 
