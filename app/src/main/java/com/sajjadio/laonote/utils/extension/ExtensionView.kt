@@ -35,7 +35,11 @@ fun ImageView.loadImage(url: String?) {
 
 
 fun Context.makeToast(message: String) {
-    Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    Toast.makeText(
+        this,
+        message,
+        Toast.LENGTH_SHORT
+    ).show()
 }
 
 @SuppressLint("UseCompatLoadingForDrawables")

@@ -1,5 +1,6 @@
 package com.sajjadio.laonote.presentation.ui.fragments.auth
 
+import android.util.Patterns
 import androidx.activity.result.ActivityResult
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -19,7 +20,7 @@ import javax.inject.Inject
 class AuthViewModel @Inject constructor(
     private val logInUserUseCase: LogInUserUseCase,
     private val logInWithGoogleUseCase: LogInWithGoogleUseCase,
-    private val validateUsername: ValidateEmailUseCase,
+    private val validateEmail: ValidateEmailUseCase,
     private val requestLogInWithGoogleUseCase: RequestLogInWithGoogleUseCase,
     private val validatePasswordUseCase: ValidatePasswordUseCase,
     private val sessionManager: SessionManager
@@ -38,10 +39,12 @@ class AuthViewModel @Inject constructor(
                 email = email.value.toString(),
                 password = password.value.toString()
             )
-            val validUsername = validateUsername(userLogIn.email)
+            val validEmail = validateEmail(
+                Patterns.EMAIL_ADDRESS.matcher(userLogIn.email).matches()
+            )
             val validPassword = validatePasswordUseCase(userLogIn.password)
-            if (!validUsername.successful) {
-                _eventResponse.postValue(Event(NetworkResponse.Error(validUsername.errorMessage)))
+            if (!validEmail.successful) {
+                _eventResponse.postValue(Event(NetworkResponse.Error(validEmail.errorMessage)))
             } else if (!validPassword.successful) {
                 _eventResponse.postValue(Event(NetworkResponse.Error(validPassword.errorMessage)))
             } else {

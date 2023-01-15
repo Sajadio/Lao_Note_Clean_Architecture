@@ -28,7 +28,7 @@ class AuthenticationFragment :
     override fun launchView() {
         binding?.apply {
             viewModel?.apply {
-                eventResponse.observeEvent(viewLifecycleOwner){
+                eventResponse.observeEvent(viewLifecycleOwner) {
                     checkResponseStatus(it)
                 }
             }

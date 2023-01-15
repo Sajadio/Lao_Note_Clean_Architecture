@@ -1,6 +1,7 @@
 package com.sajjadio.laonote.presentation.ui.fragments.note
 
 import android.net.Uri
+import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -177,7 +178,11 @@ class NoteViewModel @Inject constructor(
             _eventResponse.postValue(Event(NetworkResponse.Error(validNoteTitle.errorMessage)))
             return false
         }
-        val validWeURL = validateWebURLUseCase(note_webUrl.value.toString())
+        val validWeURL =
+            validateWebURLUseCase(
+                note_webUrl.value.toString(),
+                Patterns.WEB_URL.matcher(note_webUrl.value.toString()).matches()
+            )
         if (!validWeURL.successful) {
             _eventResponse.postValue(Event(NetworkResponse.Error(validWeURL.errorMessage)))
             return false

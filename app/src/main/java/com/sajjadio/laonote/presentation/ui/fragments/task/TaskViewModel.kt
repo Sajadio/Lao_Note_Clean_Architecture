@@ -1,5 +1,6 @@
 package com.sajjadio.laonote.presentation.ui.fragments.task
 
+import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -37,7 +38,7 @@ class TaskViewModel @Inject constructor(
     val eventResponseTask = MutableLiveData<Event<NetworkResponse<List<Task>>>>()
     val isLoading = MutableLiveData<Boolean>()
 
-     val userID = MutableLiveData<String>()
+    val userID = MutableLiveData<String>()
     private val taskID = MutableLiveData<String>()
     val task_title = MutableLiveData("")
     val task_description = MutableLiveData("")
@@ -75,7 +76,7 @@ class TaskViewModel @Inject constructor(
         }
     }
 
-    fun getTasks(userID:String) {
+    fun getTasks(userID: String) {
         viewModelScope.launch {
             getTasksUseCase(userID).collectLatest {
                 eventResponseTask.postValue(Event(checkNetworkResponseStatus(it)))
@@ -179,7 +180,11 @@ class TaskViewModel @Inject constructor(
             _eventResponse.postValue(Event(NetworkResponse.Error(validTaskDate.errorMessage)))
             return false
         }
-        val validWeURL = validateWebURLUseCase(task_webUrl.value.toString())
+        val validWeURL =
+            validateWebURLUseCase(
+                task_webUrl.value.toString(),
+                Patterns.WEB_URL.matcher(task_webUrl.value.toString()).matches()
+            )
         if (!validWeURL.successful) {
             _eventResponse.postValue(Event(NetworkResponse.Error(validWeURL.errorMessage)))
             return false

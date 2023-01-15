@@ -1,28 +1,22 @@
 package com.sajjadio.laonote.domain.usecase
 
-import android.content.Context
-import android.util.Patterns
-import com.sajjadio.laonote.R
-import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
-class ValidateWebURLUseCase @Inject constructor(
-    @ApplicationContext private val context: Context
-) {
+class ValidateWebURLUseCase @Inject constructor() {
 
-    operator fun invoke(url: String): ValidationResult {
+    operator fun invoke(url: String, isValidEmail: Boolean): ValidationResult {
         if (url.isNotEmpty()) {
-            return if (Patterns.WEB_URL.matcher(url).matches())
+            return if (isValidEmail)
                 ValidationResult(
                     successful = true
                 )
             else
                 ValidationResult(
                     successful = false,
-                    errorMessage = context.resources.getString(R.string.url_valid)
+                    errorMessage = "Url is not valid"
                 )
         }
-        return  ValidationResult(
+        return ValidationResult(
             successful = true
         )
     }
