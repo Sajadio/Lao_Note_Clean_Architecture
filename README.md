@@ -6,7 +6,7 @@ The purpose of this project is to learn how to use clean architecture, features 
 
 <img src="/screens/1.png" vspace="5" align= "left" height="280" width="150">
 <img src="/screens/2.png" vspace="5" align= "left"  height="280" width="150">
-<img src="/screens/3.png" vspace="5" height="280" width="200" >
+<img src="/screens/3.png" vspace="5" align= "left" height="280" width="200" >
 
 <img src="/screens/4.png" vspace="5" align= "left" height="280" width="150" >
 <img src="/screens/5.png" vspace="5" align= "left" height="280" width="150">
