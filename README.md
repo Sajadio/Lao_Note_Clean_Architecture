@@ -5,24 +5,24 @@ The purpose of this project is to learn how to use clean architecture, features 
 # Screens
 
 <img src="/screens/1.png" vspace="5" align= "left" height="280" width="150">
-<img src="/screens/2.png" vspace="5" align= "left"  height="300" width="150">
-<img src="/screens/3.png" vspace="5" height="400" width="200" >
+<img src="/screens/2.png" vspace="5" align= "left"  height="280" width="150">
+<img src="/screens/3.png" vspace="5" height="280" width="200" >
 
-<img src="/screens/4.png" vspace="5" align= "left" height="400" width="200" >
-<img src="/screens/5.png" vspace="5" align= "left" height="400" width="200">
-<img src="/screens/6.png" vspace="5" height="400" width="200">
+<img src="/screens/4.png" vspace="5" align= "left" height="280" width="150" >
+<img src="/screens/5.png" vspace="5" align= "left" height="280" width="150">
+<img src="/screens/6.png" vspace="5" height="400" width="280">
 
-<img src="/screens/7.png" vspace="5" align= "left" height="400" width="200">
-<img src="/screens/8.png" vspace="5" align= "left" height="400" width="200">
-<img src="/screens/9.png" vspace="5" height="400" width="200">
+<img src="/screens/7.png" vspace="5" align= "left" height="280" width="150">
+<img src="/screens/8.png" vspace="5" align= "left" height="280" width="215000">
+<img src="/screens/9.png" vspace="5" height="280" width="200">
 
-<img src="/screens/10.png" vspace="5" align= "left" height="400" width="200">
-<img src="/screens/11.png" vspace="5" align= "left" height="400" width="200">
-<img src="/screens/12.png" vspace="5" height="400" width="200">
+<img src="/screens/10.png" vspace="5" align= "left" height="280" width="150">
+<img src="/screens/11.png" vspace="5" align= "left" height="280" width="150">
+<img src="/screens/12.png" vspace="5" height="280" width="200">
 
-<img src="/screens/13.png" vspace="5" align= "left" height="400" width="200">
-<img src="/screens/14.png" vspace="5" align= "left" height="400" width="200">
-<img src="" vspace="5" height="400" width="200">
+<img src="/screens/13.png" vspace="5" align= "left" height="280" width="150">
+<img src="/screens/14.png" vspace="5" align= "left" height="280" width="150">
+<img src="" vspace="5" height="0" width="0">
 
 
 
