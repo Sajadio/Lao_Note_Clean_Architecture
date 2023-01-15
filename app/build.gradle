@@ -8,11 +8,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.laonote'
+    namespace 'com.sajjadio.laonote'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.laonote"
+        applicationId "com.sajjadio.laonote"
         minSdk 21
         targetSdk 33
         versionCode 1

@@ -1,4 +1,4 @@
-package com.example.laonote
+package com.sajjadio.laonote
 
 import org.junit.Test
 

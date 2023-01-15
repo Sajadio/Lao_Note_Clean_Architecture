@@ -1,4 +1,4 @@
-package com.example.laonote
+package com.sajjadio.laonote
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
