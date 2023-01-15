@@ -10,7 +10,7 @@ The purpose of this project is to learn how to use clean architecture, features 
 
 <img src="/screens/4.png" vspace="5" align= "left" height="280" width="150" >
 <img src="/screens/5.png" vspace="5" align= "left" height="280" width="150">
-<img src="/screens/6.png" vspace="5" height="400" width="280">
+<img src="/screens/6.png" vspace="5" align= "left" height="280" width="280">
 
 <img src="/screens/7.png" vspace="5" align= "left" height="280" width="150">
 <img src="/screens/8.png" vspace="5" align= "left" height="280" width="215000">
