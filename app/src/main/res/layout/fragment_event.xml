@@ -115,7 +115,7 @@
         <ImageButton
             android:id="@+id/fabBtnAddEvent"
             style="@style/FloatingButton"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck,ImageContrastCheck" />
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

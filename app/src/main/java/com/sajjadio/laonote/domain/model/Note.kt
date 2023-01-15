@@ -7,6 +7,7 @@ import java.util.*
 
 @Parcelize
 data class Note(
+    val user_id: String? = null,
     val note_id: String = UUID.randomUUID().toString(),
     val note_title: String? = null,
     val note_subTitle: String? = null,

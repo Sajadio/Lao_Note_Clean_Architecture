@@ -3,6 +3,7 @@ package com.sajjadio.laonote.presentation.ui.fragments.event
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.sajjadio.laonote.data.local.data_storage.SessionManager
 import com.sajjadio.laonote.domain.model.EventModel
 import com.sajjadio.laonote.domain.usecase.ValidateDateUseCase
 import com.sajjadio.laonote.domain.usecase.ValidateTitleUseCase
@@ -24,29 +25,36 @@ class EventViewModel @Inject constructor(
     private val deleteEventUseCase: DeleteEventUseCase,
     private val validateTitleUseCase: ValidateTitleUseCase,
     private val validateDateUseCase: ValidateDateUseCase,
-    ) : BaseViewModel() {
+    private val sessionManager: SessionManager
+) : BaseViewModel() {
 
     private val _eventResponse = MutableLiveData<Event<NetworkResponse<Any>>>()
     val eventResponse: LiveData<Event<NetworkResponse<Any>>> = _eventResponse
     val eventResponseEvent = MutableLiveData<Event<NetworkResponse<List<EventModel>>>>()
     val isLoading = MutableLiveData<Boolean>()
 
+    private val userID = MutableLiveData<String>()
+    private val eventID = MutableLiveData<String>()
     val event_title = MutableLiveData("")
     val event_description = MutableLiveData("")
     val date = MutableLiveData("")
-    val eventID = MutableLiveData<String>()
 
     init {
-        getEvents()
+        viewModelScope.launch {
+            sessionManager.accessToken.collectLatest {
+                getEvents(it.toString())
+                userID.postValue(it.toString())
+            }
+        }
     }
 
     fun onRefresh() {
-        getEvents()
+        getEvents(userID.value.toString())
     }
 
-    private fun getEvents() {
+    private fun getEvents(userID: String) {
         viewModelScope.launch {
-            getEventsUseCase().collectLatest {
+            getEventsUseCase(userID).collectLatest {
                 eventResponseEvent.postValue(Event(checkNetworkResponseStatus(it)))
                 isLoading.postValue(it is NetworkResponse.Loading)
             }
@@ -55,7 +63,11 @@ class EventViewModel @Inject constructor(
 
     fun getEventsByDate(date: String) {
         viewModelScope.launch {
-            getEventsByDateUseCase(date).collectLatest {
+            val event = EventModel(
+                user_id = userID.value.toString(),
+                event_date_created = date
+            )
+            getEventsByDateUseCase(event).collectLatest {
                 eventResponseEvent.postValue(Event(checkNetworkResponseStatus(it)))
                 isLoading.postValue(it is NetworkResponse.Loading)
             }
@@ -64,7 +76,11 @@ class EventViewModel @Inject constructor(
 
     fun deleteEvent() {
         viewModelScope.launch {
-            deleteEventUseCase(eventID.value.toString()).collectLatest {
+            val event = EventModel(
+                user_id = userID.value.toString(),
+                event_id = eventID.value.toString()
+            )
+            deleteEventUseCase(event).collectLatest {
                 _eventResponse.postValue(Event(checkNetworkResponseStatus(it)))
                 isLoading.postValue(it is NetworkResponse.Loading)
             }
@@ -75,6 +91,7 @@ class EventViewModel @Inject constructor(
         viewModelScope.launch {
             if (validateEventFiled()) {
                 val event = EventModel(
+                    user_id = userID.value.toString(),
                     event_title = event_title.value.toString(),
                     event_description = event_description.value.toString(),
                     event_date_created = date.value.toString()
@@ -91,6 +108,7 @@ class EventViewModel @Inject constructor(
         viewModelScope.launch {
             if (validateEventFiled()) {
                 val event = EventModel(
+                    user_id = userID.value.toString(),
                     event_id = eventID.value.toString(),
                     event_title = event_title.value.toString(),
                     event_description = event_description.value.toString(),

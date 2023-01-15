@@ -18,6 +18,8 @@ const val REQUEST_CODE_PICK_PHOTO = 124
 
 
 // note collection
+const val USER = "user"
+const val USER_ID = "user_id"
 const val NOTE_ID = "note_id"
 const val NOTE_TITLE = "note_title"
 const val NOTE_SUB_TITLE = "note_subTitle"
@@ -44,7 +46,6 @@ const val EVENT_DESCRIPTION = "event_description"
 const val EVENT_DATE_CREATED = "event_date_created"
 
 // format Date
-const val HOUR_AND_MINT = "hh:mm aa"
 const val FULL_DATE = "MMM dd,yyyy  hh:mm aa"
 const val STANDARD_DATE = "EE MMM dd HH:mm:ss z yyyy"
 const val MONTH_DAY_YEAR = "MM/dd/yyyy"

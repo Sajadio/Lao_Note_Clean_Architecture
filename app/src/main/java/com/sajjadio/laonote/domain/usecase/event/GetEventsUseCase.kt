@@ -8,10 +8,10 @@ import javax.inject.Inject
 class GetEventsUseCase @Inject constructor(
     private val eventRepository: EventRepository
 ) {
-    operator fun invoke() = flow {
+    operator fun invoke(userID:String) = flow {
         try {
             emit(NetworkResponse.Loading)
-            val response = eventRepository.getEvents()
+            val response = eventRepository.getEvents(userID)
             emit(NetworkResponse.Success(response))
         } catch (e: Exception) {
             emit(NetworkResponse.Error(e.message.toString()))

@@ -1,7 +1,6 @@
 package com.sajjadio.laonote.data.repository
 
 import android.net.Uri
-import com.google.firebase.storage.UploadTask
 import com.sajjadio.laonote.data.remote.firestore.NotesDocFireStore
 import com.sajjadio.laonote.data.remote.firestore.storage.FireStorage
 import com.sajjadio.laonote.domain.model.Note
@@ -13,18 +12,22 @@ class NoteRepositoryImpl @Inject constructor(
     private val storage: FireStorage
 ) : NoteRepository {
 
-    override suspend fun setNote(note: Note) = notesDocFireStore.setNote(note)
+    override suspend fun setNote(note: Note) =
+        notesDocFireStore.setNote(note)
 
-    override suspend fun getNotes() = notesDocFireStore.getNotes()
+    override suspend fun getNotes(userID: String) =
+        notesDocFireStore.getNotes(userID)
 
-    override suspend fun getNotesByTitle(title: String): List<Note> =
-        notesDocFireStore.getNotesByTitle(title)
+    override suspend fun searchAboutNote(note: Note) =
+        notesDocFireStore.searchAboutNote(note)
 
     override suspend fun updateNote(note: Note) =
         notesDocFireStore.updateNote(note)
 
-    override suspend fun deleteNoteByID(noteId: String) = notesDocFireStore.deleteNoteByID(noteId)
+    override suspend fun deleteNote(note: Note) =
+        notesDocFireStore.deleteNote(note)
 
-    override fun manageImageStorage(uri: Uri): UploadTask = storage.manageImageStorage(uri)
+    override fun manageImageStorage(uri: Uri) =
+        storage.manageImageStorage(uri)
 
 }

@@ -4,6 +4,7 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.sajjadio.laonote.data.local.data_storage.SessionManager
 import com.sajjadio.laonote.domain.model.Note
 import com.sajjadio.laonote.domain.model.User
 import com.sajjadio.laonote.domain.repository.NoteRepository
@@ -27,13 +28,14 @@ import javax.inject.Inject
 class NoteViewModel @Inject constructor(
     private val setNoteUseCase: SetNoteUseCase,
     private val getNotesUseCase: GetNotesUseCase,
-    private val getNotesByTitleUseCase: GetNotesByTitleUseCase,
+    private val searchAboutNoteUseCase: SearchAboutNoteUseCase,
     private val updateNoteUseCase: UpdateNoteUseCase,
     private val deleteNotesUseCase: DeleteNotesUseCase,
     private val validateTitleUseCase: ValidateTitleUseCase,
     private val validateWebURLUseCase: ValidateWebURLUseCase,
     private val getUserInfoUseCase: GetUserInfoUseCase,
     private val noteRepo: NoteRepository,
+    private val sessionManager: SessionManager
 ) : BaseViewModel() {
 
     private val _eventResponse = MutableLiveData<Event<NetworkResponse<Any>>>()
@@ -41,7 +43,8 @@ class NoteViewModel @Inject constructor(
     val eventResponseNotes = MutableLiveData<Event<NetworkResponse<List<Note>>>>()
     val isLoading = MutableLiveData<Boolean>()
 
-    val notID = MutableLiveData<String>()
+    private val userID = MutableLiveData<String>()
+    private val noteID = MutableLiveData<String>()
     val note_title = MutableLiveData("")
     val note_subTitle = MutableLiveData("")
     val note_description = MutableLiveData("")
@@ -62,59 +65,23 @@ class NoteViewModel @Inject constructor(
             getUserInfoUseCase().collect { info ->
                 user.postValue(info.data())
             }
+            sessionManager.accessToken.collectLatest {
+                getNotes(it.toString())
+                userID.postValue(it.toString())
+            }
         }
-        getNotes()
     }
 
 
     fun onRefresh() {
-        getNotes()
-    }
-
-    fun manageImageStorageUseCase(imgUri: Uri) {
-        viewModelScope.launch {
-            noteRepo.manageImageStorage(imgUri).addOnCompleteListener {
-                if (it.isSuccessful) {
-                    it.result.storage.downloadUrl.addOnSuccessListener { uri ->
-                        note_image.postValue(uri.toString())
-                    }
-                }
-            }
-        }
-    }
-
-
-    private fun getNotes() {
-        viewModelScope.launch {
-            getNotesUseCase().collectLatest {
-                eventResponseNotes.postValue(Event(checkNetworkResponseStatus(it)))
-                isLoading.postValue(it is NetworkResponse.Loading)
-            }
-        }
-    }
-
-    fun getNotesByTitle(title: String) {
-        viewModelScope.launch {
-            getNotesByTitleUseCase(title).collectLatest {
-                eventResponseNotes.postValue(Event(checkNetworkResponseStatus(it)))
-                isLoading.postValue(it is NetworkResponse.Loading)
-            }
-        }
-    }
-
-    fun deleteNotes() {
-        viewModelScope.launch {
-            deleteNotesUseCase(notID.value.toString()).collectLatest {
-                _eventResponse.postValue(Event(checkNetworkResponseStatus(it)))
-                isLoading.postValue(it is NetworkResponse.Loading)
-            }
-        }
+        getNotes(userID.value.toString())
     }
 
     fun setNote() {
         viewModelScope.launch {
             if (validateNoteFiled()) {
                 val note = Note(
+                    user_id = userID.value.toString(),
                     note_title = note_title.value.toString(),
                     note_subTitle = note_subTitle.value.toString(),
                     note_description = note_description.value.toString(),
@@ -132,11 +99,59 @@ class NoteViewModel @Inject constructor(
         }
     }
 
+    fun manageImageStorageUseCase(imgUri: Uri) {
+        viewModelScope.launch {
+            noteRepo.manageImageStorage(imgUri).addOnCompleteListener {
+                if (it.isSuccessful) {
+                    it.result.storage.downloadUrl.addOnSuccessListener { uri ->
+                        note_image.postValue(uri.toString())
+                    }
+                }
+            }
+        }
+    }
+
+    private fun getNotes(userID: String?) {
+        viewModelScope.launch {
+            getNotesUseCase(userID.toString()).collect {
+                eventResponseNotes.postValue(Event(checkNetworkResponseStatus(it)))
+                isLoading.postValue(it is NetworkResponse.Loading)
+            }
+        }
+    }
+
+    fun getNotesByTitle(title: String) {
+        viewModelScope.launch {
+            val note = Note(
+                user_id = userID.value.toString(),
+                note_title = title
+            )
+            searchAboutNoteUseCase(note).collectLatest {
+                eventResponseNotes.postValue(Event(checkNetworkResponseStatus(it)))
+                isLoading.postValue(it is NetworkResponse.Loading)
+            }
+        }
+    }
+
+    fun deleteNotes() {
+        viewModelScope.launch {
+            val note = Note(
+                user_id = userID.value.toString(),
+                note_id = noteID.value.toString()
+            )
+            deleteNotesUseCase(note).collectLatest {
+                _eventResponse.postValue(Event(checkNetworkResponseStatus(it)))
+                isLoading.postValue(it is NetworkResponse.Loading)
+            }
+        }
+    }
+
     fun updateNote() {
         viewModelScope.launch {
             if (validateNoteFiled()) {
                 val note = Note(
-                    note_id = notID.value.toString(),
+                    user_id = userID.value.toString(),
+                    note_id = noteID.value.toString(),
                     note_title = note_title.value.toString(),
                     note_subTitle = note_subTitle.value.toString(),
                     note_description = note_description.value.toString(),
@@ -171,7 +186,7 @@ class NoteViewModel @Inject constructor(
     }
 
     fun showNoteDetails(note: Note) {
-        notID.postValue(note.note_id)
+        noteID.postValue(note.note_id)
         note_title.postValue(note.note_title)
         note_subTitle.postValue(note.note_subTitle)
         note_description.postValue(note.note_description)

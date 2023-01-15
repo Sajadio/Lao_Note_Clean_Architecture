@@ -7,10 +7,10 @@ import com.sajjadio.laonote.domain.model.Note
 
 interface NoteRepository {
     suspend fun setNote(note: Note): Void?
-    suspend fun getNotes(): List<Note>
-    suspend fun getNotesByTitle(title: String): List<Note>
+    suspend fun getNotes(userID:String): List<Note>
+    suspend fun searchAboutNote(note: Note): List<Note>
     suspend fun updateNote(note: Note): Void?
-    suspend fun deleteNoteByID(noteId: String): Void?
+    suspend fun deleteNote(note: Note): Void?
 
     fun manageImageStorage(uri: Uri): UploadTask
 }

@@ -1,5 +1,6 @@
 package com.sajjadio.laonote.domain.usecase.note
 
+import android.util.Log
 import com.sajjadio.laonote.domain.model.Note
 import com.sajjadio.laonote.domain.repository.NoteRepository
 import com.sajjadio.laonote.utils.*
@@ -16,6 +17,7 @@ class SetNoteUseCase @Inject constructor(
             emit(NetworkResponse.Success(response))
         } catch (e: Exception) {
             emit(NetworkResponse.Error(e.message.toString()))
+            Log.d(TAG, "invoke: ${e.message}")
         }
     }
 }

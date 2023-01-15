@@ -9,49 +9,66 @@ import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class EventsDocFireStoreImpl @Inject constructor(
-    private val fireStore: FirebaseFirestore
+    fireStore: FirebaseFirestore
 ) : EventsDocFireStore {
+
+    private val userCollection = fireStore.collection(USER)
 
     override suspend fun setEvent(event: EventModel): Void? {
         val setEvent = HashMap<String, Any?>()
+        setEvent[USER_ID] = event.user_id
         setEvent[EVENT_ID] = event.event_id
         setEvent[EVENT_TITLE] = event.event_title
         setEvent[EVENT_DESCRIPTION] = event.event_description
         setEvent[EVENT_DATE_CREATED] = event.event_date_created
-        val collection = fireStore.collection(EVENTS)
-        return collection.document(setEvent[EVENT_ID].toString()).set(setEvent).await()
+
+        return userCollection
+            .document(setEvent[USER_ID].toString())
+            .collection(EVENTS)
+            .document(setEvent[EVENT_ID].toString())
+            .set(setEvent).await()
     }
 
-    override suspend fun getEvents(): List<EventModel> =
-        fireStore.collection(EVENTS).get().await().toObjects(EventModel::class.java)
+    override suspend fun getEvents(userID: String): List<EventModel> =
+        userCollection.document(userID).collection(EVENTS).get().await()
+            .toObjects(EventModel::class.java)
 
-    override suspend fun getTasksByDate(date: String): List<EventModel> {
+    override suspend fun getTasksByDate(event: EventModel): List<EventModel> {
         val events = mutableListOf<EventModel>()
-        if (date.isEmpty()) {
-            return getEvents()
-        } else {
-            getEvents().forEach { result ->
-                if (compareBetweenDates(result.event_date_created, date)) {
-                    events.add(result)
-                }
-            }
+        if (event.event_date_created?.isEmpty() == true) return getEvents(event.user_id.toString())
+        getEvents(event.user_id.toString()).forEach { result ->
+            if (
+                compareBetweenDates(
+                    result.event_date_created,
+                    event.event_date_created.toString()
+                )
+            ) events.add(result)
+
         }
+
         return events
     }
 
     override suspend fun updateEvent(event: EventModel): Void? {
-
         val updateEvent = HashMap<String, Any?>()
+        updateEvent[USER_ID] = event.user_id
         updateEvent[EVENT_ID] = event.event_id
         updateEvent[EVENT_TITLE] = event.event_title
         updateEvent[EVENT_DESCRIPTION] = event.event_description
         updateEvent[EVENT_DATE_CREATED] = event.event_date_created
-        return fireStore.collection(EVENTS).document(updateEvent[EVENT_ID].toString())
-            .update(updateEvent).await()
+        return userCollection
+            .document(updateEvent[USER_ID].toString())
+            .collection(EVENTS)
+            .document(updateEvent[EVENT_ID].toString())
+            .update(updateEvent)
+            .await()
     }
 
-    override suspend fun deleteEventByID(eventId: String): Void? =
-        fireStore.collection(EVENTS).document(eventId).delete().await()
+    override suspend fun deleteEvent(event: EventModel): Void? = userCollection
+        .document(event.user_id.toString())
+        .collection(EVENTS).document(event.event_id)
+        .delete()
+        .await()
 
     private fun compareBetweenDates(eventDateCreated: String?, date: String): Boolean {
         val firstDate = eventDateCreated.formatDate(FULL_DATE, MONTH_DAY_YEAR)

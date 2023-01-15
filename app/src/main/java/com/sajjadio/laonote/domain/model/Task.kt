@@ -7,11 +7,12 @@ import java.util.*
 
 @Parcelize
 data class Task(
+    val user_id:String? = null,
     val task_id: String = UUID.randomUUID().toString(),
     val task_title: String? = null,
     val task_description: String? = null,
     val task_webUrl: String? = null,
     val task_date_created: String? = null,
-    @field:JvmField val is_done: Boolean? = null,
+    @field:JvmField val is_done: Boolean = false,
     override val item: String = task_id,
 ) : Parcelable, ParentListAdapter

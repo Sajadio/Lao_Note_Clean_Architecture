@@ -25,12 +25,12 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <ImageButton
-                android:layout_width="@dimen/_30sdp"
-                android:layout_height="@dimen/_30sdp"
+                android:layout_width="@dimen/_48sdp"
+                android:layout_height="@dimen/_48sdp"
                 android:layout_gravity="center"
                 android:background="@drawable/shape_of_effect_btn"
                 android:src="@drawable/ic_bar"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
         </FrameLayout>
 
         <TextView
@@ -61,32 +61,32 @@
                     android:id="@+id/noteColor1"
                     style="@style/StylePickColor"
                     android:background="@drawable/note_color_1"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
                 <ImageButton
                     android:id="@+id/noteColor2"
                     style="@style/StylePickColor"
                     android:background="@drawable/note_color_2"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
                 <ImageButton
                     android:id="@+id/noteColor8"
                     style="@style/StylePickColor"
                     android:background="@drawable/note_color_8"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
                 <ImageButton
                     android:id="@+id/noteColor7"
                     style="@style/StylePickColor"
                     android:background="@drawable/note_color_7"
                     android:tint="@color/colorBlackNote"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
                 <ImageButton
                     android:id="@+id/noteColor3"
                     style="@style/StylePickColor"
                     android:background="@drawable/note_color_3"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
                 <ImageButton
                     android:id="@+id/noteColor4"
@@ -99,7 +99,7 @@
                     android:id="@+id/noteColor5"
                     style="@style/StylePickColor"
                     android:background="@drawable/note_color_5"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
 
                 <ImageButton
@@ -141,25 +141,25 @@
                     android:id="@+id/fontColor5"
                     style="@style/StylePickColor"
                     android:background="@drawable/note_color_5"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
                 <ImageButton
                     android:id="@+id/fontColor6"
                     style="@style/StylePickColor"
                     android:background="@drawable/note_color_6"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
                 <ImageButton
                     android:id="@+id/fontColor8"
                     style="@style/StylePickColor"
                     android:background="@drawable/note_color_8"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
                 <ImageButton
                     android:id="@+id/fontColor1"
                     style="@style/StylePickColor"
                     android:background="@drawable/note_color_1"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
                 <ImageButton
                     android:id="@+id/fontColor3"
@@ -172,13 +172,13 @@
                     style="@style/StylePickColor"
                     android:background="@drawable/note_color_7"
                     android:tint="@color/colorBlackNote"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
                 <ImageButton
                     android:id="@+id/fontColor2"
                     style="@style/StylePickColor"
                     android:background="@drawable/note_color_2"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription,TouchTargetSizeCheck" />
 
                 <ImageButton
                     android:id="@+id/fontColor4"

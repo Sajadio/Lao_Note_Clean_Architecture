@@ -23,52 +23,43 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingVertical="@dimen/_10sdp">
-
-            <TextView
-                android:id="@+id/date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
-                android:gravity="center"
-                android:maxLength="8"
-                android:maxLines="1"
-                android:textAppearance="@style/TextAppearance.AppCompat.Title"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="10:00 AM" />
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_10sdp">
 
             <TextView
                 android:id="@+id/eventTitle"
+                style="@style/Title"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/_6sdp"
-                android:layout_marginStart="@dimen/_20sdp"
-                android:ellipsize="end"
-                android:fontFamily="@font/oxygen_bold"
-                android:maxLines="1"
                 android:text="@{event.event_title}"
                 android:textColor="@color/colorText"
-                android:textSize="@dimen/_24ssp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/date"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Draw the Flowchart" />
 
+
             <TextView
-                android:id="@+id/etEventDesc"
+                android:id="@+id/tvDescEvent"
+                style="@style/Description"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/_4sdp"
-                android:fontFamily="@font/cabin_medium"
+                android:layout_marginTop="0dp"
                 android:text="@{event.event_description}"
-                android:textSize="@dimen/_14ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@+id/eventTitle"
-                app:layout_constraintStart_toStartOf="@+id/eventTitle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/eventTitle"
+                tools:text="Descrption" />
+
+
+            <TextView
+                android:id="@+id/tvDescTime"
+                style="@style/Description"
+                android:layout_width="0dp"
+                android:text="@{event.event_date_created}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvDescEvent"
                 tools:text="Jan 11,2023 10:00 PM" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

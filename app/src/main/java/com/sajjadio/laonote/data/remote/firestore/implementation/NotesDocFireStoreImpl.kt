@@ -8,11 +8,14 @@ import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 class NotesDocFireStoreImpl @Inject constructor(
-    private val fireStore: FirebaseFirestore
+    fireStore: FirebaseFirestore,
 ) : NotesDocFireStore {
-    override suspend fun setNote(note: Note): Void? {
 
+    private val userCollection = fireStore.collection(USER)
+
+    override suspend fun setNote(note: Note): Void? {
         val setNote = HashMap<String, Any?>()
+        setNote[USER_ID] = note.user_id
         setNote[NOTE_ID] = note.note_id
         setNote[NOTE_TITLE] = note.note_title
         setNote[NOTE_SUB_TITLE] = note.note_subTitle
@@ -23,31 +26,40 @@ class NotesDocFireStoreImpl @Inject constructor(
         setNote[FONT_COLOR] = note.font_color
         setNote[NOTE_DATE_CREATED] = note.note_date_created
 
-        val collection = fireStore.collection(NOTES)
-        return collection.document(setNote[NOTE_ID].toString()).set(setNote).await()
+        return userCollection
+            .document(setNote[USER_ID].toString())
+            .collection(NOTES)
+            .document(setNote[NOTE_ID].toString())
+            .set(setNote)
+            .await()
     }
 
-    override suspend fun getNotes(): List<Note> =
-        fireStore.collection(NOTES).get().await().toObjects(Note::class.java)
+    override suspend fun getNotes(userID: String): List<Note> = userCollection
+        .document(userID)
+        .collection(NOTES)
+        .get()
+        .await()
+        .toObjects(Note::class.java)
 
-    override suspend fun getNotesByTitle(title: String): List<Note> {
+    override suspend fun searchAboutNote(note: Note): List<Note> {
         val notes = mutableListOf<Note>()
-        if (title.isEmpty()) {
-            return getNotes()
+        if (note.note_title?.isEmpty() == true) {
+            return getNotes(note.user_id.toString())
         }
-        getNotes().forEach { note ->
-            if ((note.note_title?.startsWith(title, true) == true) ||
-                note.note_title?.endsWith(title, true) == true
+        getNotes(note.user_id.toString()).forEach {
+            if ((it.note_title?.startsWith(note.note_title.toString(), true) == true) ||
+                it.note_title?.endsWith(note.note_title.toString(), true) == true
             ) {
-                notes.add(note)
+                notes.add(it)
             }
         }
         return notes
+
     }
 
     override suspend fun updateNote(note: Note): Void? {
-
         val updateNote = HashMap<String, Any?>()
+        updateNote[USER_ID] = note.user_id
         updateNote[NOTE_ID] = note.note_id
         updateNote[NOTE_TITLE] = note.note_title
         updateNote[NOTE_SUB_TITLE] = note.note_subTitle
@@ -58,9 +70,18 @@ class NotesDocFireStoreImpl @Inject constructor(
         updateNote[FONT_COLOR] = note.font_color
         updateNote[NOTE_LATS_UPDATE] = note.note_last_update
 
-        return fireStore.collection(NOTES).document(note.note_id).update(updateNote).await()
+        return userCollection
+            .document(updateNote[USER_ID].toString())
+            .collection(NOTES)
+            .document(updateNote[NOTE_ID].toString())
+            .update(updateNote).await()
     }
 
-    override suspend fun deleteNoteByID(noteId: String): Void? =
-        fireStore.collection(NOTES).document(noteId).delete().await()
+    override suspend fun deleteNote(note: Note): Void? = userCollection
+        .document(note.user_id.toString())
+        .collection(NOTES)
+        .document(note.note_id)
+        .delete()
+        .await()
+
 }

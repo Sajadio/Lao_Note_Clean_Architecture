@@ -28,13 +28,13 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingVertical="@dimen/_10sdp">
+            android:padding="@dimen/_10sdp">
 
             <androidx.appcompat.widget.AppCompatCheckBox
                 android:id="@+id/checkBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_12sdp"
                 android:button="@drawable/selector_checkbox"
                 android:checked="@{task.is_done}"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -44,15 +44,10 @@
 
             <TextView
                 android:id="@+id/eventTitle"
+                style="@style/Title"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/_6sdp"
-                android:ellipsize="end"
-                android:fontFamily="@font/oxygen_bold"
-                android:maxLines="1"
                 android:text="@{task.task_title}"
                 android:textColor="@color/colorText"
-                android:textSize="@dimen/_24ssp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/checkBox"
                 app:layout_constraintTop_toTopOf="parent"
@@ -60,17 +55,14 @@
 
             <TextView
                 android:id="@+id/tvDateTime"
+                style="@style/Description"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/_4sdp"
-                android:fontFamily="@font/cabin_medium"
                 android:text="@{task.task_date_created}"
-                android:textSize="@dimen/_14ssp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/eventTitle"
-                app:layout_constraintStart_toStartOf="@+id/eventTitle"
+                app:layout_constraintStart_toEndOf="@+id/checkBox"
                 app:layout_constraintTop_toBottomOf="@+id/eventTitle"
-                tools:text="Description" />
+                tools:text="Jan 11,2023 10:00 PM" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

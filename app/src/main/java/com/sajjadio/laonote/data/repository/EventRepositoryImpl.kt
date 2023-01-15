@@ -13,15 +13,15 @@ class EventRepositoryImpl @Inject constructor(
     override suspend fun setEvent(event: EventModel): Void? =
         eventsDocFireStore.setEvent(event)
 
-    override suspend fun getEvents(): List<EventModel> =
-        eventsDocFireStore.getEvents()
+    override suspend fun getEvents(userID: String): List<EventModel> =
+        eventsDocFireStore.getEvents(userID)
 
-    override suspend fun getTasksByDate(date: String): List<EventModel> =
-        eventsDocFireStore.getTasksByDate(date)
+    override suspend fun getTasksByDate(event: EventModel): List<EventModel> =
+        eventsDocFireStore.getTasksByDate(event)
 
     override suspend fun updateEvent(event: EventModel): Void? =
         eventsDocFireStore.updateEvent(event)
 
-    override suspend fun deleteEventByID(eventId: String): Void? =
-        eventsDocFireStore.deleteEventByID(eventId)
+    override suspend fun deleteEvent(event: EventModel): Void? =
+        eventsDocFireStore.deleteEvent(event)
 }

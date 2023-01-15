@@ -44,9 +44,11 @@
                     android:layout_gravity="center|end"
                     android:layout_marginEnd="@dimen/_12sdp"
                     android:background="@drawable/shape_of_effect_btn_round"
+                    android:minWidth="48dp"
+                    android:minHeight="48dp"
                     android:padding="@dimen/_6sdp"
                     android:src="@drawable/ic_round_filter_list_24"
-                    tools:ignore="ContentDescription" />
+                    tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
             </com.google.android.material.appbar.MaterialToolbar>
 
@@ -110,7 +112,7 @@
             style="@style/FloatingButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck,ImageContrastCheck" />
 
         <include
             android:id="@+id/filter_layout"

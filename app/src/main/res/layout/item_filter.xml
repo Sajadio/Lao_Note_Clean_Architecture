@@ -23,7 +23,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="0dp"
-            android:onClick="@{() -> viewModel.getTasks()}"
+            android:onClick="@{() -> viewModel.getTasks(viewModel.userID)}"
             android:text="@string/all_task" />
 
         <TextView
@@ -32,6 +32,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="0dp"
+            android:minHeight="48dp"
             android:onClick="@{() -> viewModel.getCompleteTasks()}"
             android:text="@string/completed_task" />
 
@@ -41,6 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="0dp"
+            android:minHeight="48dp"
             android:onClick="@{() -> viewModel.getInCompleteTasks()}"
             android:text="@string/incomplete_task" />
 

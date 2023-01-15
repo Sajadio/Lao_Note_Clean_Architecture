@@ -113,14 +113,10 @@
 
                     <EditText
                         android:id="@+id/etEventTitle"
-                        style="@style/FieldAddData"
+                        style="@style/EditTitle"
                         android:hint="@string/title"
                         android:importantForAutofill="no"
-                        android:maxLength="50"
-                        android:maxLines="1"
                         android:text="@={viewModel.note_title}"
-                        android:textSize="@dimen/_24ssp"
-                        android:textStyle="bold"
                         app:setFontColor="@{viewModel.font_color}" />
 
                     <TextView
@@ -154,28 +150,20 @@
 
                     <EditText
                         android:id="@+id/etNoteSubTitle"
-                        style="@style/FieldAddData"
+                        style="@style/EditSubTitle"
                         android:fontFamily="@font/oxygen_bold"
                         android:hint="@string/sub_title"
                         android:importantForAutofill="no"
-                        android:maxLength="50"
-                        android:maxLines="1"
-                        android:minHeight="48dp"
                         android:text="@={viewModel.note_subTitle}"
-                        android:textColorHint="@color/colorHint"
-                        android:textSize="@dimen/_16ssp"
                         app:setFontColor="@{viewModel.font_color}" />
 
                     <EditText
                         android:id="@+id/etNoteDesc"
-                        style="@style/FieldAddData"
+                        style="@style/EditDescription"
                         android:fontFamily="@font/cabin_medium"
                         android:hint="@string/desc"
                         android:importantForAutofill="no"
-                        android:inputType="textMultiLine"
-                        android:minHeight="48dp"
                         android:text="@={viewModel.note_description}"
-                        android:textSize="@dimen/_14ssp"
                         app:setFontColor="@{viewModel.font_color}" />
 
                 </LinearLayout>
@@ -188,24 +176,26 @@
                     android:layout_marginHorizontal="@dimen/_6sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:orientation="horizontal"
-                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
                     android:visibility="gone"
                     android:weightSum="2"
                     app:layout_constraintEnd_toEndOf="@+id/container1"
                     app:layout_constraintStart_toStartOf="@id/container1"
-                    app:layout_constraintTop_toBottomOf="@id/container1">
+                    app:layout_constraintTop_toBottomOf="@id/container1"
+                    tools:ignore="RtlSymmetry">
 
                     <EditText
                         android:id="@+id/etNoteWebLink"
                         style="@style/EditTextWebUrl"
                         android:importantForAutofill="no"
-                        android:text="@={viewModel.note_webUrl}" />
+                        android:text="@={viewModel.note_webUrl}"
+                        tools:ignore="TouchTargetSizeCheck" />
 
                     <ImageButton
                         android:id="@+id/clearWebURL"
                         style="@style/BtnClose"
                         android:src="@drawable/ic_close"
-                        tools:ignore="ContentDescription" />
+                        tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
                 </LinearLayout>
 

@@ -44,47 +44,25 @@
 
             <TextView
                 android:id="@+id/tvTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_12sdp"
-                android:ellipsize="end"
-                android:fontFamily="@font/oxygen_bold"
-                android:maxLines="1"
+                style="@style/Title"
                 android:text="@{note.note_title}"
-                android:textAlignment="textStart"
-                android:textSize="@dimen/_24ssp"
-                android:textStyle="bold"
                 app:setFontColor="@{note.font_color}"
                 tools:text="@string/title" />
 
             <TextView
                 android:id="@+id/tvSubTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_8sdp"
-                android:layout_marginTop="@dimen/_4sdp"
-                android:ellipsize="end"
-                android:fontFamily="@font/oxygen_bold"
-                android:maxLines="1"
-                android:textSize="@dimen/_16ssp"
+                style="@style/SubTitle"
                 android:visibility="@{note.note_subTitle.empty ?View.GONE:View.VISIBLE}"
                 app:setFontColor="@{note.font_color}"
                 app:setText="@{note.note_subTitle}"
-                tools:ignore="RtlSymmetry"
                 tools:text="@string/sub_title" />
 
             <TextView
                 android:id="@+id/tvDesc"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_8sdp"
-                android:fontFamily="@font/cabin_medium"
-                android:textSize="@dimen/_14ssp"
+                style="@style/Description"
                 android:visibility="@{note.note_description.empty ?View.GONE:View.VISIBLE}"
                 app:setFontColor="@{note.font_color}"
                 app:setText="@{note.note_description}"
-                tools:ignore="RtlSymmetry"
                 tools:text="@string/desc" />
 
             <TextView
@@ -95,8 +73,11 @@
                 android:layout_marginVertical="@dimen/_5sdp"
                 android:clickable="true"
                 android:focusable="true"
+                android:gravity="center|start"
                 android:fontFamily="@font/cabin_medium"
+                android:minHeight="48dp"
                 android:text="@{note.note_webUrl}"
+                android:textAlignment="viewStart"
                 android:textColor="@color/colorBlue"
                 android:textSize="@dimen/_14ssp"
                 android:visibility="@{note.note_webUrl.empty ?View.GONE:View.VISIBLE}"
@@ -106,10 +87,12 @@
                 android:id="@+id/tvDateTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:fontFamily="@font/cabin_medium"
+                android:gravity="start|center"
                 android:text="@{note.note_date_created}"
+                android:textAlignment="viewStart"
                 android:textSize="@dimen/_12ssp"
                 app:setFontColor="@{note.font_color}"
                 tools:text="Dec 5, 2022 20:10:44" />

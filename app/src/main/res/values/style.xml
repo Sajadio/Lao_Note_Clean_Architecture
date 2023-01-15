@@ -24,8 +24,8 @@
     </style>
 
     <style name="StylePickColor">
-        <item name="android:layout_width">@dimen/_30sdp</item>
-        <item name="android:layout_height">@dimen/_30sdp</item>
+        <item name="android:layout_width">@dimen/_40sdp</item>
+        <item name="android:layout_height">@dimen/_40sdp</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:background">@drawable/shape_of_effect_btn</item>
         <item name="android:layout_marginHorizontal" tools:ignore="NewApi">@dimen/_8sdp</item>
@@ -77,6 +77,43 @@
         <item name="android:paddingStart">@dimen/_12sdp</item>
         <item name="android:paddingVertical" tools:targetApi="o">@dimen/_12ssp</item>
         <item name="android:drawablePadding">@dimen/_12sdp</item>
+    </style>
+
+    <style name="Title">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">start|center</item>
+        <item name="android:layout_marginTop">@dimen/_12sdp</item>
+        <item name="android:fontFamily">@font/oxygen_bold</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:textSize">@dimen/_24ssp</item>
+        <item name="android:layout_marginHorizontal" tools:targetApi="o">@dimen/_8sdp</item>
+    </style>
+
+    <style name="SubTitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">start|center</item>
+        <item name="android:fontFamily">@font/oxygen_bold</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:layout_marginTop">@dimen/_4sdp</item>
+        <item name="android:textSize">@dimen/_16ssp</item>
+        <item name="android:layout_marginHorizontal" tools:targetApi="o">@dimen/_8sdp</item>
+    </style>
+
+    <style name="Description">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">start|center</item>
+        <item name="android:fontFamily">@font/cabin_medium</item>
+        <item name="android:textAlignment">textStart</item>
+        <item name="android:layout_marginTop">@dimen/_8sdp</item>
+        <item name="android:textSize">@dimen/_14ssp</item>
+        <item name="android:layout_marginHorizontal" tools:targetApi="o">@dimen/_8sdp</item>
     </style>
 
     <style name="BtnAuthentication">
@@ -139,13 +176,44 @@
         <item name="android:background">@drawable/shape_of_effect_btn_round</item>
     </style>
 
-    <style name="FieldAddData">
+    <style name="EditTitle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginHorizontal" tools:targetApi="o">@dimen/_6sdp</item>
         <item name="android:background">@null</item>
         <item name="android:fontFamily">@font/oxygen_bold</item>
         <item name="android:inputType">text</item>
+        <item name="android:maxLength">50</item>
+        <item name="android:textSize">@dimen/_24ssp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:padding">@dimen/_10sdp</item>
+    </style>
+
+    <style name="EditSubTitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginHorizontal" tools:targetApi="o">@dimen/_6sdp</item>
+        <item name="android:background">@null</item>
+        <item name="android:fontFamily">@font/oxygen_bold</item>
+        <item name="android:inputType">text</item>
+        <item name="android:maxLength">50</item>
+        <item name="android:textSize">@dimen/_16ssp</item>
+        <item name="android:textColorHint">@color/colorHint</item>
+        <item name="android:minHeight">@dimen/_48sdp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:padding">@dimen/_10sdp</item>
+    </style>
+
+    <style name="EditDescription">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginHorizontal" tools:targetApi="o">@dimen/_6sdp</item>
+        <item name="android:background">@null</item>
+        <item name="android:fontFamily">@font/cabin_medium</item>
+        <item name="android:inputType">textMultiLine</item>
+        <item name="android:textSize">@dimen/_14ssp</item>
+        <item name="android:textColorHint">@color/colorHint</item>
+        <item name="android:minHeight">@dimen/_48sdp</item>
         <item name="android:padding">@dimen/_10sdp</item>
     </style>
 
@@ -154,7 +222,10 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
         <item name="android:autoLink">web</item>
+        <item name="android:textAlignment">viewStart</item>
         <item name="android:background">@null</item>
+        <item name="android:paddingHorizontal" tools:targetApi="o">@dimen/_10sdp</item>
+        <item name="android:gravity">start|center</item>
         <item name="android:fontFamily">@font/cabin_medium</item>
         <item name="android:hint">@string/web_url</item>
         <item name="android:inputType">textWebEditText</item>
@@ -177,7 +248,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/oxygen_bold</item>
         <item name="android:textSize">@dimen/_18ssp</item>
-        <item name="android:textColor">@color/colorText</item>
+        <item name="android:textColor">@color/colorHint</item>
         <item name="android:gravity">start|center</item>
         <item name="android:maxLines">1</item>
         <item name="android:ellipsize">end</item>

@@ -6,7 +6,7 @@
     <color name="colorHint">#BCBCBC</color>
     <color name="colorIcon">@color/colorText</color>
     <color name="colorSearchIcon">@color/colorHint</color>
-    <color name="btn_effect">#804C4C4C</color>
+    <color name="btn_effect">#803F3F3F</color>
     <color name="color_border">#804C4C4C</color>
 
 </resources>

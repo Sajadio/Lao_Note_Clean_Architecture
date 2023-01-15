@@ -65,7 +65,7 @@
                         android:onClick="@{() -> viewModel.setEvent()}"
                         android:padding="@dimen/_6sdp"
                         android:src="@drawable/ic_check_circle"
-                        tools:ignore="ContentDescription" />
+                        tools:ignore="ContentDescription,SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
                     <ImageButton
                         android:id="@+id/update"
@@ -104,15 +104,11 @@
 
                 <EditText
                     android:id="@+id/etEventTitle"
-                    style="@style/FieldAddData"
+                    style="@style/EditTitle"
                     android:layout_marginTop="@dimen/_24sdp"
                     android:hint="@string/title"
                     android:importantForAutofill="no"
-                    android:maxLength="50"
-                    android:maxLines="1"
                     android:text="@={viewModel.event_title}"
-                    android:textSize="@dimen/_24ssp"
-                    android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -126,6 +122,7 @@
                     android:fontFamily="@font/cabin_medium"
                     android:padding="@dimen/_10sdp"
                     android:text="@{@string/date_created+' '+viewModel.date}"
+                    android:textAlignment="viewStart"
                     android:textSize="@dimen/_12ssp"
                     app:drawableEndCompat="@drawable/ic_add"
                     app:layout_constraintEnd_toEndOf="@+id/etEventTitle"
@@ -136,13 +133,11 @@
 
                 <EditText
                     android:id="@+id/etTaskDesc"
-                    style="@style/FieldAddData"
+                    style="@style/EditDescription"
                     android:fontFamily="@font/cabin_medium"
                     android:hint="@string/desc"
                     android:importantForAutofill="no"
-                    android:inputType="textMultiLine"
                     android:text="@={viewModel.event_description}"
-                    android:textSize="@dimen/_14ssp"
                     app:layout_constraintEnd_toEndOf="@+id/tvDateTime"
                     app:layout_constraintStart_toStartOf="@+id/tvDateTime"
                     app:layout_constraintTop_toBottomOf="@id/tvDateTime" />

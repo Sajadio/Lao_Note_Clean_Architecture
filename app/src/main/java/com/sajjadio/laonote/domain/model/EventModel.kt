@@ -7,6 +7,7 @@ import java.util.*
 
 @Parcelize
 data class EventModel(
+    val user_id:String? = null,
     val event_id: String = UUID.randomUUID().toString(),
     val event_title: String? = null,
     val event_description: String? = null,

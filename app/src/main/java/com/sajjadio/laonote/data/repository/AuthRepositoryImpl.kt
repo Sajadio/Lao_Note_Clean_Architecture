@@ -10,11 +10,15 @@ class AuthRepositoryImpl @Inject constructor(
     private val auth: Authentication
 ) : AuthRepository {
 
-    override fun logIn(email: String, password: String) = auth.logIn(email, password)
+    override fun logIn(email: String, password: String) =
+        auth.logIn(email, password)
 
-    override suspend fun requestSignInWithGoogle() = auth.requestSignInWithGoogle()
+    override suspend fun requestSignInWithGoogle() =
+        auth.requestSignInWithGoogle()
 
-    override suspend fun checkSignInWithGoogle(result: ActivityResult) = auth.checkSignInWithGoogle(result)
+    override suspend fun checkSignInWithGoogle(result: ActivityResult) =
+        auth.checkSignInWithGoogle(result)
 
-    override fun sendPasswordReset(email: String) = auth.sendPasswordReset(email)
+    override fun sendPasswordReset(email: String) =
+        auth.sendPasswordReset(email)
 }

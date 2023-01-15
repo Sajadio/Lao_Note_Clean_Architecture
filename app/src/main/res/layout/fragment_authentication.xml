@@ -91,6 +91,7 @@
                 android:id="@+id/forgotPass"
                 style="@style/BtnAuthentication"
                 android:layout_marginTop="@dimen/_15sdp"
+                android:minHeight="48dp"
                 android:text="@string/recovery_password"
                 app:layout_constraintEnd_toEndOf="@+id/layout_phoneNumber"
                 app:layout_constraintTop_toBottomOf="@+id/layout_phoneNumber" />
@@ -98,6 +99,7 @@
             <TextView
                 android:id="@+id/logIn"
                 style="@style/LoginButtons"
+                android:layout_height="48dp"
                 android:background="@drawable/background_sing_in"
                 android:onClick="@{() -> viewModel.logIn()}"
                 android:text="@string/log_in"
@@ -147,6 +149,7 @@
             <TextView
                 android:id="@+id/google"
                 style="@style/LoginButtons"
+                android:layout_height="48dp"
                 android:layout_marginTop="@dimen/_15sdp"
                 android:background="@drawable/shape_of_primary_color"
                 android:paddingStart="@dimen/_6sdp"
@@ -162,6 +165,7 @@
                 android:id="@+id/skip"
                 style="@style/BtnAuthentication"
                 android:layout_marginTop="@dimen/_15sdp"
+                android:minHeight="48dp"
                 android:text="@string/skip"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/google"

@@ -52,8 +52,8 @@
 
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/profile"
-                    android:layout_width="@dimen/_40sdp"
-                    android:layout_height="@dimen/_40sdp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:layout_gravity="end|center"
                     android:layout_marginHorizontal="@dimen/_12sdp"
                     android:background="@drawable/shape_of_effect_btn_round"
@@ -64,6 +64,7 @@
                     app:riv_oval="true"
                     app:riv_tile_mode="clamp"
                     app:setImage="@{viewModel.user.photo}"
+                    tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck"
                     tools:src="@drawable/ic_launcher_background" />
 
             </com.google.android.material.appbar.MaterialToolbar>
@@ -135,14 +136,18 @@
             <ImageButton
                 android:id="@+id/taskFragment"
                 style="@style/IconsBottomBar"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:src="@drawable/ic_task"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription,SpeakableTextPresentCheck,SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
             <ImageButton
                 android:id="@+id/eventFragment"
                 style="@style/IconsBottomBar"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:src="@drawable/ic_event"
-                tools:ignore="ContentDescription" />
+                tools:ignore="ContentDescription,SpeakableTextPresentCheck" />
 
         </LinearLayout>
 
@@ -151,7 +156,7 @@
             style="@style/FloatingButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            tools:ignore="ContentDescription" />
+            tools:ignore="ContentDescription,SpeakableTextPresentCheck,SpeakableTextPresentCheck,ImageContrastCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

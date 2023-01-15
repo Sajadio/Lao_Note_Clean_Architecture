@@ -22,7 +22,7 @@
     <color name="colorBlackNote">#1F1F1F</color>
     <color name="colorRedNote">@android:color/holo_red_light</color>
 
-    <color name="btn_effect">#E5E5E5</color>
+    <color name="btn_effect">#EEEEEE</color>
     <color name="color_border">#E3E3E3</color>
     <color name="colorIcon">@color/colorText</color>
 

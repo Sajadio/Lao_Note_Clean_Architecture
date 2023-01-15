@@ -8,10 +8,10 @@ import javax.inject.Inject
 class GetTasksUseCase @Inject constructor(
     private val taskRepo: TaskRepository
 ) {
-    operator fun invoke() = flow {
+    operator fun invoke(userID:String) = flow {
         try {
             emit(NetworkResponse.Loading)
-            val response = taskRepo.getTasks()
+            val response = taskRepo.getTasks(userID)
             emit(NetworkResponse.Success(response))
         } catch (e: Exception) {
             emit(NetworkResponse.Error(e.message.toString()))
